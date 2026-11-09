@@ -1,0 +1,7 @@
+LUYEN DE TIMO - KHOI 7  (BAN NHAP - co/thay duyet truoc khi dung)
+1. Mo index.html bang trinh duyet la dung duoc.
+2. Len GitHub roi Vercel: dua ca thu muc nay (index.html, img, sw.js, manifest.webmanifest, icon.svg, vercel.json) len mot repo rieng, Deploy nhu cac web-app khac.
+3. Hoc sinh mo link tren dien thoai -> "Them vao man hinh chinh" la thanh app.
+4. De TIMO la tai lieu cua FERMAT Education, duoc dong y cho hoc sinh on luyen: nen bat mat khau bao ve hoac chi gui link cho hoc sinh.
+5. Tac gia: Ngo Thi Phuong - Giao vien Truong THCS Vo Thi Sau, phuong An Bien, Hai Phong.
+6. Hoc sinh chi nhap ma (HS01...), khong nhap ho ten.
