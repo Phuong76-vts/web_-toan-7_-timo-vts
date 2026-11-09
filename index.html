@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="author" content="Ngô Thị Phương - Giáo viên THCS Võ Thị Sáu, An Biên, Hải Phòng">
+<meta name="theme-color" content="#1e7bff">
+<link rel="icon" href="icon.svg">
+<title>Luyện đề TIMO · Khối 7</title>
+<style>
+:root{--bg:#eef6ff;--card:#fff;--ink:#1b2440;--mut:#5b6785;--line:#dfe8f6;--pri:#1e7bff;--pri2:#e5f0ff;--ok:#0fa968;--okbg:#e3f8ee;--bad:#ef476f;--badbg:#ffe8ee;--warn:#b45f06;--warnbg:#fff3d6;--g6:#12b886;--g7:#1e7bff;--g8:#ff922b;--g9:#7950f2;--sh:0 6px 20px rgba(30,70,140,.10)}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.55 "Nunito","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:radial-gradient(1200px 500px at 90% -10%,#ffe9f3 0,transparent 60%),radial-gradient(900px 450px at -10% 0,#dff7ec 0,transparent 55%),var(--bg);min-height:100vh}
+.wrap{max-width:860px;margin:0 auto;padding:14px 14px 60px}
+.hero{position:relative;overflow:hidden;border-radius:22px;padding:20px 22px;margin-bottom:12px;color:#fff;background:linear-gradient(120deg,#1e7bff 0%,#6a5cff 55%,#ff5fa2 100%);box-shadow:0 10px 28px rgba(80,80,220,.28)}
+.hero h1{margin:0;font-size:25px;line-height:1.2;letter-spacing:.2px;text-shadow:0 2px 6px rgba(0,0,0,.18)}
+.hero .sub{opacity:.95;font-size:14.5px;margin-top:3px}
+.hero .sym{position:absolute;font-weight:800;opacity:.16;font-size:64px;pointer-events:none;user-select:none}
+.hero .row{position:relative}
+.hero .btn.ghost{background:rgba(255,255,255,.22);color:#fff;border:1px solid rgba(255,255,255,.55)}
+.hero .mut{color:#fff;opacity:.95;font-weight:700}
+h2{font-size:19px;margin:0 0 10px} h3{font-size:16px;margin:14px 0 6px}
+.draft{background:var(--warnbg);color:var(--warn);border:1px solid #f7d98a;border-radius:12px;padding:8px 12px;font-size:13.5px;margin-bottom:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:12px;box-shadow:var(--sh)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:12px}
+.tile{--c:#1e7bff;cursor:pointer;border:0;border-left:6px solid var(--c);background:var(--card);border-radius:16px;padding:14px 14px 14px 16px;text-align:left;font:inherit;color:inherit;box-shadow:var(--sh);transition:transform .15s,box-shadow .15s}
+.tile:nth-child(5n+1){--c:#1e7bff}.tile:nth-child(5n+2){--c:#12b886}.tile:nth-child(5n+3){--c:#ff922b}.tile:nth-child(5n+4){--c:#f06595}.tile:nth-child(5n){--c:#7950f2}
+.tile:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(30,70,140,.18)}
+.tile b{display:block;font-size:16.5px;margin-bottom:2px;color:var(--c)}.tile span{color:var(--mut);font-size:14px}
+button{font:inherit;cursor:pointer}
+.btn{background:linear-gradient(135deg,#1e7bff,#6a5cff);color:#fff;border:0;border-radius:12px;padding:10px 18px;font-weight:700;box-shadow:0 4px 12px rgba(60,90,255,.3);transition:transform .12s,filter .12s}
+.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn.sec{background:var(--pri2);color:var(--pri);box-shadow:none}.btn.ghost{background:#fff;color:var(--mut);border:1px solid var(--line);box-shadow:none}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
+.chip{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:600}
+.chip.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.gbar{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}
+.gb{--c:#1e7bff;border:0;border-radius:18px;padding:12px 6px;color:#fff;font-weight:800;background:linear-gradient(145deg,var(--c),color-mix(in srgb,var(--c) 70%,#fff));box-shadow:0 6px 16px color-mix(in srgb,var(--c) 40%,transparent);opacity:.62;transform:scale(.97);transition:all .15s;text-align:center}
+.gb .n{display:block;font-size:34px;line-height:1}.gb .l{display:block;font-size:13px;opacity:.95}
+.gb.on{opacity:1;transform:scale(1.04);outline:3px solid #fff;box-shadow:0 8px 22px color-mix(in srgb,var(--c) 55%,transparent)}
+.gb[data-g="6"]{--c:#12b886}.gb[data-g="7"]{--c:#1e7bff}.gb[data-g="8"]{--c:#ff922b}.gb[data-g="9"]{--c:#7950f2}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.q{font-size:18px;margin:6px 0 14px}
+.tag{display:inline-block;font-size:12.5px;font-weight:700;border-radius:999px;padding:2px 11px;background:var(--pri2);color:var(--pri);margin-right:6px}
+.t-LG{background:#efe9ff;color:#6741d9}.t-DAI{background:#e5f0ff;color:#1c6fe0}.t-LTS{background:#fff0dc;color:#d9730d}.t-HH{background:#dcf8ec;color:#0b8a5f}.t-TH{background:#ffe6f0;color:#d6336c}
+.opt{display:block;width:100%;text-align:left;border:2px solid var(--line);background:#fff;border-radius:12px;padding:10px 14px;margin-bottom:8px;font-size:16.5px;transition:all .12s}
+.opt:hover{border-color:var(--pri);transform:translateX(2px)} .opt.sel{border-color:var(--pri);background:var(--pri2)}
+.opt.ok{border-color:var(--ok);background:var(--okbg)} .opt.no{border-color:var(--bad);background:var(--badbg)}
+input[type=text],select,textarea{font:inherit;padding:10px 12px;border:2px solid var(--line);border-radius:12px;background:#fff}
+input[type=text]{width:200px}input[type=text]:focus,textarea:focus{outline:none;border-color:var(--pri)}
+.fb{border-radius:12px;padding:10px 14px;margin-top:12px;font-weight:600}.fb.ok{background:var(--okbg);color:#0b6b43}.fb.no{background:var(--badbg);color:#a3213f}
+.exp{background:#f2f6ff;border-radius:12px;padding:10px 14px;margin-top:10px;font-size:15.5px}
+.err{color:var(--warn);font-size:14.5px;margin-top:6px}
+.bar{height:12px;background:#e6edf8;border-radius:8px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,#12b886,#1e7bff)}
+.nav{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.nb{width:36px;height:36px;border-radius:10px;border:1.5px solid var(--line);background:#fff;font-size:14px;font-weight:700}
+.nb.cur{border-color:var(--pri);outline:2px solid var(--pri2)} .nb.dn{background:var(--pri);color:#fff;border-color:var(--pri)}
+.nb.ok{background:var(--ok);color:#fff;border-color:var(--ok)}.nb.no{background:var(--bad);color:#fff;border-color:var(--bad)}
+.timer{font-variant-numeric:tabular-nums;font-weight:800;font-size:19px;background:#fff;border-radius:999px;padding:2px 12px;border:2px solid var(--line)}.timer.low{color:var(--bad);border-color:var(--bad)}
+.big{font-size:46px;font-weight:900;background:linear-gradient(120deg,#1e7bff,#ff5fa2);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.1}
+table{border-collapse:collapse;width:100%}td,th{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left;font-size:15px}th{color:var(--mut)}
+small,.mut{color:var(--mut)} sup{font-size:.72em}
+.sheetq{margin:0 0 16px;page-break-inside:avoid}
+.qn{width:26px;padding:0;border:0;background:transparent;color:var(--pri);text-decoration:underline;font-size:15px}
+.fmgrid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:14px;align-items:start}
+.fmside{position:sticky;top:8px;max-height:96vh;overflow:auto}
+img.pg{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:12px;margin-bottom:10px;background:#fff;box-shadow:var(--sh)}
+@media(max-width:900px){.fmgrid{grid-template-columns:1fr}.fmside{position:static;max-height:none}}
+@media(max-width:520px){.hero h1{font-size:21px}.gb .n{font-size:28px}}
+.wrap.wide{max-width:1180px}
+.mascot{display:inline-block;animation:bob 2.4s ease-in-out infinite;flex:none}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.mc{display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,#fff8e1,#ffeef6);border:2px dashed #ffc078;border-radius:20px;padding:10px 14px;margin-bottom:12px}
+.bubble{position:relative;background:#fff;border-radius:16px;padding:10px 14px;font-weight:700;box-shadow:0 3px 10px rgba(255,140,0,.15)}
+.bubble:before{content:"";position:absolute;left:-9px;top:50%;margin-top:-8px;border:8px solid transparent;border-right-color:#fff;border-left:0}
+.stars{font-size:30px;letter-spacing:3px}
+.deco6{position:absolute;font-size:30px;display:block;animation:bob 3s ease-in-out infinite;pointer-events:none}
+body.g7 .hero{background:linear-gradient(120deg,#1e7bff 0%,#4dabf7 50%,#b197fc 100%)}
+body.g8 .hero{background:linear-gradient(120deg,#ff922b 0%,#ff6b9d 55%,#b197fc 100%)}
+body.g9 .hero{background:linear-gradient(120deg,#364fc7 0%,#7048e8 50%,#15aabf 100%)}
+body.g7 .hero h1,body.g8 .hero h1,body.g9 .hero h1,body.g7 .hero .sub,body.g8 .hero .sub,body.g9 .hero .sub{text-shadow:0 2px 6px rgba(20,20,80,.35)}
+body.g7{background:radial-gradient(1000px 500px at 90% -10%,#e5dbff 0,transparent 60%),radial-gradient(900px 450px at -10% 0,#d0ebff 0,transparent 55%),#f3f7ff}
+body.g8{background:radial-gradient(1000px 500px at 90% -10%,#ffe3ec 0,transparent 60%),radial-gradient(900px 450px at -10% 0,#fff0d6 0,transparent 55%),#fff8f2}
+body.g9{background:radial-gradient(1000px 500px at 90% -10%,#d0bfff 0,transparent 60%),radial-gradient(900px 450px at -10% 0,#c5f6fa 0,transparent 55%),#f3f4ff}
+body.g6 .hero{background:linear-gradient(120deg,#12b886 0%,#4dd4ac 45%,#ffd43b 100%)}
+body.g6 .hero h1,body.g6 .hero .sub{text-shadow:0 2px 6px rgba(0,80,60,.35)}
+body.g6 .q{font-size:20px}body.g6 .opt{font-size:17.5px}
+body.g6{background:radial-gradient(1000px 500px at 90% -10%,#fff3bf 0,transparent 60%),radial-gradient(900px 450px at -10% 0,#c3fae8 0,transparent 55%),#f1fbf6}
+.th{background:#fff;border:2px solid #d0ebff;border-radius:18px;padding:14px 16px;margin:10px 0}
+.th h3{margin:0 0 8px}.th ul{margin:6px 0 6px 18px;padding:0}.th li{margin:6px 0;line-height:1.55}
+.exb{background:#f3f0ff;border-radius:14px;padding:10px 12px;margin:8px 0}
+.exb details{margin-top:6px}.exb summary{cursor:pointer;color:#5f3dc4;font-weight:700}
+.conf{position:fixed;top:-40px;font-size:26px;z-index:99;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg);opacity:.9}}
+.tabs{position:sticky;top:0;z-index:50;display:flex;gap:6px;overflow-x:auto;padding:8px 6px;margin:0 0 12px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-radius:16px;box-shadow:0 4px 14px rgba(40,60,120,.12);scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;border:0;background:#f1f5ff;color:#33405f;font:700 14px inherit;font-family:inherit;padding:9px 13px;border-radius:12px;cursor:pointer;white-space:nowrap}
+.tabs button:hover{background:#e0eaff}
+.tabs button.on{background:var(--pri);color:#fff;box-shadow:0 3px 10px rgba(30,123,255,.35)}
+body.g6 .tabs button.on{background:#12b886}body.g8 .tabs button.on{background:#ff7a1a}body.g9 .tabs button.on{background:#5f3dc4}
+@media(max-width:600px){.deco6{display:none!important}}
+/* ===== GIAO DIỆN HIỆN ĐẠI ===== */
+body{--a1:#1e7bff;--a2:#6a5cff}
+body.g6{--pri:#0ca678;--pri2:#d3f9ee;--a1:#12b886;--a2:#38d9a9}
+body.g7{--pri:#1e7bff;--pri2:#e5f0ff;--a1:#1e7bff;--a2:#6a5cff}
+body.g8{--pri:#f76707;--pri2:#ffe8d6;--a1:#ff922b;--a2:#f06595}
+body.g9{--pri:#5f3dc4;--pri2:#ece6ff;--a1:#5f3dc4;--a2:#15aabf}
+body{font-family:"Be Vietnam Pro","Nunito","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;font-size:16px;letter-spacing:.005em}
+.wrap{max-width:980px}
+.hero{border-radius:30px;padding:28px 30px 22px;box-shadow:0 18px 40px color-mix(in srgb,var(--a1) 32%,transparent)}
+.hero::before{content:"";position:absolute;right:-70px;top:-90px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.38),transparent 65%);pointer-events:none}
+.hero::after{content:"";position:absolute;left:-50px;bottom:-110px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.24),transparent 65%);pointer-events:none}
+.hero h1{font-size:30px;font-weight:800;letter-spacing:-.01em;position:relative}
+.hero .sub{font-size:15px;opacity:.92;position:relative;max-width:560px}
+.hero .btn.ghost{backdrop-filter:blur(6px);border-radius:999px;padding:8px 16px}
+.hero .mut{background:rgba(255,255,255,.2);padding:5px 12px;border-radius:999px;font-size:13.5px}
+.card{border:1px solid rgba(255,255,255,.85);border-radius:26px;padding:20px;box-shadow:0 1px 2px rgba(20,30,70,.04),0 14px 34px rgba(40,60,130,.10);animation:rise .45s both}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+h2{font-size:21px;font-weight:800;letter-spacing:-.01em}
+.draft{border-radius:16px;background:linear-gradient(135deg,#fff8e1,#fff3d6);border:1px solid #ffe29a}
+.tabs{border-radius:22px;padding:8px;border:1px solid rgba(255,255,255,.9);box-shadow:0 8px 24px rgba(40,60,130,.12)}
+.tabs button{border-radius:15px;background:transparent;color:#4a5578;padding:10px 14px;transition:all .18s}
+.tabs button:hover{background:var(--pri2);color:var(--pri)}
+body[class] .tabs button.on{background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;box-shadow:0 6px 16px color-mix(in srgb,var(--a1) 40%,transparent)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:14px}
+.stat{display:flex;align-items:center;gap:12px;background:#fff;border-radius:22px;padding:14px 16px;box-shadow:0 1px 2px rgba(20,30,70,.04),0 10px 26px rgba(40,60,130,.09);animation:rise .5s both}
+.stat .v{font-size:27px;font-weight:800;line-height:1;color:var(--pri)}.stat .k{color:var(--mut);font-size:13px;margin-top:3px}
+.stat .ic{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:22px;background:var(--pri2);flex:none}
+.ring{--p:0;width:54px;height:54px;border-radius:50%;background:conic-gradient(var(--pri) calc(var(--p)*1%),#e6edf8 0);display:grid;place-items:center;flex:none}
+.ring i{width:42px;height:42px;border-radius:50%;background:#fff;display:grid;place-items:center;font:800 13px inherit;font-style:normal;color:var(--pri)}
+.grid{grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}
+.tile{align-content:center;border:0;border-radius:24px;padding:16px 18px;display:grid;grid-template-columns:54px 1fr;gap:3px 14px;align-items:center;position:relative;overflow:hidden;box-shadow:0 1px 2px rgba(20,30,70,.04),0 10px 26px rgba(40,60,130,.09);animation:rise .5s both}
+.tile::before{content:"";position:absolute;inset:0 auto 0 0;width:5px;background:var(--c);opacity:.9}
+.tile .ti{grid-row:1/3;width:54px;height:54px;border-radius:18px;display:grid;place-items:center;font-size:27px;font-style:normal;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 14%,#fff),color-mix(in srgb,var(--c) 32%,#fff))}
+.tile b{margin:0;font-size:16px;color:var(--ink);line-height:1.3}.tile span{grid-column:2;font-size:13.5px;line-height:1.45}
+.tile::after{content:"→";position:absolute;right:16px;top:12px;font-weight:800;color:var(--c);opacity:0;transform:translateX(-8px);transition:.2s}
+.tile:hover::after{opacity:1;transform:none}.tile:hover{transform:translateY(-4px);box-shadow:0 18px 38px color-mix(in srgb,var(--c) 22%,transparent)}
+.grid .tile:nth-child(2){animation-delay:.05s}.grid .tile:nth-child(3){animation-delay:.1s}.grid .tile:nth-child(4){animation-delay:.15s}.grid .tile:nth-child(5){animation-delay:.2s}.grid .tile:nth-child(6){animation-delay:.25s}.grid .tile:nth-child(7){animation-delay:.3s}
+.btn{background:linear-gradient(135deg,var(--a1),var(--a2));border-radius:15px;padding:11px 22px;box-shadow:0 8px 18px color-mix(in srgb,var(--a1) 36%,transparent)}
+.btn.sec{background:var(--pri2);color:var(--pri);box-shadow:none}
+.btn.ghost{border-radius:15px}
+.chip{border-radius:999px;padding:7px 15px;transition:all .15s}.chip:hover{border-color:var(--pri);color:var(--pri)}
+.chip.on{background:linear-gradient(135deg,var(--a1),var(--a2));border-color:transparent;color:#fff}
+.q{font-size:19.5px;line-height:1.65;font-weight:500}
+.opt{border-radius:16px;padding:13px 16px;border-width:2px;box-shadow:0 2px 0 rgba(30,60,120,.04)}
+.opt:hover{border-color:var(--pri);background:var(--pri2);transform:translateX(3px)}.opt.sel{border-color:var(--pri);background:var(--pri2)}
+.nb{border-radius:12px;transition:all .12s}.nb.cur{border-color:var(--pri);outline:3px solid var(--pri2)}.nb.dn{background:var(--pri);border-color:var(--pri)}
+.bar{height:14px;border-radius:99px}.bar i{background:linear-gradient(90deg,var(--a1),var(--a2));border-radius:99px;transition:width .5s}
+.timer{border-radius:999px;border-color:var(--pri2);color:var(--pri)}
+.exp{border-radius:16px;background:linear-gradient(135deg,#f4f7ff,#f8f3ff)}
+.fb{border-radius:16px}
+input[type=text],select,textarea{border-radius:14px}input[type=text]:focus,textarea:focus{border-color:var(--pri);box-shadow:0 0 0 4px var(--pri2)}
+img.pg{border-radius:18px;border:1px solid #e6ecf8;cursor:zoom-in;box-shadow:0 2px 4px rgba(20,30,70,.05),0 16px 36px rgba(40,60,130,.12);transition:transform .2s}
+img.pg:hover{transform:scale(1.005)}
+.mc{background:linear-gradient(135deg,rgba(255,255,255,.95),rgba(255,255,255,.7));border:1px solid #fff;border-radius:26px;box-shadow:0 12px 30px rgba(40,60,130,.10);padding:12px 18px}
+.bubble{box-shadow:0 4px 14px rgba(40,60,130,.12)}
+.th{border:0;border-radius:22px;box-shadow:0 10px 26px rgba(40,60,130,.09);background:#fff}
+.th li::marker{color:var(--pri)}
+.exb{border-radius:16px;background:linear-gradient(135deg,var(--pri2),#fff)}.exb summary{color:var(--pri)}
+table{border-radius:14px;overflow:hidden}th{background:#f4f7fd}
+.lb{position:fixed;inset:0;z-index:300;background:rgba(10,15,40,.9);display:grid;place-items:start center;overflow:auto;padding:18px;cursor:zoom-out;animation:rise .2s both}
+.lb img{width:min(1150px,100%);height:auto;border-radius:16px;background:#fff;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lb b{position:fixed;right:18px;top:14px;color:#fff;font-size:30px;line-height:1}
+@media(max-width:520px){.hero{padding:22px 20px 18px;border-radius:26px}.hero h1{font-size:24px}.card{padding:16px;border-radius:22px}.tile::after{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.credit{margin:18px 0 6px}.cr-in{display:flex;align-items:center;gap:14px;justify-content:center;background:rgba(255,255,255,.85);border:1px solid #fff;border-radius:22px;padding:14px 18px;box-shadow:0 10px 26px rgba(40,60,130,.09);text-align:left}
+.cr-ic{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;font-size:24px;background:linear-gradient(135deg,var(--a1),var(--a2));flex:none}
+.cr-k{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em}.cr-n{font-size:18px;font-weight:800;color:var(--pri)}.cr-s{font-size:13.5px;color:var(--mut)}
+.coach{background:linear-gradient(135deg,#fff,var(--pri2));border:1px solid #fff;border-radius:26px;padding:18px 20px;margin-bottom:14px;box-shadow:0 14px 34px rgba(40,60,130,.12);animation:rise .45s both}
+.co-h{display:flex;gap:16px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap}
+.co-k{font-size:12.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--pri)}
+.co-t{font-size:17px;font-weight:700;margin-top:3px;line-height:1.4}
+.co-lv{min-width:200px}.co-lv b{display:block;margin-bottom:5px;color:var(--pri)}
+.co-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:12px}
+.co-gi{background:rgba(255,255,255,.85);border-radius:18px;padding:12px 14px}.co-gi .bar{margin:6px 0 4px}
+.co-n{font-size:28px;font-weight:800;color:var(--pri);line-height:1.1}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.bdg{display:flex;flex-direction:column;gap:2px;align-items:center;text-align:center;background:#f3f5fa;border-radius:18px;padding:12px 8px;filter:grayscale(1);opacity:.55}
+.bdg span{font-size:30px}.bdg b{font-size:14px}.bdg small{font-size:11.5px;color:var(--mut)}
+.bdg.on{filter:none;opacity:1;background:linear-gradient(135deg,var(--pri2),#fff);box-shadow:0 8px 20px rgba(40,60,130,.10)}
+@media print{body{background:#fff}.noprint{display:none!important}.card{border:0;padding:0;box-shadow:none}.wrap{max-width:none;padding:0}}
+</style>
+</head>
+<body>
+<div class="wrap wide">
+<header class="hero noprint"><span class="deco6" style="right:70px;top:8px">🎈</span><span class="deco6" style="right:150px;bottom:6px;animation-delay:.6s">⭐</span><span class="deco6" style="right:300px;bottom:2px;animation-delay:1.1s">🍀</span><span class="deco6" style="right:230px;top:30px;animation-delay:.3s">🌈</span><span class="sym" style="right:18px;top:-6px">π</span><span class="sym" style="right:120px;bottom:-14px">∑</span><span class="sym" style="left:46%;top:-18px">√</span><span class="sym" style="right:230px;top:30px;font-size:42px">+ − × ÷</span>
+ <h1>🏆 Luyện đề TIMO · Khối 7</h1><div class="sub">Olympic Toán học quốc tế TIMO · luyện đề, chấm điểm, xem lời giải</div><div class="sub" style="margin-top:6px;font-size:13px;opacity:.9">✍️ Tác giả: <b>Ngô Thị Phương</b> · GV THCS Võ Thị Sáu, An Biên, Hải Phòng</div>
+ <div class="row" style="margin-top:10px;justify-content:space-between"><span class="mut" id="who"></span><button class="btn ghost" id="homeBtn">🏠 Trang chủ</button></div></header>
+<nav class="tabs noprint" id="nav" aria-label="Các mục"></nav>
+<div id="app"></div>
+<footer class="credit"><div class="cr-in"><span class="cr-ic">👩‍🏫</span><div><div class="cr-k">Tác giả app</div><div class="cr-n">Ngô Thị Phương</div><div class="cr-s">Giáo viên Trường THCS Võ Thị Sáu · phường An Biên · Hải Phòng</div><div class="cr-s" style="font-size:12.5px;margin-top:2px">Đề TIMO là tài liệu của FERMAT Education, dùng cho học sinh ôn luyện. Dữ liệu chỉ lưu trên máy của người dùng.</div></div></div></footer>
+</div>
+<script>
+/*DATA*/
+const THEORY={
+6:{
+LG:{pts:["<b>Tìm quy luật dãy số:</b> xét hiệu hoặc thương hai số liền kề. Dãy cộng đều có số hạng thứ n = số đầu + (n − 1) × hiệu.","<b>Số chính phương</b> 1, 4, 9, 16, 25… và dãy Fibonacci 1, 1, 2, 3, 5, 8… (mỗi số bằng tổng hai số liền trước) hay gặp.","<b>Nguyên lý chuồng bồ câu:</b> nhốt (n + 1) con thỏ vào n chuồng thì có ít nhất một chuồng chứa từ 2 con trở lên.","<b>Người nói thật – nói dối:</b> giả sử một người nói thật rồi kiểm tra có mâu thuẫn không; lập bảng để loại dần.","Bài “chắc chắn”: hãy nghĩ đến <b>trường hợp xấu nhất</b> rồi cộng thêm 1."],ex:[{q:"Dãy 3, 7, 11, 15, … Số hạng thứ 20 là bao nhiêu?",s:"Hiệu mỗi số là 4. Số hạng thứ 20 = 3 + 19 × 4 = <b>79</b>."},{q:"Hộp có 5 bi đỏ, 5 bi xanh, 5 bi vàng. Lấy ít nhất bao nhiêu bi (không nhìn) để chắc chắn có 2 bi cùng màu?",s:"Xấu nhất là lấy mỗi màu 1 bi (3 bi). Bi thứ 4 chắc chắn trùng màu. Đáp số: <b>4</b>."}]},
+DAI:{pts:["<b>Quy tắc dấu:</b> trừ một số = cộng số đối; (−) × (−) = (+); (−) × (+) = (−).","<b>Phân số:</b> quy đồng mẫu rồi cộng trừ; rút gọn bằng cách chia tử và mẫu cho ƯCLN.","<b>Tổng quen thuộc:</b> 1 + 2 + … + n = n(n + 1) : 2. Tách phân số: 1/(n(n + 1)) = 1/n − 1/(n + 1).","<b>Tính nhanh:</b> nhóm các số cho tròn chục, tròn trăm; đặt thừa số chung; dùng tính chất giao hoán, kết hợp.","<b>Phần trăm:</b> a% của số b là b × a : 100. Tỉ số của a và b là a : b."],ex:[{q:"Tính 1/(1·2) + 1/(2·3) + … + 1/(9·10).",s:"Mỗi số = 1/n − 1/(n + 1), các số hạng giữa triệt tiêu, còn 1 − 1/10 = <b>9/10</b>."},{q:"Tính 1 + 2 + 3 + … + 100.",s:"100 × 101 : 2 = <b>5050</b>."}]},
+LTS:{pts:["<b>Dấu hiệu chia hết:</b> cho 2 (chữ số tận cùng chẵn); 5 (tận cùng 0 hoặc 5); 3 và 9 (tổng các chữ số chia hết cho 3, cho 9); 4 (hai chữ số cuối); 8 (ba chữ số cuối); 11 (hiệu tổng chữ số hàng lẻ và hàng chẵn chia hết cho 11).","<b>Số nguyên tố</b> lớn hơn 1 và chỉ có đúng 2 ước là 1 và chính nó. Số 2 là số nguyên tố chẵn duy nhất.","<b>Phân tích ra thừa số nguyên tố</b> rồi tìm ƯCLN (lấy thừa số chung, mũ nhỏ nhất) và BCNN (lấy tất cả, mũ lớn nhất).","Với hai số a, b: <b>ƯCLN × BCNN = a × b</b>.","<b>Số ước:</b> nếu n = p^a × q^b (p, q nguyên tố) thì n có (a + 1)(b + 1) ước."],ex:[{q:"Số 36 có bao nhiêu ước?",s:"36 = 2² × 3². Số ước = (2 + 1)(2 + 1) = <b>9</b>."},{q:"Tìm ƯCLN và BCNN của 24 và 36.",s:"24 = 2³ × 3, 36 = 2² × 3². ƯCLN = 2² × 3 = <b>12</b>; BCNN = 2³ × 3² = <b>72</b>. Kiểm tra: 12 × 72 = 864 = 24 × 36."}]},
+HH:{pts:["<b>Hình chữ nhật:</b> S = dài × rộng, chu vi = 2 × (dài + rộng). Hình vuông: S = cạnh × cạnh.","<b>Tam giác:</b> S = đáy × chiều cao : 2. <b>Hình bình hành:</b> S = đáy × chiều cao.","<b>Hình thang:</b> S = (đáy lớn + đáy bé) × chiều cao : 2. <b>Hình thoi:</b> S = (chéo 1 × chéo 2) : 2.","<b>Góc:</b> hai góc kề bù có tổng 180°; ba góc của tam giác có tổng 180°.","<b>Đếm hình:</b> n điểm phân biệt, không có 3 điểm thẳng hàng, nối từng cặp được n(n − 1) : 2 đoạn thẳng."],ex:[{q:"Hình thang có hai đáy 6 cm và 10 cm, chiều cao 5 cm. Tính diện tích.",s:"(6 + 10) × 5 : 2 = <b>40 cm²</b>."},{q:"Có 6 điểm, không 3 điểm nào thẳng hàng. Vẽ được bao nhiêu đường thẳng đi qua 2 trong 6 điểm?",s:"6 × 5 : 2 = <b>15</b> đường thẳng."}]},
+TH:{pts:["<b>Quy tắc cộng:</b> việc làm được theo cách A hoặc cách B (không trùng) thì số cách = số cách A + số cách B.","<b>Quy tắc nhân:</b> làm xong bước 1 rồi bước 2 thì số cách = tích số cách từng bước.","<b>Xếp hàng:</b> n người xếp thành hàng có n! = n × (n − 1) × … × 1 cách.","<b>Bắt tay, nối cặp:</b> n người bắt tay từng đôi một lần có n(n − 1) : 2 cái bắt tay.","Lập số có chữ số khác nhau: <b>chú ý chữ số hàng cao nhất không được là 0</b>."],ex:[{q:"Từ các chữ số 1, 2, 3, 4, 5 lập được bao nhiêu số có 3 chữ số khác nhau?",s:"5 × 4 × 3 = <b>60</b> số."},{q:"8 người bắt tay nhau, mỗi cặp đúng một lần. Có bao nhiêu cái bắt tay?",s:"8 × 7 : 2 = <b>28</b>."}]}
+},
+7:{
+LG:{pts:["<b>Chuồng bồ câu mở rộng:</b> nhốt (k × n + 1) vật vào n ngăn thì có ngăn chứa ít nhất (k + 1) vật.","<b>Tính chẵn lẻ:</b> tổng của một số lẻ các số lẻ là số lẻ; tích có một thừa số chẵn thì chẵn.","<b>Phản chứng:</b> giả sử điều cần chứng minh sai, suy ra điều vô lý.","<b>Tô màu, chia nhóm:</b> chia đối tượng thành các “chuồng” phù hợp rồi áp dụng chuồng bồ câu.","<b>Tìm quy luật:</b> thử với số nhỏ, tìm công thức tổng quát rồi kiểm tra lại."],ex:[{q:"Trong lớp có 25 học sinh. Chứng tỏ có ít nhất 3 bạn sinh cùng một tháng.",s:"25 = 2 × 12 + 1 nên theo chuồng bồ câu có tháng chứa ít nhất 3 bạn."},{q:"Tổng của 9 số nguyên lẻ có thể bằng 100 không?",s:"Tổng của 9 số lẻ là số lẻ nên <b>không thể</b> bằng 100."}]},
+DAI:{pts:["<b>Lũy thừa:</b> a^m × a^n = a^(m+n); a^m : a^n = a^(m−n); (a^m)^n = a^(m×n).","<b>Tỉ lệ thức:</b> a/b = c/d thì ad = bc. <b>Dãy tỉ số bằng nhau:</b> a/b = c/d = (a + c)/(b + d) = (a − c)/(b − d).","<b>Giá trị tuyệt đối:</b> |x| ≥ 0; |x| = a (a ≥ 0) thì x = a hoặc x = −a; |A| + |B| = 0 thì A = 0 và B = 0.","<b>Tỉ lệ thuận:</b> y = kx (tỉ số y/x không đổi). <b>Tỉ lệ nghịch:</b> xy = a (tích không đổi).","Giá trị lớn nhất, nhỏ nhất: dùng |A| ≥ 0 hoặc A² ≥ 0."],ex:[{q:"Cho x/3 = y/5 và x + y = 32. Tìm x, y.",s:"x/3 = y/5 = (x + y)/8 = 4. Vậy <b>x = 12, y = 20</b>."},{q:"Tìm x biết |x − 2| = 5.",s:"x − 2 = 5 hoặc x − 2 = −5 nên <b>x = 7 hoặc x = −3</b>."}]},
+LTS:{pts:["<b>Tích liên tiếp:</b> tích 2 số nguyên liên tiếp chia hết cho 2; tích 3 số liên tiếp chia hết cho 6.","<b>Số chính phương</b> có chữ số tận cùng chỉ có thể là 0, 1, 4, 5, 6, 9; khi chia cho 3 dư 0 hoặc 1; khi chia cho 4 dư 0 hoặc 1.","<b>Chữ số tận cùng của lũy thừa:</b> tìm chu kỳ. Ví dụ 7¹, 7², 7³, 7⁴ tận cùng 7, 9, 3, 1 rồi lặp lại sau 4 số.","<b>Hiệu lũy thừa:</b> aⁿ − bⁿ luôn chia hết cho (a − b). Ví dụ 10ⁿ − 1 chia hết cho 9.","Bài chứng minh chia hết: phân tích thành tích có thừa số chia hết, hoặc xét số dư."],ex:[{q:"Chữ số tận cùng của 7^2026 là gì?",s:"Chu kỳ 4: 7, 9, 3, 1. 2026 chia 4 dư 2 nên tận cùng là <b>9</b>."},{q:"Chứng tỏ n(n + 1)(n + 2) luôn chia hết cho 6.",s:"Trong 3 số liên tiếp có một số chẵn và một số chia hết cho 3; hai điều kiện này cho tích chia hết cho 2 × 3 = 6."}]},
+HH:{pts:["<b>Tổng ba góc tam giác = 180°.</b> Góc ngoài của tam giác bằng tổng hai góc trong không kề với nó.","<b>Hai đường thẳng song song:</b> so le trong bằng nhau, đồng vị bằng nhau, trong cùng phía bù nhau (tổng 180°).","<b>Bất đẳng thức tam giác:</b> |b − c| nhỏ hơn a nhỏ hơn b + c.","<b>Tam giác bằng nhau:</b> c.c.c, c.g.c, g.c.g. <b>Tam giác cân:</b> hai góc đáy bằng nhau.","<b>Pytago:</b> tam giác vuông có a² + b² = c² (c là cạnh huyền)."],ex:[{q:"Tam giác cân có góc ở đỉnh 40°. Tính góc ở đáy.",s:"(180° − 40°) : 2 = <b>70°</b>."},{q:"Tam giác cân có hai cạnh 3 cm và 8 cm. Tính chu vi.",s:"Nếu cạnh bên là 3 thì 3 + 3 nhỏ hơn 8 (loại). Vậy cạnh bên là 8: chu vi = 8 + 8 + 3 = <b>19 cm</b>."}]},
+TH:{pts:["<b>Hoán vị:</b> n! cách xếp n phần tử khác nhau thành hàng.","<b>Chọn không thứ tự:</b> chọn 2 trong n có n(n − 1) : 2 cách; chọn 3 trong n có n(n − 1)(n − 2) : 6 cách.","<b>Bù trừ hai tập:</b> |A ∪ B| = |A| + |B| − |A ∩ B|.","Đề bài có “ít nhất”: thường đếm <b>phần bù</b> (tổng số trừ số cách không thỏa).","Phân loại thành các trường hợp <b>không trùng nhau, không bỏ sót</b> rồi cộng lại."],ex:[{q:"Chọn 3 bạn trong 6 bạn đi trực nhật. Có bao nhiêu cách?",s:"6 × 5 × 4 : 6 = <b>20</b>."},{q:"Lớp 40 học sinh: 25 thích bóng đá, 20 thích bóng rổ, 8 thích cả hai. Có bao nhiêu bạn không thích môn nào?",s:"Thích ít nhất một môn: 25 + 20 − 8 = 37. Không thích môn nào: 40 − 37 = <b>3</b>."}]}
+},
+8:{
+LG:{pts:["<b>Bất biến:</b> tìm đại lượng không đổi sau mỗi thao tác (chẵn lẻ, số dư, tổng…).","<b>Chuồng bồ câu:</b> chia tập thành các “chuồng” sao cho hai phần tử cùng chuồng có tính chất cần tìm.","<b>Trò chơi chiến thuật:</b> tìm vị trí “thua” rồi luôn đưa đối thủ về vị trí đó (đối xứng, bội của một số).","<b>Nguyên lý cực hạn:</b> xét phần tử lớn nhất hoặc nhỏ nhất.","<b>Phản chứng</b> và <b>quy nạp</b> là hai công cụ chứng minh quen thuộc."],ex:[{q:"Có 21 viên bi. Hai người lần lượt lấy 1 đến 3 viên, ai lấy viên cuối cùng thắng. Người đi trước nên lấy mấy viên đầu?",s:"Vị trí thua là các bội của 4. 21 chia 4 dư 1 nên lấy <b>1 viên</b>, sau đó mỗi lượt lấy sao cho hai người lấy tổng cộng 4 viên."},{q:"Chọn 6 số trong 1, 2, …, 10. Chứng tỏ có hai số tổng bằng 11.",s:"Chia thành 5 cặp (1, 10), (2, 9), (3, 8), (4, 7), (5, 6). Chọn 6 số thì có hai số cùng một cặp, tổng bằng 11."}]},
+DAI:{pts:["<b>Hằng đẳng thức:</b> (a ± b)² = a² ± 2ab + b²; a² − b² = (a − b)(a + b); (a ± b)³; a³ ± b³ = (a ± b)(a² ∓ ab + b²).","<b>Phân tích đa thức:</b> đặt nhân tử chung, nhóm hạng tử, dùng hằng đẳng thức, tách hạng tử.","<b>Hoàn phương:</b> x² − 2x + 5 = (x − 1)² + 4 ≥ 4. Dùng tìm giá trị nhỏ nhất, lớn nhất.","<b>Phân thức:</b> luôn tìm điều kiện mẫu khác 0 trước khi biến đổi.","<b>Hàm số bậc nhất</b> y = ax + b: hai đường thẳng song song khi a bằng nhau, b khác nhau; cắt nhau khi a khác nhau."],ex:[{q:"Cho x + y = 6 và xy = 8. Tính x² + y².",s:"x² + y² = (x + y)² − 2xy = 36 − 16 = <b>20</b>."},{q:"Tìm giá trị nhỏ nhất của x² − 4x + 7.",s:"x² − 4x + 7 = (x − 2)² + 3 ≥ 3. Nhỏ nhất là <b>3</b> khi x = 2."}]},
+LTS:{pts:["<b>Đồng dư:</b> a ≡ b (mod m) nghĩa là a và b có cùng số dư khi chia cho m. Có thể cộng, trừ, nhân, nâng lũy thừa hai vế.","<b>Số chính phương:</b> chia 3 dư 0 hoặc 1; chia 4 dư 0 hoặc 1; không có số chính phương nào nằm giữa n² và (n + 1)².","<b>Nghiệm nguyên:</b> biến đổi về dạng tích (x − a)(y − b) = c rồi xét các ước của c; hoặc xét chẵn lẻ, xét số dư.","n³ − n = (n − 1)n(n + 1) luôn chia hết cho 6.","<b>Số nguyên tố:</b> mọi số nguyên tố lớn hơn 3 có dạng 6k ± 1."],ex:[{q:"Tìm các nghiệm nguyên dương của xy − x − y = 3.",s:"Cộng 1 hai vế: (x − 1)(y − 1) = 4. Cặp ước dương của 4 cho (x, y) = (2, 5), (3, 3), (5, 2)."},{q:"Tìm số dư khi chia 2^100 cho 3.",s:"2² = 4 đồng dư 1 (mod 3) nên 2^100 = (2²)^50 đồng dư 1. Số dư là <b>1</b>."}]},
+HH:{pts:["<b>Tứ giác</b> có tổng bốn góc 360°. Hình thang, hình bình hành, hình chữ nhật, hình thoi, hình vuông: nhớ dấu hiệu nhận biết từng loại.","<b>Đường trung bình</b> của tam giác song song với cạnh thứ ba và bằng nửa cạnh đó.","<b>Định lý Thales</b> và <b>tam giác đồng dạng:</b> tỉ số đồng dạng k thì tỉ số chu vi là k, tỉ số diện tích là k².","<b>Đường phân giác trong</b> chia cạnh đối thành hai đoạn tỉ lệ với hai cạnh kề.","<b>Tam giác vuông:</b> Pytago; trung tuyến ứng với cạnh huyền bằng nửa cạnh huyền. <b>Hình thoi:</b> S = (d₁ × d₂) : 2."],ex:[{q:"Hai tam giác đồng dạng, tỉ số 2/3. Diện tích tam giác nhỏ là 12 cm². Tính diện tích tam giác lớn.",s:"Tỉ số diện tích là (2/3)² = 4/9. Diện tích lớn = 12 × 9/4 = <b>27 cm²</b>."},{q:"Hình thoi có hai đường chéo 6 cm và 8 cm. Tính cạnh và diện tích.",s:"Cạnh = √(3² + 4²) = <b>5 cm</b>; diện tích = 6 × 8 : 2 = <b>24 cm²</b>."}]},
+TH:{pts:["<b>Hoán vị:</b> n!. <b>Chỉnh hợp</b> (có thứ tự) chọn k trong n: n!/(n − k)!. <b>Tổ hợp</b> (không thứ tự): C(n, k) = n!/(k!(n − k)!).","Tính chất: C(n, k) = C(n, n − k); C(n, 2) = n(n − 1) : 2.","<b>Đường chéo</b> đa giác lồi n cạnh: n(n − 3) : 2.","<b>Xác suất cổ điển</b> (các kết quả đồng khả năng) = số kết quả thuận lợi : tổng số kết quả.","Bài toán đếm khó: chia trường hợp hoặc <b>đếm phần bù</b>."],ex:[{q:"Đa giác lồi 10 cạnh có bao nhiêu đường chéo?",s:"10 × 7 : 2 = <b>35</b>."},{q:"Gieo hai con xúc xắc cân đối. Xác suất tổng hai mặt bằng 7?",s:"Có 6 kết quả thuận lợi trong 36 kết quả: 6/36 = <b>1/6</b>."}]}
+},
+9:{
+LG:{pts:["<b>Đồ thị đơn giản:</b> tổng số lần bắt tay (tổng bậc) = 2 × số cạnh, nên số người bắt tay lẻ lần luôn là số chẵn.","<b>Chuồng bồ câu trong hình học:</b> chia hình thành các phần nhỏ rồi lập luận có hai điểm cùng một phần.","<b>Bất biến, đơn biến</b> và <b>nguyên lý cực hạn</b> dùng để chứng minh một trạng thái không thể đạt được hoặc quá trình phải dừng.","<b>Trò chơi:</b> tìm chiến thuật đối xứng hoặc vị trí thua.","<b>Phản chứng</b>: giả sử ngược lại rồi dẫn tới điều vô lý."],ex:[{q:"Chọn 5 điểm bất kỳ trong hình vuông cạnh 2. Chứng tỏ có hai điểm cách nhau không quá √2.",s:"Chia thành 4 hình vuông cạnh 1 (đường chéo √2). 5 điểm vào 4 hình nên có hai điểm cùng một hình vuông nhỏ, khoảng cách không quá √2."},{q:"Chứng tỏ trong một nhóm người, số người bắt tay một số lẻ lần là số chẵn.",s:"Tổng số lần bắt tay của tất cả mọi người bằng 2 lần số cái bắt tay, nên là số chẵn. Tổng chẵn thì số các số hạng lẻ phải chẵn."}]},
+DAI:{pts:["<b>Căn thức:</b> √(A²) = |A|; trục căn thức ở mẫu; nhớ điều kiện biểu thức dưới căn không âm.","<b>Phương trình bậc hai</b> ax² + bx + c = 0 có Δ = b² − 4ac; Δ lớn hơn 0: hai nghiệm phân biệt; Δ = 0: nghiệm kép.","<b>Viète:</b> x₁ + x₂ = −b/a; x₁x₂ = c/a. Dùng x₁² + x₂² = (x₁ + x₂)² − 2x₁x₂.","<b>Bất đẳng thức Cô-si (AM-GM):</b> với a, b không âm: (a + b)/2 ≥ √(ab), dấu bằng khi a = b.","<b>Hệ phương trình:</b> dùng phương pháp thế hoặc cộng đại số."],ex:[{q:"Phương trình x² − 5x + 6 = 0 có hai nghiệm x₁, x₂. Tính x₁² + x₂².",s:"x₁ + x₂ = 5, x₁x₂ = 6 nên x₁² + x₂² = 25 − 12 = <b>13</b>."},{q:"Cho a, b dương, ab = 4. Tìm giá trị nhỏ nhất của a + b.",s:"a + b ≥ 2√(ab) = 4, dấu bằng khi a = b = 2. Nhỏ nhất là <b>4</b>."}]},
+LTS:{pts:["<b>Định lý Fermat nhỏ:</b> p nguyên tố, a không chia hết cho p thì a^(p−1) đồng dư 1 (mod p).","<b>Thuật toán Euclid:</b> ƯCLN(a, b) = ƯCLN(b, số dư của a chia b).","<b>Số chính phương:</b> số lẻ bình phương chia 8 dư 1; số chính phương chia 4 dư 0 hoặc 1.","<b>Phương trình nghiệm nguyên:</b> đưa về tích, kẹp giữa hai bình phương liên tiếp, xét số dư, hoặc phương pháp xuống thang.","<b>Lũy thừa đồng dư:</b> tìm chu kỳ của số dư rồi rút gọn số mũ."],ex:[{q:"Tìm số dư khi chia 3^100 cho 7.",s:"3^6 đồng dư 1 (mod 7). 100 = 6 × 16 + 4 nên 3^100 đồng dư 3^4 = 81, dư <b>4</b>."},{q:"Tìm ƯCLN(48, 180) bằng thuật toán Euclid.",s:"180 = 3 × 48 + 36; 48 = 1 × 36 + 12; 36 = 3 × 12. ƯCLN = <b>12</b>."}]},
+HH:{pts:["<b>Góc ở tâm</b> bằng số đo cung bị chắn; <b>góc nội tiếp</b> bằng nửa số đo cung bị chắn; góc nội tiếp chắn nửa đường tròn bằng 90°.","<b>Tứ giác nội tiếp:</b> tổng hai góc đối bằng 180°; góc ngoài bằng góc trong đối diện.","<b>Tiếp tuyến</b> vuông góc với bán kính tại tiếp điểm; hai tiếp tuyến cắt nhau tại một điểm thì hai đoạn tiếp tuyến bằng nhau.","<b>Hệ thức lượng trong tam giác vuông:</b> b² = a × b′; h² = b′ × c′; a × h = b × c; 1/h² = 1/b² + 1/c².","<b>Đường tròn:</b> chu vi 2πr, diện tích πr². Tam giác vuông có bán kính ngoại tiếp bằng nửa cạnh huyền."],ex:[{q:"Tam giác vuông có hai cạnh góc vuông 6 cm và 8 cm. Tính đường cao ứng với cạnh huyền.",s:"Cạnh huyền 10. h = 6 × 8 : 10 = <b>4,8 cm</b>."},{q:"Tính bán kính đường tròn ngoại tiếp tam giác vuông có hai cạnh góc vuông 6 cm và 8 cm.",s:"Bằng nửa cạnh huyền: 10 : 2 = <b>5 cm</b>."}]},
+TH:{pts:["<b>Hoán vị vòng quanh:</b> xếp n người quanh bàn tròn có (n − 1)! cách (không phân biệt phép quay).","<b>Chia kẹo (các chấm và vách ngăn):</b> số nghiệm nguyên không âm của x₁ + … + x_k = n là C(n + k − 1, k − 1).","<b>Bù trừ ba tập:</b> |A ∪ B ∪ C| = |A| + |B| + |C| − |A ∩ B| − |B ∩ C| − |C ∩ A| + |A ∩ B ∩ C|.","<b>Xác suất:</b> số kết quả thuận lợi : tổng số kết quả đồng khả năng. Có “ít nhất” thì dùng xác suất phần bù.","Bài toán có điều kiện: <b>xếp phần tử bị ràng buộc trước</b>, hoặc “buộc” các phần tử phải đứng cạnh nhau thành một khối."],ex:[{q:"Có bao nhiêu nghiệm nguyên không âm của x + y + z = 5?",s:"C(5 + 2, 2) = C(7, 2) = <b>21</b>."},{q:"Có bao nhiêu cách xếp 5 người quanh một bàn tròn?",s:"(5 − 1)! = <b>24</b>."}]}
+}
+};
+
+for(const k of Object.keys(THEORY))if(k!=="7")delete THEORY[k];
+const TOPICS = {"LG":"Tư duy logic","DAI":"Số học – Đại số","LTS":"Lý thuyết số","HH":"Hình học","TH":"Tổ hợp"};
+const LEVELS = {1:"Cơ bản nâng cao",2:"Khá",3:"Khó"};
+const QS = [
+{"g":7,"id":"SH01","t":"DAI","l":1,"q":"Tính A = 1/2 + 1/6 + 1/12 + 1/20 + 1/30.","a":"5/6","h":"Viết mỗi phân số dạng 1/(n(n+1)) = 1/n − 1/(n+1).","e":"1/2 = 1 − 1/2; 1/6 = 1/2 − 1/3; …; 1/30 = 1/5 − 1/6. Cộng lại, các số hạng ở giữa triệt tiêu: A = 1 − 1/6 = 5/6.","x":"Quy đồng cả 5 phân số rồi cộng nhẩm dễ sai; nên tách hiệu để triệt tiêu."},
+{"g":7,"id":"SH02","t":"DAI","l":1,"q":"Giá trị của (−2)^3 · (−1/2)^3 là","o":["−1","1","−8","8"],"a":1,"h":"Dùng (a·b)^n = a^n · b^n.","e":"(−2)·(−1/2) = 1 nên (−2)^3·(−1/2)^3 = 1^3 = 1.","x":"Quên: lũy thừa bậc lẻ của số âm vẫn âm, tích hai số âm là số dương."},
+{"g":7,"id":"SH03","t":"DAI","l":2,"q":"Tính 2^12 − 2^11 − 2^10.","a":"1024","h":"Đặt thừa số chung hoặc tính từng bước từ trái sang phải.","e":"2^12 − 2^11 = 2^11 (2 − 1) = 2^11. Sau đó 2^11 − 2^10 = 2^10 = 1024.","x":"Nhầm 2^12 − 2^11 = 2^1."},
+{"g":7,"id":"SH04","t":"DAI","l":1,"q":"Tổng tất cả các giá trị x thỏa mãn |x − 1| = 3 là","o":["4","2","−2","6"],"a":1,"h":"|A| = 3 thì A = 3 hoặc A = −3.","e":"x − 1 = 3 → x = 4; x − 1 = −3 → x = −2. Tổng: 4 + (−2) = 2.","x":"Chỉ lấy một nghiệm x = 4."},
+{"g":7,"id":"SH05","t":"DAI","l":2,"q":"So sánh 2^30 và 3^20, khẳng định đúng là","o":["2^30 > 3^20","2^30 < 3^20","2^30 = 3^20","Không so sánh được"],"a":1,"h":"Đưa về cùng số mũ 10.","e":"2^30 = (2^3)^10 = 8^10 và 3^20 = (3^2)^10 = 9^10. Vì 8 < 9 nên 2^30 < 3^20.","x":"So sánh cơ số 2 < 3 mà bỏ qua số mũ khác nhau."},
+{"g":7,"id":"SH06","t":"DAI","l":2,"q":"Tính 1·2 + 2·3 + 3·4 + … + 9·10.","a":"330","h":"Nhân hai vế với 3 rồi dùng n(n+1)·3 = n(n+1)(n+2) − (n−1)n(n+1).","e":"Gọi S là tổng. 3S = (1·2·3 − 0) + (2·3·4 − 1·2·3) + … + (9·10·11 − 8·9·10) = 9·10·11 = 990. Vậy S = 330.","x":"Cộng từng tích từ đầu dễ sai số; nên dùng kỹ thuật triệt tiêu."},
+{"g":7,"id":"SH07","t":"DAI","l":2,"q":"Tính B = 1/(1·3) + 1/(3·5) + 1/(5·7) + … + 1/(97·99).","a":"49/99","h":"2/(n(n+2)) = 1/n − 1/(n+2).","e":"B = (1/2)·(1 − 1/3 + 1/3 − 1/5 + … + 1/97 − 1/99) = (1/2)(1 − 1/99) = (1/2)(98/99) = 49/99.","x":"Quên nhân 1/2 ở ngoài (vì hiệu hai mẫu là 2)."},
+{"g":7,"id":"SH08","t":"DAI","l":1,"q":"Số tự nhiên n nhỏ nhất để 2^n > 1000 là","a":"10","h":"Liệt kê lũy thừa của 2: 2^9 = ?, 2^10 = ?","e":"2^9 = 512 < 1000 còn 2^10 = 1024 > 1000. Vậy n nhỏ nhất là 10.","x":"Chọn n = 9 vì 2^9 = 512 'gần 1000'."},
+{"g":7,"id":"SH09","t":"DAI","l":1,"q":"Tính (1 − 1/2)(1 − 1/3)(1 − 1/4)…(1 − 1/100).","a":"1/100","h":"Tính từng thừa số: 1 − 1/2 = 1/2, 1 − 1/3 = 2/3, …","e":"Tích = 1/2 · 2/3 · 3/4 · … · 99/100. Các tử và mẫu liên tiếp triệt tiêu, còn 1/100.","x":"Tính nhầm số thừa số hoặc quên triệt tiêu."},
+{"g":7,"id":"SHC01","t":"LTS","l":2,"q":"Chữ số tận cùng của 7^2026 là","a":"9","h":"Chữ số tận cùng của 7^n lặp lại theo chu kỳ 4.","e":"7^1→7, 7^2→9, 7^3→3, 7^4→1, rồi lặp. 2026 = 4·506 + 2 nên chữ số tận cùng giống 7^2, tức là 9.","x":"Lấy 2026 chia 4 rồi chọn nhầm số dư làm số mũ cuối."},
+{"g":7,"id":"SHC02","t":"LTS","l":1,"q":"Số 36 có bao nhiêu ước dương?","a":"9","h":"Liệt kê hoặc phân tích 36 = 2^2 · 3^2.","e":"Các ước: 1, 2, 3, 4, 6, 9, 12, 18, 36 → 9 ước. Cách khác: (2+1)(2+1) = 9.","x":"Bỏ sót 1 và 36, hoặc bỏ sót 9, 18."},
+{"g":7,"id":"SHC03","t":"LTS","l":1,"q":"Từ 1 đến 100 có bao nhiêu số chia hết cho cả 3 và 5?","a":"6","h":"Chia hết cho 3 và 5 là chia hết cho 15.","e":"Các số: 15, 30, 45, 60, 75, 90 → 6 số.","x":"Cộng số bội của 3 và số bội của 5 mà quên trừ phần chung."},
+{"g":7,"id":"SHC04","t":"LTS","l":3,"q":"Tìm số nguyên tố p sao cho p + 2 và p + 4 cũng là số nguyên tố.","a":"3","h":"Xét số dư của p khi chia cho 3.","e":"Với p = 3: 3, 5, 7 đều là số nguyên tố. Nếu p không chia hết cho 3: p chia 3 dư 1 thì p + 2 chia hết cho 3; p chia 3 dư 2 thì p + 4 chia hết cho 3; mà cả hai đều lớn hơn 3 nên là hợp số. Vậy chỉ có p = 3.","x":"Thử vài số rồi kết luận mà không chứng minh không còn giá trị khác."},
+{"g":7,"id":"SHC05","t":"LTS","l":2,"q":"Có bao nhiêu số tự nhiên n để 12 chia hết cho n + 1?","a":"6","h":"n + 1 phải là ước của 12.","e":"Ước của 12: 1, 2, 3, 4, 6, 12 → n + 1 nhận 6 giá trị, nên n = 0, 1, 2, 3, 5, 11 → 6 số.","x":"Quên n = 0 (n + 1 = 1)."},
+{"g":7,"id":"SHC06","t":"LTS","l":2,"q":"Tổng các chữ số của số 10^20 − 1 là","a":"180","h":"10^20 − 1 gồm bao nhiêu chữ số 9?","e":"10^20 − 1 = 99…9 (20 chữ số 9) nên tổng các chữ số là 20·9 = 180.","x":"Đếm nhầm thành 19 chữ số 9 hoặc 21 chữ số 9."},
+{"g":7,"id":"SHC07","t":"LTS","l":1,"q":"So sánh 2^100 và 10^30, khẳng định đúng là","o":["2^100 > 10^30","2^100 < 10^30","2^100 = 10^30","Không so sánh được"],"a":0,"h":"Dùng 2^10 = 1024 > 1000.","e":"2^100 = (2^10)^10 = 1024^10 > 1000^10 = (10^3)^10 = 10^30.","x":"Cho rằng 2^100 nhỏ hơn vì cơ số 2 nhỏ hơn 10."},
+{"g":7,"id":"SHC08","t":"LTS","l":1,"q":"Có bao nhiêu số tự nhiên có hai chữ số mà tổng các chữ số bằng 9?","a":"9","h":"Liệt kê theo chữ số hàng chục từ 1 đến 9.","e":"18, 27, 36, 45, 54, 63, 72, 81, 90 → 9 số.","x":"Bỏ sót 90 hoặc tính cả số 09."},
+{"g":7,"id":"TL01","t":"DAI","l":1,"q":"Cho x/3 = y/5 và x + y = 24. Tính y − x.","a":"6","h":"Áp dụng tính chất dãy tỉ số bằng nhau.","e":"x/3 = y/5 = (x + y)/(3 + 5) = 24/8 = 3. Suy ra x = 9, y = 15, nên y − x = 6.","x":"Chia sai: lấy 24 chia cho 3 hoặc 5."},
+{"g":7,"id":"TL02","t":"DAI","l":1,"q":"Cho a : b : c = 2 : 3 : 4 và a + b + c = 45. Tính c − a.","a":"10","h":"a/2 = b/3 = c/4 = (a + b + c)/(2 + 3 + 4).","e":"Mỗi phần bằng 45/9 = 5. Suy ra a = 10, b = 15, c = 20 nên c − a = 10.","x":"Nhầm c − a thành c − b."},
+{"g":7,"id":"TL03","t":"LG","l":1,"q":"6 công nhân làm xong một việc trong 10 ngày. Hỏi 15 công nhân (năng suất như nhau) làm xong việc đó trong bao nhiêu ngày?","a":"4","h":"Số công nhân và số ngày là hai đại lượng tỉ lệ nghịch.","e":"6 · 10 = 15 · x nên x = 60/15 = 4 ngày.","x":"Dùng tỉ lệ thuận: 15/6 · 10 = 25 ngày."},
+{"g":7,"id":"TL04","t":"DAI","l":2,"q":"Chia số 66 thành ba phần tỉ lệ nghịch với 2, 3, 6. Phần lớn nhất là","a":"33","h":"Tỉ lệ nghịch với 2, 3, 6 nghĩa là tỉ lệ thuận với 1/2, 1/3, 1/6.","e":"Tỉ lệ thuận với 1/2 : 1/3 : 1/6 = 3 : 2 : 1. Tổng 6 phần ứng với 66 nên mỗi phần là 11. Các phần: 33, 22, 11. Lớn nhất là 33.","x":"Chia tỉ lệ thuận với 2, 3, 6 (ra phần lớn nhất 36)."},
+{"g":7,"id":"TL05","t":"DAI","l":3,"q":"Cho (x − 1)/2 = (y + 2)/3 = (z − 3)/4 và x + y + z = 29. Tính z − x.","a":"8","h":"Đặt giá trị chung bằng k rồi biểu diễn x, y, z theo k.","e":"Đặt giá trị chung là k: x = 2k + 1, y = 3k − 2, z = 4k + 3. Cộng lại: 9k + 2 = 29 nên k = 3. Khi đó x = 7, y = 7, z = 15 và z − x = 8.","x":"Áp dụng cộng tử cộng mẫu mà quên các số −1, +2, −3 trong tử."},
+{"g":7,"id":"TL06","t":"LG","l":2,"q":"Ô tô đi từ A đến B với vận tốc 40 km/h, rồi quay về A với vận tốc 60 km/h (cùng một quãng đường). Vận tốc trung bình cả đi lẫn về là","o":["50 km/h","48 km/h","45 km/h","52 km/h"],"a":1,"h":"Vận tốc trung bình = tổng quãng đường / tổng thời gian. Thử chọn quãng đường 120 km.","e":"Chọn quãng đường AB = 120 km: đi mất 3 giờ, về mất 2 giờ. Cả đi và về: 240 km trong 5 giờ nên vận tốc trung bình là 48 km/h.","x":"Lấy trung bình cộng (40 + 60)/2 = 50."},
+{"g":7,"id":"DS01","t":"DAI","l":1,"q":"Cho P(x) = 2x^2 − x + 1. Tính P(−1).","a":"4","h":"Thay x = −1, chú ý dấu.","e":"P(−1) = 2·(−1)^2 − (−1) + 1 = 2 + 1 + 1 = 4.","x":"(−1)^2 = −1 hoặc quên đổi dấu của −x."},
+{"g":7,"id":"DS02","t":"DAI","l":1,"q":"Bậc của đa thức 3x^4·y − 5x^2·y^3 + 1 là","o":["4","5","6","7"],"a":1,"h":"Bậc của hạng tử là tổng số mũ của các biến.","e":"3x^4y có bậc 4 + 1 = 5; 5x^2y^3 có bậc 2 + 3 = 5; số 1 có bậc 0. Bậc của đa thức là 5.","x":"Chỉ lấy số mũ của một biến (ví dụ 4)."},
+{"g":7,"id":"DS03","t":"DAI","l":1,"q":"Tổng các nghiệm của đa thức x^2 − 5x + 6 là","o":["5","6","−5","1"],"a":0,"h":"Phân tích x^2 − 5x + 6 = (x − 2)(x − 3).","e":"Nghiệm là x = 2 và x = 3, tổng bằng 5.","x":"Lấy nhầm tích hai nghiệm (6) làm tổng."},
+{"g":7,"id":"DS04","t":"DAI","l":1,"q":"Cho A(x) = x^3 + 2x − 1 và B(x) = −x^3 + x^2 − 2x + 4. Tính giá trị của A(x) + B(x) tại x = 2.","a":"7","h":"Cộng hai đa thức trước rồi mới thay số.","e":"A + B = x^2 + 3. Tại x = 2: 4 + 3 = 7.","x":"Thay số vào từng đa thức rồi tính sai dấu."},
+{"g":7,"id":"DS05","t":"DAI","l":1,"q":"Tìm m để x = 2 là nghiệm của đa thức 3x − m − 4.","a":"2","h":"x = 2 là nghiệm thì giá trị của đa thức tại 2 bằng 0.","e":"3·2 − m − 4 = 0 nên 2 − m = 0, suy ra m = 2.","x":"Giải ra m = −2 do sai dấu."},
+{"g":7,"id":"DS06","t":"DAI","l":1,"q":"Giá trị lớn nhất của biểu thức 5 − |x − 2| là","a":"5","h":"|x − 2| ≥ 0 với mọi x.","e":"|x − 2| ≥ 0 nên 5 − |x − 2| ≤ 5. Dấu bằng xảy ra khi x = 2. Giá trị lớn nhất là 5.","x":"Nhầm với giá trị nhỏ nhất."},
+{"g":7,"id":"DS07","t":"DAI","l":1,"q":"Giá trị nhỏ nhất của (x − 1)^2 + (y + 2)^2 + 3 là","a":"3","h":"Bình phương của một số luôn không âm.","e":"(x − 1)^2 ≥ 0 và (y + 2)^2 ≥ 0 nên biểu thức ≥ 3. Dấu bằng khi x = 1, y = −2.","x":"Lấy nhầm giá trị tại x = 0, y = 0."},
+{"g":7,"id":"DS08","t":"DAI","l":2,"q":"Tính giá trị của (x − 1)(x + 1)(x^2 + 1)(x^4 + 1) tại x = 2.","a":"255","h":"Nhân liên tiếp (x − 1)(x + 1) = x^2 − 1 rồi nhân tiếp.","e":"(x^2 − 1)(x^2 + 1) = x^4 − 1; (x^4 − 1)(x^4 + 1) = x^8 − 1. Tại x = 2: 2^8 − 1 = 255.","x":"Thay số trực tiếp rồi nhân dễ nhầm; nên rút gọn trước."},
+{"g":7,"id":"DS09","t":"DAI","l":2,"q":"Cho a + b = 5 và ab = 6. Tính a^2 + b^2.","a":"13","h":"Dùng (a + b)^2 = a^2 + 2ab + b^2.","e":"a^2 + b^2 = (a + b)^2 − 2ab = 25 − 12 = 13.","x":"Quên nhân 2 ở số hạng 2ab."},
+{"g":7,"id":"DS10","t":"DAI","l":3,"q":"Cho x + 1/x = 3. Tính x^2 + 1/x^2.","a":"7","h":"Bình phương hai vế.","e":"(x + 1/x)^2 = x^2 + 2 + 1/x^2 = 9 nên x^2 + 1/x^2 = 9 − 2 = 7.","x":"Cho rằng x^2 + 1/x^2 = 3^2 = 9."},
+{"g":7,"id":"HH01","t":"HH","l":1,"q":"Tam giác ABC có góc A = 50° và góc B = 60°. Số đo góc ngoài tại đỉnh C là (độ)","a":"110","h":"Góc ngoài bằng tổng hai góc trong không kề với nó.","e":"Góc ngoài tại C = A + B = 50° + 60° = 110°. (Cách khác: góc C = 70°, góc ngoài = 180° − 70°.)","x":"Nhầm góc ngoài bằng góc trong ở C (70°)."},
+{"g":7,"id":"HH02","t":"HH","l":1,"q":"Một tam giác cân có một góc bằng 100°. Mỗi góc ở đáy bằng (độ)","o":["40","50","80","100"],"a":0,"h":"Góc 100° chỉ có thể là góc ở đỉnh. Vì sao?","e":"Nếu 100° là góc đáy thì hai góc đáy đã bằng 200° > 180° (vô lý). Vậy 100° là góc ở đỉnh, mỗi góc đáy là (180° − 100°)/2 = 40°.","x":"Cho rằng góc đáy là 100° hoặc 80°."},
+{"g":7,"id":"HH03","t":"HH","l":1,"q":"Hai góc kề bù có số đo tỉ lệ với 2 và 3. Số đo góc lớn hơn là (độ)","a":"108","h":"Hai góc kề bù có tổng bằng 180°.","e":"180° chia theo tỉ lệ 2 : 3: mỗi phần là 36°. Hai góc là 72° và 108°. Góc lớn là 108°.","x":"Chia 180 cho 2 và 3 rồi lấy 90° và 60°."},
+{"g":7,"id":"HH04","t":"HH","l":2,"q":"Tam giác ABC vuông tại A có AB = 6 cm, AC = 8 cm. Độ dài trung tuyến AM ứng với cạnh huyền BC là (cm)","a":"5","h":"Tính BC bằng định lí Pythagore. Trung tuyến ứng với cạnh huyền bằng nửa cạnh huyền.","e":"BC^2 = 6^2 + 8^2 = 100 nên BC = 10 cm. Trung tuyến AM ứng với cạnh huyền bằng BC/2 = 5 cm.","x":"Lấy AM bằng trung bình của AB và AC."},
+{"g":7,"id":"HH05","t":"HH","l":2,"q":"Một tam giác cân có hai cạnh dài 4 cm và 9 cm. Chu vi tam giác là (cm)","a":"22","h":"Xét hai trường hợp: cạnh bên 4 hoặc cạnh bên 9. Kiểm tra bất đẳng thức tam giác.","e":"Nếu cạnh bên là 4 thì các cạnh là 4, 4, 9 nhưng 4 + 4 < 9 (không lập được tam giác). Vậy các cạnh là 9, 9, 4 và chu vi là 22 cm.","x":"Chọn 17 (4 + 4 + 9) mà không kiểm tra bất đẳng thức tam giác."},
+{"g":7,"id":"HH06","t":"TH","l":2,"q":"Cho 10 điểm trong đó không có ba điểm nào thẳng hàng. Vẽ tất cả các đoạn thẳng nối hai điểm trong số đó. Số đoạn thẳng vẽ được là","a":"45","h":"Mỗi điểm nối với 9 điểm còn lại, nhưng mỗi đoạn bị đếm mấy lần?","e":"Mỗi điểm nối với 9 điểm khác: 10 · 9 = 90 cách, mỗi đoạn được đếm hai lần nên có 90 : 2 = 45 đoạn.","x":"Quên chia 2."},
+{"g":7,"id":"HH07","t":"TH","l":2,"q":"Số giao điểm nhiều nhất của 6 đường thẳng phân biệt là","a":"15","h":"Giao điểm nhiều nhất khi không có hai đường nào song song và không có ba đường nào đồng quy.","e":"Mỗi cặp đường thẳng cho một giao điểm: 6 · 5 / 2 = 15.","x":"Tính 6 · 5 = 30 mà quên chia 2."},
+{"g":7,"id":"HH08","t":"HH","l":2,"q":"Một tam giác có hai cạnh dài 3 cm và 8 cm, cạnh thứ ba dài một số nguyên centimet. Có bao nhiêu giá trị có thể có của cạnh thứ ba?","a":"5","h":"Hiệu hai cạnh < cạnh thứ ba < tổng hai cạnh.","e":"8 − 3 < x < 8 + 3 nên 5 < x < 11. Các số nguyên: 6, 7, 8, 9, 10 → 5 giá trị.","x":"Đếm cả x = 5 và x = 11."},
+{"g":7,"id":"HH09","t":"HH","l":2,"q":"Hai tia phân giác của hai góc kề bù tạo với nhau một góc bằng (độ)","o":["60","90","120","Phụ thuộc vào hai góc"],"a":1,"h":"Gọi hai góc là 2α và 2β với 2α + 2β = 180°.","e":"Hai góc kề bù có tổng 180°. Góc giữa hai tia phân giác bằng α + β = 90°.","x":"Cho rằng kết quả phụ thuộc số đo từng góc."},
+{"g":7,"id":"HH10","t":"TH","l":3,"q":"Đa giác lồi 8 cạnh có bao nhiêu đường chéo?","a":"20","h":"Mỗi đỉnh nối được với bao nhiêu đỉnh không kề nó?","e":"Mỗi đỉnh nối với 8 − 3 = 5 đỉnh (trừ chính nó và hai đỉnh kề). Có 8 · 5 = 40 cách, mỗi đường chéo bị đếm hai lần nên 40 : 2 = 20.","x":"Tính 8 · 7 / 2 = 28 (đã đếm cả cạnh)."},
+{"g":7,"id":"TK02","t":"LG","l":2,"q":"Trung bình cộng của 5 số là 12. Thêm một số nữa thì trung bình cộng của 6 số là 14. Số được thêm là","a":"24","h":"Tính tổng 5 số, rồi tổng 6 số.","e":"Tổng 5 số = 5 · 12 = 60. Tổng 6 số = 6 · 14 = 84. Số thêm vào là 84 − 60 = 24.","x":"Lấy 14 + 12 = 26 hoặc 14 · 2."},
+{"g":7,"id":"TK03","t":"LG","l":2,"q":"Bốn bài kiểm tra có điểm trung bình 7,5. Để điểm trung bình của năm bài là 8 thì bài thứ năm phải đạt (điểm)","a":"10","h":"Tính tổng điểm cần đạt sau 5 bài.","e":"Tổng 4 bài = 4 · 7,5 = 30. Tổng 5 bài cần 5 · 8 = 40. Bài thứ năm cần đạt 40 − 30 = 10 điểm.","x":"Lấy 8 + 0,5 = 8,5 vì nghĩ chỉ cần cộng thêm."},
+{"g":7,"id":"DEM01","t":"LG","l":1,"q":"Số tiếp theo của dãy 2, 5, 10, 17, 26, … là","a":"37","h":"Xét hiệu hai số liên tiếp: 3, 5, 7, 9, …","e":"Các số có dạng n^2 + 1: 1+1, 4+1, 9+1, 16+1, 25+1, tiếp theo 36 + 1 = 37. (Hiệu liên tiếp 3, 5, 7, 9, 11.)","x":"Cộng thêm 9 thay vì 11."},
+{"g":7,"id":"DEM02","t":"LG","l":1,"q":"Số tiếp theo của dãy 1, 1, 2, 3, 5, 8, 13, … là","a":"21","h":"Mỗi số bằng tổng hai số đứng trước.","e":"8 + 13 = 21.","x":"Lấy 13 + 5 = 18."},
+{"g":7,"id":"DEM03","t":"TH","l":1,"q":"Lập được bao nhiêu số tự nhiên có ba chữ số khác nhau từ các chữ số 1, 2, 3, 4?","a":"24","h":"Chọn lần lượt chữ số hàng trăm, hàng chục, hàng đơn vị.","e":"Hàng trăm có 4 cách, hàng chục còn 3 cách, hàng đơn vị còn 2 cách: 4 · 3 · 2 = 24.","x":"Tính 4 · 4 · 4 = 64 (cho phép lặp chữ số)."},
+{"g":7,"id":"DEM04","t":"TH","l":2,"q":"Có 8 người, hai người bất kỳ bắt tay nhau đúng một lần. Số cái bắt tay là","a":"28","h":"Mỗi người bắt tay với 7 người còn lại, nhưng mỗi cái bắt tay có hai người.","e":"8 · 7 / 2 = 28.","x":"Tính 8 · 7 = 56 mà quên chia 2."},
+{"g":7,"id":"DEM05","t":"DAI","l":1,"q":"Tính 1 + 3 + 5 + … + 99 (tổng các số lẻ từ 1 đến 99).","a":"2500","h":"Tổng n số lẻ đầu tiên bằng n^2. Có bao nhiêu số hạng?","e":"Có (99 − 1)/2 + 1 = 50 số hạng. Tổng = (1 + 99) · 50 / 2 = 2500 (= 50^2).","x":"Tính nhầm 50 số hạng thành 49 hoặc 100."},
+{"g":7,"id":"DEM06","t":"TH","l":3,"q":"Một lớp có 37 học sinh. Theo nguyên lý Dirichlet (chuồng thỏ), có ít nhất bao nhiêu bạn chắc chắn có cùng tháng sinh?","a":"4","h":"Có 12 tháng. Nếu mỗi tháng chỉ có tối đa 3 bạn thì tối đa có bao nhiêu bạn?","e":"Nếu mỗi tháng có nhiều nhất 3 bạn thì lớp có tối đa 12 · 3 = 36 bạn. Lớp có 37 bạn nên có ít nhất một tháng có không ít hơn 4 bạn.","x":"Chọn 3 (37 : 12 làm tròn xuống)."},
+{"g":7,"id":"DEM07","t":"TH","l":3,"q":"Có 9 viên bi bề ngoài giống hệt nhau, trong đó có đúng một viên nhẹ hơn các viên còn lại. Dùng cân hai đĩa (không có quả cân), cần ít nhất bao nhiêu lần cân để chắc chắn tìm ra viên nhẹ?","o":["1","2","3","4"],"a":1,"h":"Chia 9 viên thành ba nhóm, mỗi nhóm 3 viên.","e":"Lần 1: cân hai nhóm 3 viên, nhóm nhẹ hơn (hoặc nhóm không cân) chứa viên nhẹ. Lần 2: trong nhóm đó cân hai viên bất kỳ: nhẹ hơn là viên cần tìm, nếu cân bằng thì là viên còn lại. Vậy 2 lần.","x":"Cân từng cặp hai viên nên cần tới 4 lần."},
+{"g":7,"id":"DEM08","t":"LG","l":2,"q":"Bố hơn con 28 tuổi. Hai năm nữa tuổi bố gấp 3 lần tuổi con. Hiện nay con bao nhiêu tuổi?","a":"12","h":"Hiệu số tuổi luôn không đổi theo thời gian.","e":"Hai năm nữa hiệu vẫn là 28 tuổi, tuổi bố gấp 3 lần tuổi con nên hiệu là 2 lần tuổi con: tuổi con khi đó là 14. Hiện nay con 12 tuổi (bố 40 tuổi).","x":"Quên trừ 2 năm khi trả lời tuổi hiện nay (ra 14)."},
+{"g":7,"id":"DEM09","t":"LG","l":1,"q":"Có 36 con vừa gà vừa chó, tất cả có 100 chân. Số con chó là","a":"14","h":"Giả sử cả 36 con đều là gà.","e":"Nếu cả 36 con đều là gà thì có 72 chân. Thừa 100 − 72 = 28 chân; mỗi con chó nhiều hơn gà 2 chân nên có 28 : 2 = 14 con chó.","x":"Nhầm lẫn số chân gà và chó."},
+{"g":7,"id":"LG11","t":"LG","l":1,"q":"Cho dãy số 3, 7, 11, 15, … Số hạng thứ 30 của dãy là","a":"119","h":"Mỗi số hạng hơn số hạng liền trước bao nhiêu đơn vị?","e":"Dãy cách đều, công sai 4. Số hạng thứ n là 3 + 4(n − 1). Với n = 30: 3 + 4·29 = 119.","x":"Tính 3 + 4·30 = 123 (quên n − 1)."},
+{"g":7,"id":"LG12","t":"LG","l":2,"q":"Hình thứ nhất xếp từ 4 que diêm (1 ô vuông). Mỗi hình tiếp theo được ghép thêm 1 ô vuông vào hàng ngang, dùng thêm 3 que. Hình thứ 20 cần bao nhiêu que diêm?","a":"61","h":"Viết số que của hình 1, 2, 3 rồi tìm công thức theo n.","e":"Số que: 4, 7, 10, … tức là 3n + 1. Hình thứ 20: 3·20 + 1 = 61 que.","x":"Tính 4·20 = 80 hoặc 3·20 = 60."},
+{"g":7,"id":"LG13","t":"LG","l":1,"q":"Hai xe xuất phát cùng lúc từ A và B cách nhau 270 km, đi ngược chiều và gặp nhau sau 3 giờ. Xe đi từ A nhanh hơn xe đi từ B 10 km/h. Vận tốc xe đi từ A là (km/h)","a":"50","h":"Tính tổng hai vận tốc trước.","e":"Tổng hai vận tốc là 270 : 3 = 90 km/h. Hiệu hai vận tốc là 10 nên xe từ A đi (90 + 10) : 2 = 50 km/h.","x":"Lấy 90 : 2 = 45 mà quên hiệu vận tốc."},
+{"g":7,"id":"LG14","t":"LG","l":2,"q":"Lúc 6 giờ, An đi xe đạp từ nhà với vận tốc 12 km/h. Lúc 7 giờ, Bình đi xe máy với vận tốc 36 km/h đuổi theo An (cùng đường). Bình đuổi kịp An sau khi xuất phát bao nhiêu phút?","a":"30","h":"Tính khoảng cách giữa hai bạn lúc 7 giờ và vận tốc tiếp cận.","e":"Lúc 7 giờ An đã đi được 12 km. Mỗi giờ Bình gần An thêm 36 − 12 = 24 km. Thời gian đuổi kịp: 12 : 24 = 0,5 giờ = 30 phút.","x":"Chia 12 cho 36 (quên trừ vận tốc An)."},
+{"g":7,"id":"LG15","t":"LG","l":1,"q":"Một lớp có 40 học sinh, số bạn nam bằng 2/3 số bạn nữ. Số bạn nữ là","a":"24","h":"Nếu số bạn nữ là 3 phần thì số bạn nam là mấy phần?","e":"Coi nữ là 3 phần, nam là 2 phần: tổng 5 phần ứng với 40 bạn. Mỗi phần là 8 bạn, nữ có 3·8 = 24 bạn.","x":"Lấy 40 · 2/3 = 26,67 (nhầm tỉ lệ so với cả lớp)."},
+{"g":7,"id":"LG16","t":"LG","l":2,"q":"Mua 3 quyển vở và 2 cái bút hết 31 nghìn đồng; mua 2 quyển vở và 3 cái bút hết 29 nghìn đồng. Giá một cái bút là (nghìn đồng)","a":"5","h":"Nhân để hệ số của vở hoặc của bút bằng nhau rồi trừ vế.","e":"Cộng hai hóa đơn: 5 vở + 5 bút = 60 nên vở + bút = 12. Hiệu hai hóa đơn: vở − bút = 2. Vậy vở = 7, bút = 5 (nghìn đồng).","x":"Cho rằng bút và vở cùng giá."},
+{"g":7,"id":"LG17","t":"LG","l":2,"q":"Trong túi có 10 bi đỏ, 8 bi xanh và 6 bi vàng. Lấy bi một cách ngẫu nhiên (không nhìn). Cần lấy ít nhất bao nhiêu viên để chắc chắn có 3 viên cùng màu?","a":"7","h":"Nghĩ đến trường hợp xấu nhất: mỗi màu lấy được nhiều nhất bao nhiêu viên mà chưa đủ 3?","e":"Trường hợp xấu nhất: lấy 2 viên mỗi màu, tổng 6 viên mà chưa có 3 viên cùng màu. Viên thứ 7 chắc chắn tạo ra 3 viên cùng màu.","x":"Chọn 6 (không cộng thêm viên cuối)."},
+{"g":7,"id":"LG18","t":"LG","l":1,"q":"Trong hộp có 12 bi đỏ và 5 bi xanh. Cần lấy ít nhất bao nhiêu viên để chắc chắn có ít nhất 1 viên bi đỏ?","a":"6","h":"Trường hợp xấu nhất là lấy toàn bi xanh.","e":"Xấu nhất: 5 viên đầu đều là bi xanh. Viên thứ 6 chắc chắn là bi đỏ.","x":"Chọn 1 hoặc 12."},
+{"g":7,"id":"LG19","t":"LG","l":3,"q":"Trong túi có 10 bi đỏ, 8 bi xanh, 6 bi vàng và 2 bi trắng. Cần lấy ít nhất bao nhiêu viên để chắc chắn có 4 viên cùng màu?","a":"12","h":"Bi trắng chỉ có 2 viên nên tối đa lấy được 2 viên trắng trong trường hợp xấu nhất.","e":"Xấu nhất: 3 đỏ + 3 xanh + 3 vàng + 2 trắng = 11 viên mà chưa có 4 viên cùng màu. Viên thứ 12 chắc chắn tạo ra 4 viên cùng màu.","x":"Tính 4 màu · 3 + 1 = 13 (quên màu trắng chỉ có 2 viên)."},
+{"g":7,"id":"LG20","t":"LG","l":2,"q":"Một con ốc sên leo lên cột cao 10 m. Ban ngày leo lên 3 m, ban đêm tụt xuống 2 m. Ốc sên lên tới đỉnh cột vào ngày thứ mấy?","a":"8","h":"Khi ốc sên đã leo tới đỉnh trong ban ngày thì đêm đó không còn tụt nữa.","e":"Sau mỗi ngày đêm đầy đủ, ốc sên lên thêm 1 m. Sau 7 ngày đêm, ốc sên ở độ cao 7 m. Ngày thứ 8 leo 3 m là chạm đỉnh 10 m. Đáp số: ngày thứ 8.","x":"Chọn ngày thứ 10 (10 : 1) hoặc 4 (10 : 3)."},
+{"g":7,"id":"LG21","t":"LG","l":2,"q":"Giá một món hàng được tăng 20%, sau đó giảm 20% so với giá mới. So với giá ban đầu, giá cuối cùng đã giảm bao nhiêu phần trăm?","a":"4","h":"Gọi giá ban đầu là 100.","e":"Giá ban đầu 100. Tăng 20% thành 120. Giảm 20% của 120 là 24 nên còn 96. Giảm 4% so với ban đầu.","x":"Cho rằng giá trở về như cũ (giảm 0%)."},
+{"g":7,"id":"LG22","t":"LG","l":2,"q":"Tính tổng 1^2 + 2^2 + 3^2 + … + 10^2.","a":"385","h":"Có thể cộng trực tiếp 10 số hạng: 1, 4, 9, 16, …","e":"1 + 4 + 9 + 16 + 25 + 36 + 49 + 64 + 81 + 100 = 385.","x":"Nhầm với (1 + 2 + … + 10)^2 = 3025."},
+{"g":7,"id":"DAI25","t":"DAI","l":2,"q":"Tính 1/3 + 1/15 + 1/35 + 1/63 + 1/99.","a":"5/11","h":"Mẫu số là tích hai số lẻ liên tiếp: 1·3, 3·5, 5·7, 7·9, 9·11.","e":"1/(n(n+2)) = (1/2)(1/n − 1/(n+2)). Tổng = (1/2)(1 − 1/11) = (1/2)(10/11) = 5/11.","x":"Quên nhân 1/2."},
+{"g":7,"id":"DAI26","t":"DAI","l":2,"q":"Cho x − y = 3 và xy = 10. Tính x^2 + y^2.","a":"29","h":"Dùng (x − y)^2 = x^2 − 2xy + y^2.","e":"x^2 + y^2 = (x − y)^2 + 2xy = 9 + 20 = 29.","x":"Viết x^2 + y^2 = 9 − 20 (nhầm dấu)."},
+{"g":7,"id":"DAI27","t":"DAI","l":1,"q":"Tính 2025^2 − 2024^2.","a":"4049","h":"Dùng hằng đẳng thức a^2 − b^2 = (a − b)(a + b).","e":"2025^2 − 2024^2 = (2025 − 2024)(2025 + 2024) = 1 · 4049 = 4049.","x":"Tính nhẩm bình phương từng số rồi trừ."},
+{"g":7,"id":"DAI28","t":"DAI","l":2,"q":"Có bao nhiêu số nguyên x thỏa mãn −20 < 2x + 3 ≤ 15?","a":"18","h":"Giải bất phương trình kép, tìm x nguyên nhỏ nhất và lớn nhất.","e":"−23 < 2x ≤ 12 nên −11,5 < x ≤ 6. Các số nguyên từ −11 đến 6: 6 − (−11) + 1 = 18 số.","x":"Bỏ sót số 0 hoặc đếm cả −12."},
+{"g":7,"id":"DAI29","t":"DAI","l":2,"q":"Đổi số thập phân vô hạn tuần hoàn 0,3636… thành phân số tối giản.","o":["4/11","36/100","1/3","3/11"],"a":0,"h":"Đặt x = 0,3636… rồi nhân 100.","e":"100x − x = 36 nên x = 36/99 = 4/11.","x":"Viết 36/100 (coi như số thập phân hữu hạn)."},
+{"g":7,"id":"DAI30","t":"DAI","l":1,"q":"Tính 1 − 2 + 3 − 4 + … + 99 − 100.","a":"-50","h":"Ghép từng cặp liên tiếp.","e":"Mỗi cặp (1 − 2), (3 − 4), …, (99 − 100) bằng −1. Có 50 cặp nên tổng là −50.","x":"Ra +50 do nhầm dấu của mỗi cặp."},
+{"g":7,"id":"DAI31","t":"DAI","l":1,"q":"Cho a/b = 3/4. Tính giá trị của (a + b)/(b − a).","a":"7","h":"Đặt a = 3k, b = 4k.","e":"(3k + 4k)/(4k − 3k) = 7k/k = 7.","x":"Cộng cả tử và mẫu của 3/4 thành 7/4."},
+{"g":7,"id":"DAI32","t":"DAI","l":1,"q":"Biết 2x + 3y = 12 và 3x + 2y = 13. Tính x + y.","a":"5","h":"Cộng hai đẳng thức theo vế.","e":"Cộng vế: 5x + 5y = 25 nên x + y = 5.","x":"Giải từng ẩn mất thời gian; cộng vế là nhanh nhất."},
+{"g":7,"id":"DAI33","t":"DAI","l":3,"q":"Tính 1/(1·2·3) + 1/(2·3·4) + 1/(3·4·5) + … + 1/(8·9·10).","a":"11/45","h":"2/(n(n+1)(n+2)) = 1/(n(n+1)) − 1/((n+1)(n+2)).","e":"Tổng = (1/2)[1/(1·2) − 1/(9·10)] = (1/2)(1/2 − 1/90) = (1/2)(44/90) = 11/45.","x":"Quên nhân 1/2 hoặc nhầm số hạng cuối của hiệu."},
+{"g":7,"id":"LTS09","t":"LTS","l":1,"q":"Số tự nhiên dương nhỏ nhất chia cho 7 dư 3 và chia cho 5 dư 2 là","a":"17","h":"Liệt kê các số chia 7 dư 3: 3, 10, 17, 24, …","e":"Các số chia 7 dư 3: 3, 10, 17, … Kiểm tra: 3 chia 5 dư 3, 10 chia 5 dư 0, 17 chia 5 dư 2. Vậy số cần tìm là 17.","x":"Chọn 2 (chia 7 dư 2, chia 5 dư 2)."},
+{"g":7,"id":"LTS10","t":"LTS","l":2,"q":"Có bao nhiêu số có ba chữ số chia hết cho 6 nhưng không chia hết cho 4?","a":"75","h":"Chia hết cho cả 6 và 4 nghĩa là chia hết cho bội chung nhỏ nhất của 6 và 4.","e":"Số có 3 chữ số chia hết cho 6: từ 102 đến 996, có 150 số. Chia hết cho BCNN(6, 4) = 12: từ 108 đến 996, có 75 số. Vậy 150 − 75 = 75 số.","x":"Chỉ đếm số chia hết cho 6 (150)."},
+{"g":7,"id":"LTS11","t":"LTS","l":2,"q":"Chữ số tận cùng của 3^2025 + 2^2025 là","a":"5","h":"Tìm chu kỳ chữ số tận cùng của lũy thừa của 3 và của 2.","e":"3^n có chữ số tận cùng lặp 3, 9, 7, 1 (chu kỳ 4); 2025 chia 4 dư 1 nên tận cùng là 3. 2^n lặp 2, 4, 8, 6; 2025 chia 4 dư 1 nên tận cùng là 2. Tổng tận cùng: 3 + 2 = 5.","x":"Dùng chu kỳ sai số dư (dư 0 thay vì dư 1)."},
+{"g":7,"id":"LTS12","t":"LTS","l":2,"q":"Số 360 có bao nhiêu ước dương?","a":"24","h":"Phân tích ra thừa số nguyên tố: 360 = 2^3 · 3^2 · 5.","e":"Số ước = (3 + 1)(2 + 1)(1 + 1) = 4 · 3 · 2 = 24.","x":"Cộng các số mũ (3 + 2 + 1 = 6) thay vì nhân (số mũ + 1)."},
+{"g":7,"id":"LTS13","t":"LTS","l":2,"q":"Đèn A cứ 6 giây nháy một lần, đèn B cứ 8 giây nháy một lần. Hai đèn cùng nháy lúc giây 0. Trong 100 giây tiếp theo, hai đèn cùng nháy thêm bao nhiêu lần nữa?","a":"4","h":"Tìm BCNN(6, 8).","e":"BCNN(6, 8) = 24. Hai đèn cùng nháy tại các giây 24, 48, 72, 96 (≤ 100) → 4 lần.","x":"Lấy 100 : 24 = 4,17 rồi làm tròn lên thành 5."},
+{"g":7,"id":"LTS14","t":"LTS","l":1,"q":"Số 2B34 (B là chữ số) chia hết cho 9. Tổng tất cả các giá trị có thể có của B là","a":"9","h":"Số chia hết cho 9 khi tổng các chữ số chia hết cho 9.","e":"2 + B + 3 + 4 = 9 + B chia hết cho 9 nên B = 0 hoặc B = 9. Tổng: 0 + 9 = 9.","x":"Bỏ sót B = 0."},
+{"g":7,"id":"LTS15","t":"LTS","l":3,"q":"Số tự nhiên nhỏ nhất, khác 1, chia cho 2, 3, 4, 5, 6 đều dư 1 và chia hết cho 7 là","a":"301","h":"Nếu n chia cho 2, 3, 4, 5, 6 đều dư 1 thì n − 1 chia hết cho BCNN của chúng.","e":"BCNN(2, 3, 4, 5, 6) = 60 nên n = 60k + 1. Cần 60k + 1 chia hết cho 7: k = 0 → 1 (loại), 1 → 61, 2 → 121, 3 → 181, 4 → 241, 5 → 301 = 7·43. Vậy n = 301.","x":"Tính BCNN sai thành 120 hoặc 30."},
+{"g":7,"id":"LTS16","t":"LTS","l":2,"q":"Hai số nguyên dương a và b có UCLN bằng 6 và BCNN bằng 72. Tích a·b bằng","a":"432","h":"Với hai số nguyên dương: UCLN · BCNN = a · b.","e":"a·b = UCLN · BCNN = 6 · 72 = 432.","x":"Cộng 6 + 72 = 78."},
+{"g":7,"id":"LTS17","t":"LTS","l":2,"q":"Tổng của ba số nguyên tố liên tiếp bằng 49. Số nguyên tố lớn nhất trong ba số đó là","a":"19","h":"Ba số nguyên tố liên tiếp có tổng 49 xấp xỉ 3 lần số ở giữa (khoảng 16).","e":"Thử các bộ: 11 + 13 + 17 = 41; 13 + 17 + 19 = 49. Vậy ba số là 13, 17, 19 và số lớn nhất là 19.","x":"Chọn các số lẻ liên tiếp (15, 17, 19: 15 không nguyên tố)."},
+{"g":7,"id":"LTS18","t":"LTS","l":2,"q":"Số dư khi chia 2^100 cho 3 là","a":"1","h":"Xét số dư của 2, 2^2, 2^3, … khi chia cho 3.","e":"2 chia 3 dư 2; 2^2 = 4 dư 1; 2^3 dư 2; 2^4 dư 1; … Mũ chẵn thì dư 1. Vậy 2^100 chia 3 dư 1. (Cách khác: 2^100 = 4^50 và 4 ≡ 1 mod 3.)","x":"Chọn dư 2."},
+{"g":7,"id":"LTS19","t":"LTS","l":2,"q":"Số nhỏ nhất có tích các chữ số bằng 72 có tổng các chữ số là","a":"17","h":"Số có ít chữ số hơn thì nhỏ hơn. Phân tích 72 thành tích hai chữ số.","e":"72 = 8 · 9, và không thể phân tích thành một chữ số duy nhất nên số nhỏ nhất có 2 chữ số là 89. Tổng chữ số: 8 + 9 = 17.","x":"Chọn 98 (là số lớn hơn 89)."},
+{"g":7,"id":"HH11","t":"HH","l":1,"q":"Một chiếc thang dài 13 m dựa vào tường thẳng đứng, chân thang cách tường 5 m. Đỉnh thang cách mặt đất bao nhiêu mét?","a":"12","h":"Dùng định lí Pythagore với tam giác vuông tạo bởi thang, tường và mặt đất.","e":"Chiều cao h thỏa h^2 + 5^2 = 13^2 nên h^2 = 169 − 25 = 144. Vậy h = 12 m.","x":"Cộng 13 + 5 hoặc lấy 13 − 5 = 8."},
+{"g":7,"id":"HH12","t":"HH","l":2,"q":"Tam giác có hai cạnh dài 7 cm và 12 cm, cạnh thứ ba là số nguyên centimet. Chu vi lớn nhất có thể của tam giác là (cm)","a":"37","h":"Cạnh thứ ba x phải thỏa 12 − 7 < x < 12 + 7.","e":"5 < x < 19. x nguyên lớn nhất là 18 nên chu vi lớn nhất là 7 + 12 + 18 = 37 cm.","x":"Chọn x = 19 (chu vi 38) vì quên dấu < chặt."},
+{"g":7,"id":"HH13","t":"HH","l":1,"q":"Hình chữ nhật có chu vi 30 cm, chiều dài hơn chiều rộng 3 cm. Diện tích hình chữ nhật là (cm^2)","a":"54","h":"Nửa chu vi bằng dài + rộng.","e":"Dài + rộng = 15, dài − rộng = 3 nên dài = 9, rộng = 6. Diện tích: 9 · 6 = 54 cm^2.","x":"Lấy 15 chia đôi: 7,5 · 7,5."},
+{"g":7,"id":"HH14","t":"HH","l":1,"q":"Từ một tấm bìa hình vuông cạnh 10 cm, cắt bỏ bốn góc, mỗi góc là một hình vuông cạnh 2 cm. Diện tích phần còn lại là (cm^2)","a":"84","h":"Diện tích còn lại bằng diện tích hình vuông lớn trừ diện tích bốn góc.","e":"100 − 4 · (2 · 2) = 100 − 16 = 84 cm^2.","x":"Trừ 4 · 2 = 8 thay vì 4 · 4."},
+{"g":7,"id":"HH15","t":"HH","l":1,"q":"Hình hộp chữ nhật có ba kích thước 6 cm, 5 cm, 4 cm. Diện tích toàn phần là (cm^2)","a":"148","h":"Có 3 cặp mặt đối diện bằng nhau.","e":"S = 2(6·5 + 6·4 + 5·4) = 2(30 + 24 + 20) = 148 cm^2.","x":"Quên nhân 2 (ra 74) hoặc tính thể tích (120)."},
+{"g":7,"id":"HH16","t":"HH","l":2,"q":"Một khối lập phương cạnh 3 cm được sơn đỏ toàn bộ mặt ngoài, rồi cắt thành 27 khối lập phương nhỏ cạnh 1 cm. Có bao nhiêu khối nhỏ có đúng hai mặt được sơn đỏ?","a":"12","h":"Khối có đúng hai mặt sơn nằm ở các cạnh (không tính các đỉnh).","e":"Khối lập phương có 12 cạnh, mỗi cạnh dài 3 khối trong đó 2 khối ở hai đầu là khối đỉnh, nên còn đúng 1 khối ở giữa mỗi cạnh. Vậy có 12 khối.","x":"Tính nhầm 8 khối (các khối đỉnh có 3 mặt sơn)."},
+{"g":7,"id":"HH17","t":"HH","l":2,"q":"Mỗi góc trong của một đa giác đều 12 cạnh có số đo bằng (độ)","a":"150","h":"Tổng các góc trong của đa giác n cạnh là (n − 2) · 180°.","e":"Tổng các góc: 10 · 180° = 1800°. Mỗi góc: 1800° : 12 = 150°.","x":"Lấy 360° : 12 = 30° (đó là góc ngoài)."},
+{"g":7,"id":"HH18","t":"HH","l":2,"q":"Mỗi góc ngoài của một đa giác đều bằng 24°. Đa giác đó có bao nhiêu cạnh?","a":"15","h":"Tổng các góc ngoài của đa giác lồi luôn bằng 360°.","e":"Số cạnh = 360° : 24° = 15.","x":"Chia 180° cho 24°."},
+{"g":7,"id":"HH19","t":"HH","l":2,"q":"Trên mặt phẳng tọa độ cho ba điểm A(1; 2), B(1; 8), C(5; 2). Diện tích tam giác ABC bằng","a":"12","h":"AB song song với trục tung, AC song song với trục hoành. Tam giác ABC vuông ở đâu?","e":"A và B cùng hoành độ nên AB = 8 − 2 = 6; A và C cùng tung độ nên AC = 5 − 1 = 4; AB ⊥ AC tại A. Diện tích: (6 · 4)/2 = 12.","x":"Quên chia 2 (ra 24)."},
+{"g":7,"id":"HH20","t":"HH","l":2,"q":"Lúc 4 giờ 30 phút, góc nhỏ tạo bởi kim giờ và kim phút của đồng hồ là (độ)","a":"45","h":"Kim giờ quay 30° mỗi giờ, kim phút quay 6° mỗi phút.","e":"Kim phút chỉ số 6, cách mốc 12 giờ là 180°. Kim giờ ở giữa số 4 và 5, cách mốc 12 giờ là 4,5 · 30° = 135°. Góc giữa hai kim: 180° − 135° = 45°.","x":"Cho kim giờ chỉ đúng vào số 4 (góc 60°)."},
+{"g":7,"id":"HH21","t":"HH","l":1,"q":"Trong tam giác ABC, góc A gấp đôi góc B và góc C gấp ba góc B. Số đo góc lớn nhất của tam giác là (độ)","a":"90","h":"Gọi góc B là x rồi lập phương trình tổng ba góc.","e":"x + 2x + 3x = 180° nên x = 30°. Các góc: B = 30°, A = 60°, C = 90°. Góc lớn nhất là 90°.","x":"Trả lời góc A = 60° hoặc giải sai 6x = 360."},
+{"g":7,"id":"HH22","t":"HH","l":2,"q":"Tam giác ABC cân tại A có AB = AC = 13 cm và BC = 10 cm. Diện tích tam giác ABC là (cm^2)","a":"60","h":"Kẻ đường cao AH; trong tam giác cân, H là trung điểm BC.","e":"BH = 5 cm. Tam giác ABH vuông tại H: AH^2 = 13^2 − 5^2 = 144 nên AH = 12 cm. Diện tích: (10 · 12)/2 = 60 cm^2.","x":"Lấy BC · AB / 2 = 65."},
+{"g":7,"id":"TH08","t":"TH","l":2,"q":"Từ A đến B có 3 con đường, từ B đến C có 4 con đường. Một người đi từ A đến C qua B rồi quay về A cũng qua B, không đi lại con đường nào đã đi. Số cách đi cả chuyến đi và về là","a":"72","h":"Dùng quy tắc nhân; khi về, mỗi đoạn có bao nhiêu đường chưa dùng?","e":"Đi: 3 · 4 = 12 cách. Về: đoạn C→B còn 3 đường chưa dùng, đoạn B→A còn 2 đường chưa dùng nên 3 · 2 = 6 cách. Tổng: 12 · 6 = 72.","x":"Nhân 12 · 12 = 144 (cho phép đi lại đường cũ)."},
+{"g":7,"id":"TH09","t":"TH","l":1,"q":"Có bao nhiêu số tự nhiên có ba chữ số lập được từ các chữ số 0, 1, 2, 3 (các chữ số có thể lặp lại)?","a":"48","h":"Chữ số hàng trăm không được bằng 0.","e":"Hàng trăm: 3 cách (1, 2, 3); hàng chục: 4 cách; hàng đơn vị: 4 cách. Tổng 3 · 4 · 4 = 48.","x":"Tính 4 · 4 · 4 = 64."},
+{"g":7,"id":"TH10","t":"TH","l":3,"q":"Có bao nhiêu số tự nhiên có bốn chữ số khác nhau và chia hết cho 5?","a":"952","h":"Chia hai trường hợp: chữ số tận cùng là 0 hoặc là 5.","e":"Tận cùng 0: hàng nghìn 9 cách, hàng trăm 8 cách, hàng chục 7 cách: 504 số. Tận cùng 5: hàng nghìn 8 cách (khác 0 và 5), hàng trăm 8 cách (kể cả 0), hàng chục 7 cách: 448 số. Tổng 504 + 448 = 952.","x":"Cho hàng nghìn 9 cách ở cả hai trường hợp."},
+{"g":7,"id":"TH11","t":"TH","l":1,"q":"Một cửa hàng có 5 áo sơ mi, 4 quần dài và 3 váy. Một bộ trang phục gồm một áo sơ mi và một quần dài, hoặc một áo sơ mi và một váy. Có bao nhiêu bộ khác nhau?","a":"35","h":"Dùng quy tắc nhân cho từng loại bộ rồi quy tắc cộng.","e":"Áo + quần: 5 · 4 = 20 bộ. Áo + váy: 5 · 3 = 15 bộ. Tổng: 20 + 15 = 35 bộ.","x":"Nhân cả 5 · 4 · 3 = 60."},
+{"g":7,"id":"TH12","t":"TH","l":2,"q":"Cho 6 điểm, trong đó không có ba điểm nào thẳng hàng. Có bao nhiêu tam giác có ba đỉnh là ba trong sáu điểm đó?","a":"20","h":"Chọn 3 điểm có thứ tự rồi chia cho số cách sắp xếp ba điểm.","e":"Chọn có thứ tự: 6 · 5 · 4 = 120. Mỗi tam giác bị đếm 3! = 6 lần nên có 120 : 6 = 20 tam giác.","x":"Quên chia cho 6."},
+{"g":7,"id":"TH13","t":"TH","l":1,"q":"Lớp có 5 bạn ứng cử vào ba vị trí: lớp trưởng, lớp phó, thủ quỹ (mỗi bạn giữ nhiều nhất một vị trí). Số cách chọn là","a":"60","h":"Chọn lần lượt từng vị trí.","e":"Lớp trưởng 5 cách, lớp phó còn 4 cách, thủ quỹ còn 3 cách: 5 · 4 · 3 = 60.","x":"Tính 5 · 3 = 15 hoặc 5 · 5 · 5 = 125."},
+{"g":7,"id":"TH14","t":"TH","l":1,"q":"Một giải bóng bàn có 12 đội, mỗi hai đội đấu với nhau đúng một trận. Tổng số trận đấu là","a":"66","h":"Mỗi đội đấu với 11 đội còn lại; mỗi trận có hai đội.","e":"12 · 11 / 2 = 66 trận.","x":"Tính 12 · 11 = 132 mà quên chia 2."},
+{"g":7,"id":"TH15","t":"TH","l":2,"q":"Có bao nhiêu số có hai chữ số mà chữ số hàng chục lớn hơn chữ số hàng đơn vị?","a":"45","h":"Với mỗi chữ số hàng chục d, có bao nhiêu chữ số hàng đơn vị nhỏ hơn d?","e":"Chữ số hàng chục là d (1 đến 9) thì hàng đơn vị có d cách chọn (0 đến d − 1). Tổng: 1 + 2 + … + 9 = 45.","x":"Tính 9 · 9 = 81 hoặc bỏ sót chữ số 0."},
+{"g":7,"id":"TH16","t":"TH","l":2,"q":"Một con kiến đi trên lưới ô vuông 3 × 3 từ góc dưới bên trái tới góc trên bên phải, mỗi bước chỉ được đi sang phải hoặc đi lên theo cạnh các ô. Có bao nhiêu đường đi khác nhau?","a":"20","h":"Mỗi đường đi gồm 3 bước sang phải (P) và 3 bước đi lên (L). Đếm số cách xếp.","e":"Mỗi đường đi là một dãy 6 bước gồm 3 chữ P và 3 chữ L. Số cách chọn 3 vị trí cho P trong 6 vị trí: 6·5·4 / (3·2·1) = 20.","x":"Tính 3 · 3 = 9 hoặc 2^6 = 64."},
+{"g":7,"id":"TH17","t":"TH","l":3,"q":"Xếp 5 bạn thành một hàng ngang sao cho hai bạn An và Bình luôn đứng cạnh nhau. Số cách xếp là","a":"48","h":"Coi An và Bình là một 'khối', nhớ rằng trong khối có hai thứ tự.","e":"Coi (An, Bình) là một khối: cùng 3 bạn còn lại có 4 đối tượng xếp được 4! = 24 cách. Trong khối An, Bình đổi chỗ được 2 cách. Tổng: 24 · 2 = 48.","x":"Quên nhân 2 (ra 24)."},
+{"id":"K6-LG1","g":6,"t":"LG","l":1,"q":"Dãy số 5, 8, 11, 14, … Số hạng thứ 40 của dãy là","a":"122","h":"Mỗi số hạng hơn số liền trước 3 đơn vị.","e":"Số hạng thứ n là 5 + 3(n − 1). Với n = 40: 5 + 3·39 = 122.","x":"Tính 5 + 3·40 = 125 (quên n − 1)."},
+{"id":"K6-LG2","g":6,"t":"LG","l":1,"q":"Một ô tô đi với vận tốc 45 km/h trong 3 giờ 20 phút. Quãng đường ô tô đi được là (km)","a":"150","h":"Đổi 3 giờ 20 phút ra giờ: 3 + 1/3 = 10/3 giờ.","e":"Quãng đường = 45 · 10/3 = 150 km.","x":"Coi 3 giờ 20 phút là 3,20 giờ."},
+{"id":"K6-LG3","g":6,"t":"LG","l":1,"q":"Có 30 con vừa gà vừa thỏ, tất cả có 84 chân. Số con thỏ là","a":"12","h":"Giả sử cả 30 con đều là gà.","e":"30 gà có 60 chân, thừa 84 − 60 = 24 chân; mỗi thỏ hơn gà 2 chân nên có 24 : 2 = 12 thỏ.","x":"Lấy 84 : 4 = 21 thỏ (bỏ qua gà)."},
+{"id":"K6-LG4","g":6,"t":"LG","l":2,"q":"Mẹ hơn con 27 tuổi. Ba năm nữa tuổi mẹ gấp 4 lần tuổi con. Hiện nay con bao nhiêu tuổi?","a":"6","h":"Hiệu số tuổi không đổi theo thời gian.","e":"Ba năm nữa hiệu vẫn là 27 = 3 lần tuổi con khi đó, nên con khi đó 9 tuổi. Hiện nay con 6 tuổi.","x":"Trả lời 9 (quên trừ 3 năm)."},
+{"id":"K6-LG5","g":6,"t":"LG","l":1,"q":"Hộp có 8 bi đỏ, 7 bi xanh, 5 bi vàng. Lấy bi không nhìn, cần lấy ít nhất bao nhiêu viên để chắc chắn có 2 viên cùng màu?","a":"4","h":"Nghĩ đến trường hợp xấu nhất: mỗi màu 1 viên.","e":"Xấu nhất lấy 3 viên khác màu. Viên thứ 4 chắc chắn trùng màu với một viên đã lấy.","x":"Chọn 3 (chưa cộng viên cuối)."},
+{"id":"K6-LG6","g":6,"t":"LG","l":2,"q":"Giá một chiếc áo là 400 000 đồng. Cửa hàng giảm 15%, sau đó giảm tiếp 10% so với giá mới. Giá cuối cùng là (đồng)","a":"306000","h":"Giảm lần lượt, mỗi lần tính trên giá hiện tại.","e":"400 000 · 0,85 = 340 000; 340 000 · 0,9 = 306 000.","x":"Cộng 15% + 10% = 25% rồi giảm một lần (ra 300 000)."},
+{"id":"K6-LG7","g":6,"t":"LG","l":2,"q":"Dãy 1, 2, 4, 7, 11, 16, … Số hạng thứ 10 của dãy là","a":"46","h":"Xét hiệu giữa hai số liền nhau: 1, 2, 3, 4, 5, …","e":"Số hạng thứ n là 1 + (1 + 2 + … + (n − 1)). Với n = 10: 1 + 45 = 46.","x":"Cộng nhầm số hạng hiệu."},
+{"id":"K6-DAI1","g":6,"t":"DAI","l":2,"q":"Tính 1/(1·2) + 1/(2·3) + … + 1/(19·20).","a":"19/20","h":"1/(n(n+1)) = 1/n − 1/(n+1).","e":"Tổng = 1 − 1/20 = 19/20.","x":"Quên triệt tiêu, quy đồng cả 19 phân số."},
+{"id":"K6-DAI2","g":6,"t":"DAI","l":1,"q":"Tính 3/4 + 5/6 − 1/12.","a":"3/2","h":"Quy đồng mẫu số 12.","e":"9/12 + 10/12 − 1/12 = 18/12 = 3/2.","x":"Quên rút gọn 18/12."},
+{"id":"K6-DAI3","g":6,"t":"DAI","l":1,"q":"Tìm x biết (x − 1/2) : 3/4 = 2/3.","a":"1","h":"Tìm x − 1/2 trước.","e":"x − 1/2 = (2/3)(3/4) = 1/2 nên x = 1.","x":"Chia thay vì nhân ở bước đầu."},
+{"id":"K6-DAI4","g":6,"t":"DAI","l":1,"q":"Tính 2024 × 37 + 2024 × 63.","a":"202400","h":"Đặt thừa số chung 2024.","e":"2024 · (37 + 63) = 2024 · 100 = 202 400.","x":"Nhân từng tích rồi cộng dễ sai số."},
+{"id":"K6-DAI5","g":6,"t":"DAI","l":1,"q":"Tính 0,25 × 48 + 0,75 × 48.","a":"48","h":"Đặt thừa số chung 48.","e":"48 · (0,25 + 0,75) = 48 · 1 = 48.","x":"Nhân từng tích."},
+{"id":"K6-DAI6","g":6,"t":"DAI","l":2,"q":"Cho A : B = 3 : 5, B : C = 2 : 3 và A + B + C = 93. Giá trị của C là","a":"45","h":"Đưa về tỉ số của B bằng 10.","e":"A : B = 6 : 10 và B : C = 10 : 15 nên A : B : C = 6 : 10 : 15. Tổng 31 phần ứng với 93 nên mỗi phần 3, C = 45.","x":"Cộng tỉ số 3 + 5 + 2 + 3."},
+{"id":"K6-DAI7","g":6,"t":"DAI","l":1,"q":"Tính 1 + 2 + 3 + … + 60.","a":"1830","h":"Cặp đầu với cuối.","e":"(1 + 60) · 60 / 2 = 1830.","x":"Quên chia 2."},
+{"id":"K6-LTS1","g":6,"t":"LTS","l":1,"q":"Số 48 có bao nhiêu ước dương?","a":"10","h":"48 = 2^4 · 3.","e":"(4 + 1)(1 + 1) = 10 ước.","x":"Cộng số mũ thay vì nhân (số mũ + 1)."},
+{"id":"K6-LTS2","g":6,"t":"LTS","l":1,"q":"Tổng của UCLN và BCNN của 12 và 18 là","a":"42","h":"UCLN(12, 18) = 6.","e":"BCNN = 12·18/6 = 36. Tổng: 6 + 36 = 42.","x":"Nhầm UCLN với BCNN."},
+{"id":"K6-LTS3","g":6,"t":"LTS","l":1,"q":"Chữ số tận cùng của 3^100 là","a":"1","h":"Chu kỳ của chữ số tận cùng lũy thừa của 3 là 4.","e":"3, 9, 7, 1 rồi lặp. 100 chia hết cho 4 nên tận cùng là 1.","x":"Chọn 3 (dùng số mũ 1)."},
+{"id":"K6-LTS4","g":6,"t":"LTS","l":2,"q":"Có bao nhiêu số có ba chữ số chia hết cho 7?","a":"128","h":"Đếm bội của 7 từ 100 đến 999.","e":"Số bội của 7 không vượt quá 999 là 142; không vượt quá 99 là 14. Vậy 142 − 14 = 128.","x":"Lấy 900 : 7 = 128,6 rồi làm tròn sai."},
+{"id":"K6-LTS5","g":6,"t":"LTS","l":2,"q":"Số tự nhiên nhỏ nhất chia cho 3 dư 2, cho 4 dư 3, cho 5 dư 4 là","a":"59","h":"Cộng 1 vào số đó thì được số chia hết cho cả 3, 4, 5.","e":"n + 1 chia hết cho BCNN(3, 4, 5) = 60. Nhỏ nhất n + 1 = 60 nên n = 59.","x":"Chọn 60 (quên trừ 1)."},
+{"id":"K6-LTS6","g":6,"t":"LTS","l":1,"q":"Chữ số A để số 3A5 chia hết cho 9 là","a":"1","h":"Tổng các chữ số phải chia hết cho 9.","e":"3 + A + 5 = 8 + A chia hết cho 9 nên A = 1.","x":"Chọn A = 9."},
+{"id":"K6-LTS7","g":6,"t":"LTS","l":1,"q":"Tổng tất cả các số nguyên tố nhỏ hơn 20 là","a":"77","h":"Liệt kê: 2, 3, 5, 7, 11, 13, 17, 19.","e":"2 + 3 + 5 + 7 + 11 + 13 + 17 + 19 = 77.","x":"Bỏ sót số 2 hoặc đưa vào số 1."},
+{"id":"K6-HH1","g":6,"t":"HH","l":1,"q":"Hình chữ nhật có chu vi 56 cm, chiều dài gấp 3 lần chiều rộng. Diện tích là (cm^2)","a":"147","h":"Nửa chu vi là 28 cm.","e":"Dài + rộng = 28, dài = 3 rộng nên rộng = 7, dài = 21. Diện tích 7·21 = 147.","x":"Dùng 56 làm tổng hai cạnh."},
+{"id":"K6-HH2","g":6,"t":"HH","l":1,"q":"Tam giác ABC vuông tại A có AB = 9 cm, AC = 12 cm. Diện tích tam giác là (cm^2)","a":"54","h":"Hai cạnh góc vuông là đáy và chiều cao.","e":"(9 · 12)/2 = 54.","x":"Quên chia 2."},
+{"id":"K6-HH3","g":6,"t":"HH","l":1,"q":"Hình thang có hai đáy 10 cm và 14 cm, chiều cao 8 cm. Diện tích là (cm^2)","a":"96","h":"S = (đáy lớn + đáy bé) · cao / 2.","e":"(10 + 14) · 8 / 2 = 96.","x":"Quên chia 2."},
+{"id":"K6-HH4","g":6,"t":"HH","l":2,"q":"Hai góc kề bù, số đo góc nhỏ bằng 2/7 số đo góc lớn. Số đo góc lớn là (độ)","a":"140","h":"Tổng hai góc là 180°.","e":"Góc lớn 7 phần, góc nhỏ 2 phần: 9 phần ứng với 180° nên mỗi phần 20°, góc lớn 140°.","x":"Chia 180° theo tỉ lệ 2 : 7 và lấy góc nhỏ."},
+{"id":"K6-HH5","g":6,"t":"HH","l":2,"q":"Lúc 2 giờ 15 phút, góc nhỏ tạo bởi kim giờ và kim phút là (độ)","a":"22.5","h":"Kim giờ quay 30° mỗi giờ và 0,5° mỗi phút.","e":"Kim giờ: 2·30° + 15·0,5° = 67,5° tính từ mốc 12. Kim phút ở mốc 3: 90°. Góc: 90° − 67,5° = 22,5°.","x":"Cho kim giờ chỉ đúng số 2 (góc 60°)."},
+{"id":"K6-HH6","g":6,"t":"HH","l":1,"q":"Hình lập phương có cạnh 5 cm. Diện tích toàn phần là (cm^2)","a":"150","h":"Có 6 mặt hình vuông.","e":"6 · 5 · 5 = 150.","x":"Tính thể tích 125."},
+{"id":"K6-HH7","g":6,"t":"HH","l":3,"q":"Từ tấm bìa hình chữ nhật 20 cm × 14 cm, cắt bỏ bốn góc là bốn hình vuông cạnh 4 cm rồi gập thành hộp không nắp. Thể tích hộp là (cm^3)","a":"288","h":"Chiều cao hộp bằng cạnh hình vuông bị cắt.","e":"Đáy: (20 − 8) × (14 − 8) = 12 × 6; cao 4. Thể tích 12·6·4 = 288.","x":"Trừ 4 thay vì 8 cho mỗi kích thước."},
+{"id":"K6-TH1","g":6,"t":"TH","l":1,"q":"Có bao nhiêu số có ba chữ số khác nhau lập từ các chữ số 1, 2, 3, 4, 5?","a":"60","h":"Chọn lần lượt từng hàng.","e":"5 · 4 · 3 = 60.","x":"Tính 5·5·5 = 125."},
+{"id":"K6-TH2","g":6,"t":"TH","l":1,"q":"Có 8 bạn, hai bạn bất kỳ bắt tay nhau đúng một lần. Số cái bắt tay là","a":"28","h":"Mỗi cái bắt tay có hai người.","e":"8 · 7 / 2 = 28.","x":"Quên chia 2."},
+{"id":"K6-TH3","g":6,"t":"TH","l":1,"q":"Một lục giác lồi có bao nhiêu đường chéo?","a":"9","h":"Mỗi đỉnh nối với 3 đỉnh không kề.","e":"6 · 3 / 2 = 9.","x":"Tính 6·5/2 = 15 (đã đếm cả cạnh)."},
+{"id":"K6-TH4","g":6,"t":"TH","l":2,"q":"Có 4 áo, 3 quần, 2 mũ. Một bộ gồm 1 áo và 1 quần, có thể đội hoặc không đội một chiếc mũ. Số bộ khác nhau là","a":"36","h":"Với mũ có 3 lựa chọn: mũ thứ nhất, mũ thứ hai, không mũ.","e":"4 · 3 · (2 + 1) = 36.","x":"Quên trường hợp không đội mũ (ra 24)."},
+{"id":"K6-TH5","g":6,"t":"TH","l":3,"q":"Trên lưới ô vuông gồm 3 cột × 2 hàng ô, có bao nhiêu hình chữ nhật (tính cả hình vuông) có cạnh nằm trên các đường kẻ?","a":"18","h":"Chọn 2 đường dọc và 2 đường ngang.","e":"Có 4 đường dọc, chọn 2: 6 cách. Có 3 đường ngang, chọn 2: 3 cách. Tổng 6 · 3 = 18.","x":"Chỉ đếm các ô nhỏ (6 ô)."},
+{"id":"K6-TH6","g":6,"t":"TH","l":1,"q":"Xếp 4 bạn thành một hàng ngang. Số cách xếp là","a":"24","h":"Chọn người đứng lần lượt từng vị trí.","e":"4 · 3 · 2 · 1 = 24.","x":"Tính 4·4 = 16."},
+{"id":"K6-TH7","g":6,"t":"TH","l":2,"q":"Đi trên lưới 2 × 3 ô từ góc dưới trái đến góc trên phải, mỗi bước chỉ sang phải hoặc lên. Số đường đi là","a":"10","h":"Mỗi đường đi gồm 3 bước phải và 2 bước lên.","e":"Chọn 2 vị trí trong 5 bước cho bước lên: 5·4/2 = 10.","x":"Tính 3·2 = 6."},
+{"id":"K8-LG1","g":8,"t":"LG","l":1,"q":"Dãy 2, 6, 12, 20, 30, … Số hạng thứ 15 của dãy là","a":"240","h":"Các số có dạng n(n + 1).","e":"Số hạng thứ n là n(n + 1). Với n = 15: 15 · 16 = 240.","x":"Dùng n^2 = 225."},
+{"id":"K8-LG2","g":8,"t":"LG","l":1,"q":"Ô tô đi từ A đến B với vận tốc 40 km/h rồi quay về với vận tốc 60 km/h (cùng quãng đường). Vận tốc trung bình cả đi lẫn về là (km/h)","a":"48","h":"Chọn quãng đường 120 km.","e":"Đi 3 giờ, về 2 giờ: 240 km trong 5 giờ nên 48 km/h.","x":"Lấy trung bình cộng 50."},
+{"id":"K8-LG3","g":8,"t":"LG","l":1,"q":"Vòi A chảy một mình đầy bể trong 6 giờ, vòi B chảy một mình đầy bể trong 3 giờ. Hai vòi cùng chảy thì đầy bể sau bao nhiêu giờ?","a":"2","h":"Mỗi giờ mỗi vòi chảy được bao nhiêu phần bể?","e":"1/6 + 1/3 = 1/2 bể mỗi giờ nên 2 giờ.","x":"Lấy trung bình 4,5 giờ."},
+{"id":"K8-LG4","g":8,"t":"LG","l":2,"q":"Lớp có 30 học sinh. Có ít nhất bao nhiêu bạn chắc chắn có cùng tháng sinh?","a":"3","h":"Có 12 tháng. Mỗi tháng nhiều nhất 2 bạn thì tối đa bao nhiêu bạn?","e":"Nếu mỗi tháng chỉ có tối đa 2 bạn thì lớp có tối đa 24 bạn, mà lớp có 30 bạn nên có tháng có ít nhất 3 bạn.","x":"Chọn 2 (30 : 12 làm tròn xuống)."},
+{"id":"K8-LG5","g":8,"t":"LG","l":2,"q":"Số a tăng 25% thì được số b. Để b trở về a thì cần giảm b đi bao nhiêu phần trăm?","a":"20","h":"Gọi a = 100.","e":"b = 125. Giảm 25 trên 125 là 20%.","x":"Trả lời 25%."},
+{"id":"K8-LG6","g":8,"t":"LG","l":2,"q":"Tổng tuổi cha và con là 50. Năm năm trước tuổi cha gấp 7 lần tuổi con. Hiện nay con bao nhiêu tuổi?","a":"10","h":"Gọi tuổi con là x.","e":"(50 − x) − 5 = 7(x − 5) nên 45 − x = 7x − 35, 8x = 80, x = 10 (cha 40).","x":"Quên trừ 5 năm cho cả hai người."},
+{"id":"K8-LG7","g":8,"t":"LG","l":1,"q":"Trung bình cộng của 5 số bằng 18. Bỏ đi số 30 thì trung bình cộng của 4 số còn lại là","a":"15","h":"Tính tổng 5 số.","e":"Tổng 5 số: 90. Còn lại 90 − 30 = 60, trung bình 60 : 4 = 15.","x":"Lấy 18 − 30/5 = 12."},
+{"id":"K8-DAI1","g":8,"t":"DAI","l":2,"q":"Cho x + y = 7 và xy = 10. Tính x^3 + y^3.","a":"133","h":"x^3 + y^3 = (x + y)^3 − 3xy(x + y).","e":"343 − 3 · 10 · 7 = 343 − 210 = 133.","x":"Dùng x^3 + y^3 = (x + y)^3."},
+{"id":"K8-DAI2","g":8,"t":"DAI","l":1,"q":"Cho a + b = 10 và ab = 21. Tính (a − b)^2.","a":"16","h":"(a − b)^2 = (a + b)^2 − 4ab.","e":"100 − 84 = 16.","x":"Tính 100 − 21."},
+{"id":"K8-DAI3","g":8,"t":"DAI","l":3,"q":"Tính 1/(1·4) + 1/(4·7) + 1/(7·10) + … + 1/(28·31).","a":"10/31","h":"3/(n(n+3)) = 1/n − 1/(n+3).","e":"Tổng = (1/3)(1 − 1/31) = (1/3)(30/31) = 10/31.","x":"Quên nhân 1/3."},
+{"id":"K8-DAI4","g":8,"t":"DAI","l":1,"q":"Tính giá trị biểu thức (x^2 − 9)/(x − 3) tại x = 7.","a":"10","h":"Rút gọn tử thức.","e":"(x^2 − 9)/(x − 3) = x + 3 = 10.","x":"Thay trực tiếp 40/4 vẫn đúng nhưng dễ nhầm với x = 3."},
+{"id":"K8-DAI5","g":8,"t":"DAI","l":1,"q":"Giá trị nhỏ nhất của x^2 − 6x + 13 là","a":"4","h":"Viết thành bình phương cộng hằng số.","e":"x^2 − 6x + 13 = (x − 3)^2 + 4 ≥ 4.","x":"Chọn 13 (giá trị tại x = 0)."},
+{"id":"K8-DAI6","g":8,"t":"DAI","l":2,"q":"Cho x^2 + y^2 = 20, xy = 8 và x, y > 0. Tính x + y.","a":"6","h":"(x + y)^2 = x^2 + y^2 + 2xy.","e":"(x + y)^2 = 20 + 16 = 36 nên x + y = 6.","x":"Quên nhân 2 ở 2xy."},
+{"id":"K8-DAI7","g":8,"t":"DAI","l":1,"q":"Tổng các nghiệm của phương trình |2x − 1| = 7 là","a":"1","h":"Hai trường hợp 2x − 1 = 7 và 2x − 1 = −7.","e":"x = 4 hoặc x = −3, tổng bằng 1.","x":"Chỉ lấy một nghiệm."},
+{"id":"K8-LTS1","g":8,"t":"LTS","l":2,"q":"Số 360 có bao nhiêu ước dương?","a":"24","h":"360 = 2^3 · 3^2 · 5.","e":"(3 + 1)(2 + 1)(1 + 1) = 24.","x":"Cộng các số mũ."},
+{"id":"K8-LTS2","g":8,"t":"LTS","l":2,"q":"Tổng tất cả số nguyên dương n sao cho n + 5 chia hết cho n + 1 là","a":"4","h":"n + 5 = (n + 1) + 4 nên n + 1 phải là ước của 4.","e":"n + 1 ∈ {2, 4} (vì n ≥ 1) nên n = 1 hoặc 3. Tổng 4.","x":"Cho n + 1 = 1 (n = 0 không dương)."},
+{"id":"K8-LTS3","g":8,"t":"LTS","l":2,"q":"Chữ số tận cùng của 7^2025 · 3^2025 là","a":"1","h":"7·3 = 21.","e":"7^2025 · 3^2025 = 21^2025, tận cùng là 1.","x":"Tính riêng từng chữ số rồi nhân sai."},
+{"id":"K8-LTS4","g":8,"t":"LTS","l":2,"q":"Số dư khi chia 2^2026 cho 7 là","a":"2","h":"2^3 = 8 chia 7 dư 1.","e":"2026 = 3·675 + 1 nên 2^2026 = (2^3)^675 · 2 chia 7 dư 2.","x":"Chọn dư 1."},
+{"id":"K8-LTS5","g":8,"t":"LTS","l":3,"q":"Tìm số nguyên tố p sao cho p + 10 và p + 14 cũng là số nguyên tố.","a":"3","h":"Xét số dư của p khi chia cho 3.","e":"p = 3: 13 và 17 nguyên tố. Nếu p chia 3 dư 1 thì p + 14 chia hết cho 3; nếu dư 2 thì p + 10 chia hết cho 3 (cả hai lớn hơn 3). Vậy p = 3.","x":"Thử p = 7: 17, 21 (21 không nguyên tố)."},
+{"id":"K8-LTS6","g":8,"t":"LTS","l":2,"q":"Số nhỏ nhất có bốn chữ số khác nhau và chia hết cho 9 là","a":"1026","h":"Tổng các chữ số phải chia hết cho 9.","e":"Thử các bội của 9 từ 1008: 1008 (hai chữ số 0), 1017 (hai chữ số 1), 1026 thỏa mãn.","x":"Chọn 1008."},
+{"id":"K8-LTS7","g":8,"t":"LTS","l":3,"q":"Tổng các chữ số của số 10^30 − 7 là","a":"264","h":"10^30 − 7 = 99…93.","e":"Số gồm 29 chữ số 9 và chữ số 3 ở cuối: 29 · 9 + 3 = 264.","x":"Cho rằng có 30 chữ số 9."},
+{"id":"K8-HH1","g":8,"t":"HH","l":1,"q":"Hình thoi có hai đường chéo 24 cm và 10 cm. Chu vi hình thoi là (cm)","a":"52","h":"Hai đường chéo vuông góc và cắt nhau tại trung điểm.","e":"Cạnh = √(12^2 + 5^2) = 13 nên chu vi 4 · 13 = 52.","x":"Cộng hai đường chéo."},
+{"id":"K8-HH2","g":8,"t":"HH","l":1,"q":"Tam giác vuông có cạnh huyền 25 cm và một cạnh góc vuông 15 cm. Cạnh góc vuông còn lại dài (cm)","a":"20","h":"Định lí Pythagore.","e":"√(25^2 − 15^2) = √400 = 20.","x":"Lấy 25 − 15 = 10."},
+{"id":"K8-HH3","g":8,"t":"HH","l":2,"q":"Hình thang cân có hai đáy 10 cm và 20 cm, cạnh bên 13 cm. Diện tích là (cm^2)","a":"180","h":"Hạ hai đường cao để tính chiều cao.","e":"Mỗi đoạn nhô ra ở đáy lớn là (20 − 10)/2 = 5; cao = √(13^2 − 5^2) = 12. Diện tích (10 + 20) · 12 / 2 = 180.","x":"Lấy chiều cao bằng cạnh bên 13."},
+{"id":"K8-HH4","g":8,"t":"HH","l":1,"q":"G là trọng tâm tam giác ABC, trung tuyến AM = 15 cm. Độ dài AG là (cm)","a":"10","h":"G chia trung tuyến theo tỉ lệ 2 : 1 tính từ đỉnh.","e":"AG = (2/3) · 15 = 10.","x":"Lấy 1/3 (ra 5)."},
+{"id":"K8-HH5","g":8,"t":"HH","l":2,"q":"Một đa giác đều có mỗi góc trong bằng 140°. Đa giác đó có bao nhiêu cạnh?","a":"9","h":"Góc ngoài = 180° − góc trong.","e":"Góc ngoài 40°, số cạnh = 360° : 40° = 9.","x":"Chia 360 cho 140."},
+{"id":"K8-HH6","g":8,"t":"HH","l":2,"q":"Hình chữ nhật ABCD có AB = 8 cm, AD = 6 cm. Khoảng cách từ A đến đường chéo BD là (cm)","a":"4.8","h":"So sánh hai cách tính diện tích tam giác ABD.","e":"BD = 10. Diện tích ABD = 24 = (1/2) · 10 · h nên h = 4,8.","x":"Lấy 6 · 8 / 10 nhưng quên nhân đôi diện tích."},
+{"id":"K8-HH7","g":8,"t":"HH","l":2,"q":"Hình hộp chữ nhật có ba kích thước 3 cm, 4 cm, 12 cm. Độ dài đường chéo là (cm)","a":"13","h":"d^2 = a^2 + b^2 + c^2.","e":"9 + 16 + 144 = 169 nên d = 13.","x":"Cộng ba kích thước 19."},
+{"id":"K8-TH1","g":8,"t":"TH","l":2,"q":"Có bao nhiêu số có bốn chữ số khác nhau?","a":"4536","h":"Chữ số hàng nghìn khác 0.","e":"9 · 9 · 8 · 7 = 4536.","x":"Tính 9 · 10 · 10 · 10."},
+{"id":"K8-TH2","g":8,"t":"TH","l":2,"q":"Có bao nhiêu cách xếp 6 người ngồi quanh một bàn tròn (hai cách xoay vòng của nhau coi là một)?","a":"120","h":"Cố định một người, xếp 5 người còn lại.","e":"5! = 120.","x":"Tính 6! = 720."},
+{"id":"K8-TH3","g":8,"t":"TH","l":3,"q":"Cho 12 điểm, trong đó có đúng 4 điểm thẳng hàng, ngoài ra không có ba điểm nào thẳng hàng. Có bao nhiêu đường thẳng đi qua ít nhất hai trong 12 điểm đó?","a":"61","h":"Bốn điểm thẳng hàng chỉ tạo ra 1 đường thẳng.","e":"C(12,2) = 66 đường nếu không có điểm thẳng hàng; 4 điểm thẳng hàng làm 6 cặp trùng thành 1 đường: 66 − 6 + 1 = 61.","x":"Quên cộng lại 1 đường."},
+{"id":"K8-TH4","g":8,"t":"TH","l":3,"q":"Cho 10 điểm, trong đó có đúng 4 điểm thẳng hàng, ngoài ra không có ba điểm nào thẳng hàng. Có bao nhiêu tam giác có ba đỉnh là ba trong mười điểm đó?","a":"116","h":"Trừ các bộ ba điểm thẳng hàng.","e":"C(10,3) = 120; có C(4,3) = 4 bộ ba thẳng hàng. 120 − 4 = 116.","x":"Quên trừ các bộ ba thẳng hàng."},
+{"id":"K8-TH5","g":8,"t":"TH","l":2,"q":"Số tập con khác rỗng của tập {1, 2, 3, 4, 5, 6} là","a":"63","h":"Mỗi phần tử có thể có mặt hoặc không.","e":"2^6 = 64 tập con, trừ tập rỗng: 63.","x":"Chọn 64."},
+{"id":"K8-TH6","g":8,"t":"TH","l":1,"q":"Chọn 3 bạn từ 7 bạn để làm tổ trực nhật (không phân biệt vai trò). Số cách chọn là","a":"35","h":"Chọn có thứ tự rồi chia số cách sắp xếp.","e":"7 · 6 · 5 / 6 = 35.","x":"Tính 7·6·5 = 210."},
+{"id":"K8-TH7","g":8,"t":"TH","l":2,"q":"Đi trên lưới 4 × 4 ô từ góc dưới trái đến góc trên phải, mỗi bước chỉ sang phải hoặc lên. Số đường đi là","a":"70","h":"Mỗi đường đi gồm 4 bước phải và 4 bước lên.","e":"Chọn 4 vị trí trong 8 bước cho bước lên: 8·7·6·5/(4·3·2·1) = 70.","x":"Tính 4 · 4 = 16."},
+{"id":"K9-LG1","g":9,"t":"LG","l":2,"q":"Dãy 1, 3, 6, 10, 15, … (số hạng thứ n bằng 1 + 2 + … + n). Tổng 20 số hạng đầu của dãy là","a":"1540","h":"Số hạng thứ n là n(n + 1)/2; tổng cần dùng n(n+1)(n+2)/6.","e":"Tổng 20 số hạng đầu = 20·21·22/6 = 1540.","x":"Cộng nhầm số hạng thứ 20 (210)."},
+{"id":"K9-LG2","g":9,"t":"LG","l":1,"q":"Hai xe cách nhau 300 km, đi ngược chiều và gặp nhau sau 2 giờ 30 phút. Xe A nhanh hơn xe B 20 km/h. Vận tốc xe A là (km/h)","a":"70","h":"Tổng hai vận tốc = quãng đường : thời gian.","e":"300 : 2,5 = 120 nên xe A đi (120 + 20) : 2 = 70 km/h.","x":"Dùng 2,30 giờ thay cho 2,5 giờ."},
+{"id":"K9-LG3","g":9,"t":"LG","l":2,"q":"Ca nô xuôi dòng 24 km hết 2 giờ và ngược dòng 24 km hết 3 giờ. Vận tốc dòng nước là (km/h)","a":"2","h":"Vận tốc xuôi = vận tốc riêng + vận tốc dòng; ngược = riêng − dòng.","e":"Xuôi 12 km/h, ngược 8 km/h nên dòng nước (12 − 8)/2 = 2 km/h.","x":"Chọn 10 (vận tốc riêng)."},
+{"id":"K9-LG4","g":9,"t":"LG","l":3,"q":"Trong 50 số tự nhiên từ 1 đến 50, cần chọn ít nhất bao nhiêu số để chắc chắn có hai số có tổng bằng 51?","a":"26","h":"Ghép các số thành 25 cặp có tổng 51.","e":"Có 25 cặp (1, 50), (2, 49), … (25, 26). Xấu nhất chọn 25 số mỗi cặp một số; số thứ 26 chắc chắn tạo thành cặp.","x":"Chọn 25 (chưa cộng thêm 1)."},
+{"id":"K9-LG5","g":9,"t":"LG","l":2,"q":"Hai người cùng làm xong một việc trong 12 ngày. Một mình người A làm xong trong 20 ngày. Một mình người B làm xong trong bao nhiêu ngày?","a":"30","h":"Cộng năng suất mỗi ngày.","e":"1/12 − 1/20 = 1/30 công việc mỗi ngày nên 30 ngày.","x":"Lấy 20 − 12 = 8."},
+{"id":"K9-LG6","g":9,"t":"LG","l":1,"q":"Gửi 100 triệu đồng với lãi kép 10% mỗi năm. Sau 2 năm số tiền có là (triệu đồng)","a":"121","h":"Lãi kép: lãi năm sau tính trên cả gốc lẫn lãi.","e":"100 · 1,1 · 1,1 = 121 triệu.","x":"Tính lãi đơn: 120 triệu."},
+{"id":"K9-LG7","g":9,"t":"LG","l":2,"q":"Dãy a1 = 1, a(n+1) = 2·a(n) + 1. Số hạng a8 bằng","a":"255","h":"Tính lần lượt các số hạng.","e":"1, 3, 7, 15, 31, 63, 127, 255 (a(n) = 2^n − 1).","x":"Nhầm a8 = 2^7 = 128."},
+{"id":"K9-DAI1","g":9,"t":"DAI","l":2,"q":"Tính √(7 + 4√3) + √(7 − 4√3).","a":"4","h":"7 ± 4√3 = (2 ± √3)^2.","e":"√(7 + 4√3) = 2 + √3 và √(7 − 4√3) = 2 − √3. Tổng bằng 4.","x":"Quên 7 − 4√3 > 0 nên căn có nghĩa."},
+{"id":"K9-DAI2","g":9,"t":"DAI","l":2,"q":"Cho x + y = 5 và xy = 6. Tính x^2 + y^2.","a":"13","h":"(x + y)^2 = x^2 + 2xy + y^2.","e":"25 − 12 = 13.","x":"Quên nhân 2."},
+{"id":"K9-DAI3","g":9,"t":"DAI","l":2,"q":"Phương trình x^2 − 6x + 4 = 0 có hai nghiệm x1, x2. Tính x1^3 + x2^3.","a":"144","h":"Dùng định lí Vi-ét: x1 + x2 = 6, x1·x2 = 4.","e":"x1^3 + x2^3 = (x1 + x2)^3 − 3x1x2(x1 + x2) = 216 − 72 = 144.","x":"Dùng x1^3 + x2^3 = 6^3 = 216."},
+{"id":"K9-DAI4","g":9,"t":"DAI","l":1,"q":"Tìm m để phương trình x^2 − 4x + m = 0 có nghiệm kép.","a":"4","h":"Nghiệm kép khi Δ = 0.","e":"Δ = 16 − 4m = 0 nên m = 4.","x":"Quên chia hệ số 4."},
+{"id":"K9-DAI5","g":9,"t":"DAI","l":2,"q":"Biết x + y = 10. Giá trị nhỏ nhất của x^2 + y^2 là","a":"50","h":"x^2 + y^2 ≥ (x + y)^2/2.","e":"x^2 + y^2 = (x + y)^2 − 2xy = 100 − 2xy, mà xy ≤ 25 nên x^2 + y^2 ≥ 50. Dấu bằng khi x = y = 5.","x":"Chọn 0 (khi x = 0, y = 0 nhưng không thỏa tổng)."},
+{"id":"K9-DAI6","g":9,"t":"DAI","l":2,"q":"Tính 1/(√1 + √2) + 1/(√2 + √3) + … + 1/(√99 + √100).","a":"9","h":"Trục căn: 1/(√k + √(k+1)) = √(k+1) − √k.","e":"Tổng = √100 − √1 = 10 − 1 = 9.","x":"Quên triệt tiêu."},
+{"id":"K9-DAI7","g":9,"t":"DAI","l":1,"q":"Đồ thị hàm số y = (m − 2)x + 3 đi qua điểm (1; 5). Giá trị của m là","a":"4","h":"Thay x = 1, y = 5.","e":"(m − 2) + 3 = 5 nên m = 4.","x":"Ra m = 2 do bỏ hệ số."},
+{"id":"K9-LTS1","g":9,"t":"LTS","l":3,"q":"Số dư khi chia 2^2025 cho 9 là","a":"8","h":"2^6 = 64 chia 9 dư 1.","e":"2025 = 6·337 + 3 nên 2^2025 chia 9 dư 2^3 = 8.","x":"Chọn dư 1."},
+{"id":"K9-LTS2","g":9,"t":"LTS","l":1,"q":"Có bao nhiêu cặp số nguyên dương (x, y) thỏa x·y = 36?","a":"9","h":"Số cặp bằng số ước dương của 36.","e":"36 có 9 ước dương nên có 9 cặp.","x":"Chỉ đếm 5 cặp x ≤ y."},
+{"id":"K9-LTS3","g":9,"t":"LTS","l":2,"q":"Có bao nhiêu số nguyên dương x để 24 chia hết cho x + 2?","a":"6","h":"x + 2 là ước của 24 và x + 2 ≥ 3.","e":"Các ước của 24 lớn hơn hoặc bằng 3: 3, 4, 6, 8, 12, 24 → 6 số.","x":"Đếm cả ước 1 và 2."},
+{"id":"K9-LTS4","g":9,"t":"LTS","l":2,"q":"Chữ số tận cùng của 2^100 + 3^100 là","a":"7","h":"Xét chu kỳ chữ số tận cùng.","e":"2^100 tận cùng 6 (chu kỳ 4, số mũ chia hết cho 4), 3^100 tận cùng 1. Tổng tận cùng 7.","x":"Chọn 2 + 3 = 5."},
+{"id":"K9-LTS5","g":9,"t":"LTS","l":2,"q":"Tổng các ước dương của 100 là","a":"217","h":"100 = 2^2 · 5^2.","e":"(1 + 2 + 4)(1 + 5 + 25) = 7 · 31 = 217.","x":"Nhân số ước thay cho tổng."},
+{"id":"K9-LTS6","g":9,"t":"LTS","l":3,"q":"Số tự nhiên n nhỏ nhất để n! chia hết cho 1000 là","a":"15","h":"1000 = 2^3 · 5^3. Đếm số thừa số 5 trong n!.","e":"n! cần ít nhất ba thừa số 5; 15! chứa 5, 10, 15 (ba thừa số 5) và đủ thừa số 2. 14! chỉ có hai thừa số 5.","x":"Chọn 10 (10! chỉ có hai thừa số 5)."},
+{"id":"K9-LTS7","g":9,"t":"LTS","l":3,"q":"UCLN của 2^24 − 1 và 2^36 − 1 là","a":"4095","h":"UCLN(2^a − 1, 2^b − 1) = 2^UCLN(a, b) − 1.","e":"UCLN(24, 36) = 12 nên đáp số 2^12 − 1 = 4095.","x":"Chọn 2^12 = 4096."},
+{"id":"K9-HH1","g":9,"t":"HH","l":1,"q":"Tam giác vuông có hai cạnh góc vuông 6 cm và 8 cm. Bán kính đường tròn nội tiếp là (cm)","a":"2","h":"r = (a + b − c)/2 với c là cạnh huyền.","e":"c = 10 nên r = (6 + 8 − 10)/2 = 2.","x":"Lấy r = S/p mà tính sai nửa chu vi."},
+{"id":"K9-HH2","g":9,"t":"HH","l":2,"q":"Đường tròn bán kính 13 cm có dây AB = 24 cm. Khoảng cách từ tâm đến dây AB là (cm)","a":"5","h":"Đường kính vuông góc dây thì chia đôi dây.","e":"d = √(13^2 − 12^2) = 5.","x":"Lấy 13 − 12 = 1."},
+{"id":"K9-HH3","g":9,"t":"HH","l":2,"q":"Tam giác ABC vuông tại A, đường cao AH = 12 cm, BH = 9 cm. Độ dài CH là (cm)","a":"16","h":"Hệ thức lượng: AH^2 = BH · CH.","e":"144 = 9 · CH nên CH = 16.","x":"Dùng AH^2 = BH + CH."},
+{"id":"K9-HH4","g":9,"t":"HH","l":1,"q":"Hình tròn bán kính 7 cm, lấy π = 22/7. Diện tích hình tròn là (cm^2)","a":"154","h":"S = πr^2.","e":"(22/7) · 49 = 154.","x":"Tính chu vi 44."},
+{"id":"K9-HH5","g":9,"t":"HH","l":1,"q":"Góc nội tiếp chắn cung có số đo 80° bằng (độ)","a":"40","h":"Góc nội tiếp bằng nửa số đo cung bị chắn.","e":"80° : 2 = 40°.","x":"Chọn 80."},
+{"id":"K9-HH6","g":9,"t":"HH","l":1,"q":"Hình trụ có bán kính đáy 3 cm và chiều cao 10 cm có thể tích bằng k·π (cm^3). Giá trị của k là","a":"90","h":"V = πr^2h.","e":"V = π · 9 · 10 = 90π.","x":"Tính 2πrh = 60π (diện tích xung quanh)."},
+{"id":"K9-HH7","g":9,"t":"HH","l":2,"q":"Tam giác đều cạnh 6 cm nội tiếp đường tròn bán kính R. Giá trị của R^2 là","a":"12","h":"R = a/√3 với a là cạnh.","e":"R = 6/√3 = 2√3 nên R^2 = 12.","x":"Lấy R = 6/2 = 3."},
+{"id":"K9-TH1","g":9,"t":"TH","l":2,"q":"Có bao nhiêu cách xếp 5 người thành một hàng ngang sao cho người A không đứng đầu hàng?","a":"96","h":"Lấy tất cả cách xếp trừ các cách có A đứng đầu.","e":"5! − 4! = 120 − 24 = 96.","x":"Chọn 4! = 24."},
+{"id":"K9-TH2","g":9,"t":"TH","l":2,"q":"Có bao nhiêu số tự nhiên có ba chữ số mà tổng các chữ số bằng 5?","a":"15","h":"Chữ số hàng trăm tối thiểu là 1.","e":"Chia theo hàng trăm 1..5: hàng trăm a thì b + c = 5 − a có 6 − a cách: 5 + 4 + 3 + 2 + 1 = 15.","x":"Cho hàng trăm bằng 0."},
+{"id":"K9-TH3","g":9,"t":"TH","l":1,"q":"Số tập con có đúng 3 phần tử của một tập có 8 phần tử là","a":"56","h":"Chọn 3 phần tử không phân biệt thứ tự.","e":"8·7·6/6 = 56.","x":"Tính 8·7·6 = 336."},
+{"id":"K9-TH4","g":9,"t":"TH","l":2,"q":"Gieo hai con xúc xắc cân đối. Xác suất để tổng số chấm bằng 8 là (phân số tối giản)","a":"5/36","h":"Liệt kê các cặp có tổng 8.","e":"Các cặp (2,6), (3,5), (4,4), (5,3), (6,2): 5 kết quả trong 36.","x":"Bỏ sót cặp (4, 4)."},
+{"id":"K9-TH5","g":9,"t":"TH","l":2,"q":"Có bao nhiêu cách chia 6 chiếc kẹo giống nhau cho 3 bạn sao cho mỗi bạn được ít nhất 1 chiếc?","a":"10","h":"Đặt 2 vách ngăn vào 5 khoảng giữa các kẹo.","e":"Chọn 2 khoảng trong 5 khoảng: 5·4/2 = 10.","x":"Tính C(8,2) = 28 (cho phép bạn nhận 0 kẹo)."},
+{"id":"K9-TH6","g":9,"t":"TH","l":1,"q":"Đa giác lồi 12 cạnh có bao nhiêu đường chéo?","a":"54","h":"Mỗi đỉnh nối với 9 đỉnh không kề.","e":"12 · 9 / 2 = 54.","x":"Tính 12·11/2 = 66 (có cả cạnh)."},
+{"id":"K9-TH7","g":9,"t":"TH","l":3,"q":"Trong hộp có 5 bi đỏ và 4 bi xanh. Lấy ngẫu nhiên 3 viên. Xác suất để ba viên cùng màu là (phân số tối giản)","a":"1/6","h":"Đếm số cách chọn 3 viên cùng màu và tổng số cách chọn 3 viên.","e":"Cùng đỏ: C(5,3) = 10; cùng xanh: C(4,3) = 4; tổng 14. Tổng cách chọn C(9,3) = 84. Xác suất 14/84 = 1/6.","x":"Quên rút gọn 14/84."}
+];
+QS.splice(0,QS.length,...QS.filter(q=>(q.g||7)===7));
+/*END*/
+
+const $=s=>document.querySelector(s);
+const KEY="timo_k7_v1";
+let DB={me:"",res:{},exams:[]};
+try{const r=localStorage.getItem(KEY);if(r)DB=Object.assign(DB,JSON.parse(r))}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(DB))}catch(e){}};
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const fmt=s=>esc(s).replace(/\^(\{[^}]+\}|-?\d+|[a-z])/g,(m,p)=>"<sup>"+p.replace(/[{}]/g,"")+"</sup>").replace(/\*/g,"·");
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+let R=null; // runner state
+let timer=null;
+
+function parseNum(s){s=String(s).trim().replace(/\s+/g,"").replace(/,/g,".").replace(/−/g,"-");
+  if(!s)return null; if(s.includes("/")){const [a,b]=s.split("/");const x=Number(a),y=Number(b);if(!isFinite(x)||!isFinite(y)||y===0)return null;return x/y}
+  const n=Number(s);return isFinite(n)?n:null}
+function check(q,v){ if(v==null||v==="")return false;
+  if(q.o)return v===q.a; const x=parseNum(v),y=parseNum(q.a);return x!==null&&y!==null&&Math.abs(x-y)<1e-9}
+const todayS=()=>{const d=new Date();return new Date(d.getTime()-d.getTimezoneOffset()*6e4).toISOString().slice(0,10)};
+const addDays=(s,n)=>{const d=new Date(s+"T00:00:00Z");d.setUTCDate(d.getUTCDate()+n);return d.toISOString().slice(0,10)};
+const BOXD=[0,1,2,4,7,14];
+function record(q,ok){const r=DB.res[q.id]||{n:0,ok:0,last:null};r.n++;if(ok)r.ok++;r.last=ok;
+  r.box=ok?Math.min(5,(r.box||0)+1):0;r.due=addDays(todayS(),BOXD[r.box]);DB.res[q.id]=r;
+  DB.days=DB.days||{};const t=todayS(),before=DB.days[t]||0;DB.days[t]=before+1;DB.xp=(DB.xp||0)+(ok?10:3);
+  if(before+1===GOAL)setTimeout(confetti,300);save()}
+const GOAL=10;
+const LV=[[0,"Mầm toán 🌱"],[50,"Tập sự ✏️"],[150,"Chăm chỉ 📚"],[300,"Nhà toán học nhí 🧮"],[500,"Thám tử số 🔎"],[800,"Pháp sư logic 🪄"],[1200,"Cao thủ 🥋"],[1800,"Kiện tướng 🏆"],[2500,"Quán quân 👑"],[3500,"Huyền thoại TIMO 🌟"]];
+function levelInfo(){const x=DB.xp||0;let i=0;while(i+1<LV.length&&x>=LV[i+1][0])i++;const lo=LV[i][0],hi=LV[i+1]?LV[i+1][0]:null;return{i,name:LV[i][1],x,lo,hi,pc:hi?Math.round((x-lo)*100/(hi-lo)):100}}
+function streakN(){const d=DB.days||{};let t=todayS(),n=0;if(!d[t])t=addDays(t,-1);while(d[t]){n++;t=addDays(t,-1)}return n}
+function topicStat(){const o={};for(const k of Object.keys(TOPICS)){let n=0,ok=0,seen=0;const qs=bank().filter(q=>q.t===k);qs.forEach(q=>{const r=DB.res[q.id];if(r){seen++;n+=r.n;ok+=r.ok}});o[k]={n,ok,seen,tot:qs.length,acc:n?ok/n:null}}return o}
+function weakest(){const s=topicStat();let best=null,bs=9;for(const k in s){const x=s[k];const sc=x.n>=3?x.acc:(x.n===0?0.55:0.6);if(sc<bs){bs=sc;best=k}}return best}
+function dueList(){const t=todayS();return bank().filter(q=>{const r=DB.res[q.id];return r&&r.due&&r.due<=t})}
+function smartPick(cnt){cnt=cnt||8;const s=topicStat(),t=todayS();
+  const sc=bank().map(q=>{const r=DB.res[q.id],ts=s[q.t];const acc=ts.acc==null?0.5:ts.acc;
+    const tl=acc>=0.8?3:acc<0.5?1:2;let v=(1-acc)*2-Math.abs(q.l-tl)*0.7+Math.random()*0.6;
+    if(!r)v+=2;else if(r.last===false)v+=3;else if(r.due&&r.due<=t)v+=1.5;else v-=1.5;return{q,v}}).sort((x,y)=>y.v-x.v);
+  const out=[],cn={};for(const{q}of sc){if((cn[q.t]||0)>=Math.ceil(cnt/2.5))continue;out.push(q);cn[q.t]=(cn[q.t]||0)+1;if(out.length>=cnt)break}
+  return out}
+function smartNextHTML(L){const bad={};L.forEach((q,k)=>{if(!check(q,R.ans[k]))bad[q.t]=(bad[q.t]||0)+1});
+  const ks=Object.keys(bad).sort((x,y)=>bad[y]-bad[x]);const lv=levelInfo(),dn=(DB.days||{})[todayS()]||0;
+  const msg=ks.length?`Em còn sai nhiều nhất ở <b>${TOPICS[ks[0]]}</b> (${bad[ks[0]]} câu). Đọc lại kiến thức rồi luyện tiếp để chắc hơn nhé.`:`Em làm đúng hết! Thử luyện thông minh để gặp câu khó hơn nhé.`;
+  return `<div class="coach" style="margin:12px 0"><div class="co-k">🧠 Gợi ý tiếp theo</div><div class="co-t">${msg}</div>
+  <small class="mut">Cấp hiện tại: ${lv.name} · ${lv.x} XP · Hôm nay ${dn}/${GOAL} câu</small>
+  <div class="row" style="margin-top:10px">${ks.length?`<button class="btn sec" id="snTh" data-k="${ks[0]}">📖 Ôn kiến thức ${TOPICS[ks[0]]}</button>`:""}<button class="btn" id="snGo">✨ Luyện thông minh</button></div></div>`}
+function smartStart(){const l=smartPick(8);if(l.length)start(l,"prac")}
+function dueStart(){const l=dueList();if(l.length)start(shuffle(l).slice(0,10),"prac")}
+function badges(){const r=Object.values(DB.res),n=r.reduce((s,x)=>s+x.n,0),ok=r.reduce((s,x)=>s+x.ok,0),st=topicStat(),sk=streakN(),fm=Object.keys(DB.fm||{}).length;
+  const fixed=r.filter(x=>x.n>x.ok&&x.last===true).length;
+  return[["🌱","Khởi động","Làm 10 câu",n>=10],["🔥","Chuỗi 3 ngày","Học 3 ngày liên tiếp",sk>=3],["⚡","Chuỗi 7 ngày","Học 7 ngày liên tiếp",sk>=7],
+  ["🎯","Xạ thủ","Đúng từ 80% với ít nhất 30 lượt làm",n>=30&&ok/n>=.8],["🧩","Đủ 5 chuyên đề","Làm ít nhất 3 câu mỗi chuyên đề",Object.values(st).every(x=>x.seen>=3)],
+  ["🛠️","Thợ sửa lỗi","Sửa đúng 5 câu từng làm sai",fixed>=5],["⏱️","Chiến binh phòng thi","Hoàn thành 1 lần thi thử",DB.exams.length>=1],
+  ["📘","Làm đề Fermat","Nộp 1 đề Fermat",fm>=1],["🏅","Chăm đề Fermat","Nộp 5 đề Fermat",fm>=5],["🌟","Cấp 5 trở lên","Đạt cấp Thám tử số",levelInfo().i>=4]]}
+
+
+const MN={6:["Cú Toán","🦉"],7:["Rô-bốt Toán","🤖"],8:["Cáo Toán","🦊"],9:["Phi hành gia Toán","🚀"]};
+const DECO={6:["🎈","⭐","🍀","🌈"],7:["💡","⚙️","🧩","✨"],8:["🔬","📐","⚡","🎯"],9:["🚀","🪐","🌟","🧠"]};
+function mascot(mood,size){size=size||88;const g=curG();
+  const eyes=mood==="cheer"?'<path d="M36 58 Q45 49 54 58" stroke="#2b2b2b" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M66 58 Q75 49 84 58" stroke="#2b2b2b" stroke-width="4" fill="none" stroke-linecap="round"/>'
+   :`<circle cx="45" cy="58" r="13" fill="#fff"/><circle cx="75" cy="58" r="13" fill="#fff"/><circle cx="${mood==="think"?49:46}" cy="${mood==="think"?54:59}" r="6" fill="#2b2b2b"/><circle cx="${mood==="think"?79:76}" cy="${mood==="think"?54:59}" r="6" fill="#2b2b2b"/><circle cx="48" cy="56" r="2" fill="#fff"/><circle cx="78" cy="56" r="2" fill="#fff"/>`;
+  const bc=g===9?"#fff":"#8a5a00";
+  const brow=mood==="sad"?`<path d="M34 42 L54 47 M86 42 L66 47" stroke="${bc}" stroke-width="3" stroke-linecap="round"/>`:mood==="think"?`<path d="M64 42 L86 38" stroke="${bc}" stroke-width="3" stroke-linecap="round"/>`:"";
+  const mc=g===9?"#fff":"#c2410c";
+  const mouth=mood==="sad"?`<path d="M53 82 Q60 77 67 82" stroke="${mc}" stroke-width="3" fill="none" stroke-linecap="round"/>`:`<path d="M52 79 Q60 87 68 79" stroke="${mc}" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+  const wl=mood==="cheer"?'rotate(-55 26 72)':'rotate(12 26 72)',wr=mood==="cheer"?'rotate(55 94 72)':'rotate(-12 94 72)';
+  const extra=mood==="cheer"?'<text x="4" y="22" font-size="18">✨</text><text x="96" y="26" font-size="18">✨</text>':mood==="think"?'<text x="92" y="22" font-size="22" fill="#6741d9" font-weight="800">?</text>':"";
+  const cheeks='<circle cx="32" cy="72" r="6" fill="#ff9aa8" opacity=".7"/><circle cx="88" cy="72" r="6" fill="#ff9aa8" opacity=".7"/>';
+  let body;
+  if(g===7)body=`<rect x="58" y="6" width="4" height="16" fill="#495057"/><circle cx="60" cy="6" r="6" fill="#ff6b6b"/>
+   <rect x="14" y="50" width="12" height="26" rx="5" fill="#4dabf7"/><rect x="94" y="50" width="12" height="26" rx="5" fill="#4dabf7"/>
+   <rect x="22" y="20" width="76" height="86" rx="26" fill="#74c0fc"/><rect x="32" y="36" width="56" height="44" rx="18" fill="#364fc7"/>
+   ${eyes}${brow}${mouth}<rect x="40" y="94" width="40" height="8" rx="4" fill="#fff" opacity=".7"/>`;
+  else if(g===8)body=`<polygon points="22,48 24,10 50,32" fill="#ff922b"/><polygon points="98,48 96,10 70,32" fill="#ff922b"/><polygon points="29,40 29,20 43,32" fill="#ffc9c9"/><polygon points="91,40 91,20 77,32" fill="#ffc9c9"/>
+   <ellipse cx="60" cy="68" rx="40" ry="38" fill="#ff922b"/><path d="M20 76 Q60 118 100 76 Q60 96 20 76Z" fill="#fff"/><ellipse cx="60" cy="86" rx="22" ry="16" fill="#fff"/>
+   <circle cx="45" cy="58" r="17" fill="none" stroke="#364fc7" stroke-width="4"/><circle cx="75" cy="58" r="17" fill="none" stroke="#364fc7" stroke-width="4"/><line x1="62" y1="58" x2="58" y2="58" stroke="#364fc7" stroke-width="4"/>
+   ${eyes}${brow}<ellipse cx="60" cy="72" rx="5" ry="3.5" fill="#2b2b2b"/>${mouth.replace("M52 79","M52 82").replace("68 79","68 82").replace("Q60 87","Q60 90").replace("M53 82 Q60 77 67 82","M53 85 Q60 80 67 85")}`;
+  else if(g===9)body=`<rect x="58" y="4" width="4" height="14" fill="#adb5bd"/><circle cx="60" cy="5" r="5" fill="#ffd43b"/>
+   <ellipse cx="60" cy="108" rx="30" ry="10" fill="#ced4da"/><circle cx="60" cy="62" r="46" fill="#f1f3f5" stroke="#dee2e6" stroke-width="3"/>
+   <ellipse cx="60" cy="60" rx="38" ry="30" fill="#364fc7"/><ellipse cx="44" cy="46" rx="9" ry="4" fill="#fff" opacity=".35" transform="rotate(-25 44 46)"/>
+   ${eyes}${brow}${mouth}<circle cx="22" cy="62" r="6" fill="#ff6b6b"/><circle cx="98" cy="62" r="6" fill="#4dabf7"/>`;
+  else body=`<ellipse cx="42" cy="112" rx="11" ry="5" fill="#ff922b"/><ellipse cx="78" cy="112" rx="11" ry="5" fill="#ff922b"/>
+   <ellipse cx="26" cy="72" rx="9" ry="20" fill="#f08c00" transform="${wl}"/><ellipse cx="94" cy="72" rx="9" ry="20" fill="#f08c00" transform="${wr}"/>
+   <ellipse cx="60" cy="70" rx="38" ry="40" fill="#ffb347"/><ellipse cx="60" cy="84" rx="24" ry="24" fill="#ffe8b0"/>
+   <polygon points="28,36 36,18 46,34" fill="#ffb347"/><polygon points="92,36 84,18 74,34" fill="#ffb347"/>
+   ${eyes}${brow}${cheeks}<polygon points="55,66 65,66 60,75" fill="#ff7043"/>${mouth}
+   <polygon points="60,14 102,28 60,42 18,28" fill="#364fc7"/><path d="M40 36 L40 46 Q60 54 80 46 L80 36 Q60 44 40 36Z" fill="#2b3f9e"/><line x1="98" y1="29" x2="100" y2="46" stroke="#ffd43b" stroke-width="3"/><circle cx="100" cy="48" r="4" fill="#ffd43b"/>`;
+  return `<svg class="mascot" width="${size}" height="${size}" viewBox="0 0 120 120" role="img" aria-label="${MN[g][0]}">${body}${extra}</svg>`}
+const PRAISE=["Giỏi quá!","Tuyệt vời!","Chuẩn rồi!","Em siêu thật đó!","Hoan hô!"],TRYAGAIN=["Không sao, mình thử lại nhé!","Gần đúng rồi, đọc lời giải nha!","Sai là cách học nhanh nhất đó!"];
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+function confetti(){const em=["🎉","⭐","🎈","✨","🍀","🌟"];for(let i=0;i<34;i++){const s=document.createElement("span");s.className="conf";s.textContent=em[i%em.length];s.style.left=Math.random()*100+"vw";s.style.animationDuration=(2.2+Math.random()*2)+"s";s.style.animationDelay=(Math.random()*.8)+"s";document.body.appendChild(s);setTimeout(()=>s.remove(),5200)}}
+function cheerBlock(pct){const st=Math.max(1,Math.ceil(pct/20));const mood=pct>=60?"cheer":pct>=40?"happy":"think";
+  const msg=pct>=80?"Xuất sắc! Em là nhà toán học nhí rồi!":pct>=60?"Giỏi lắm! Cố thêm chút nữa là lên hạng!":pct>=40?"Khá rồi đó! Xem lời giải để nhớ lâu hơn nha.":"Đừng buồn, mình luyện thêm là tiến bộ ngay!";
+  if(pct>=60)setTimeout(confetti,200);
+  return `<div class="mc">${mascot(mood,96)}<div><div class="stars">${"⭐".repeat(st)}${"☆".repeat(5-st)}</div><div class="bubble" style="display:inline-block;margin-top:4px">${msg}</div></div></div>`}
+function setTheme(){const g=curG();document.body.className="g"+g;document.querySelectorAll(".deco6").forEach((e,i)=>e.textContent=DECO[g][i%4])}
+function setWho(){$("#who").textContent=DB.me?("Mã: "+DB.me):""}
+document.addEventListener("click",e=>{const im=e.target.closest&&e.target.closest("img.pg");if(im){const o=document.createElement("div");o.className="lb";o.innerHTML=`<b>✕</b><img src="${im.src}" alt="">`;o.onclick=()=>o.remove();document.body.appendChild(o)}});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")document.querySelectorAll(".lb").forEach(x=>x.remove())});
+const NAV=[["home","🏠 Trang chủ"],["theory","📖 Ôn kiến thức"],["fm","📘 Đề Fermat"],["prac","📚 Luyện chuyên đề"],["exam","⏱️ Thi thử"],["wrong","🔁 Câu sai"],["stats","📊 Tiến độ"],["teacher","👩‍🏫 Giáo viên"]];
+function setNav(k){document.querySelectorAll("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.go===k))}
+function go(k){
+  if(R&&R.list&&!R.over&&!R.fm&&!confirm("Em đang làm bài. Thoát sang mục khác thì bài đang làm sẽ không được lưu. Em chắc chưa?"))return;
+  stopTimer();
+  ({home:home,theory:()=>theoryView(),fm:fmList,prac:pracSetup,exam:examSetup,wrong:wrongStart,stats:stats,teacher:teacherHome})[k]();
+  setNav(k);window.scrollTo({top:0,behavior:"smooth"});
+}
+$("#nav").innerHTML=NAV.map(([k,t])=>`<button data-go="${k}">${t}</button>`).join("");
+document.querySelectorAll("#nav button").forEach(b=>b.onclick=()=>go(b.dataset.go));
+$("#homeBtn").onclick=()=>go("home");
+
+/* ---------- Cố vấn học tập ---------- */
+function coachHTML(done,wrong){
+  const lv=levelInfo(),dn=(DB.days||{})[todayS()]||0,gp=Math.min(100,Math.round(dn*100/GOAL)),sk=streakN(),w=weakest(),ts=topicStat()[w],due=dueList().length;
+  const why=!done?`Em hãy khởi động với <b>${TOPICS[w]}</b> nhé.`:ts.n>=3?`Chủ đề em cần củng cố nhất: <b>${TOPICS[w]}</b> (đúng ${Math.round(ts.acc*100)}%).`:`Em chưa luyện nhiều <b>${TOPICS[w]}</b>, mình thử nhé.`;
+  return `<div class="coach"><div class="co-h"><div><div class="co-k">🧠 Cố vấn học tập</div><div class="co-t">${why}</div></div>
+   <div class="co-lv"><b>${lv.name}</b><div class="bar"><i style="width:${lv.pc}%"></i></div><small>${lv.x} XP${lv.hi?" · còn "+(lv.hi-lv.x)+" XP lên cấp":" · cấp cao nhất"}</small></div></div>
+   <div class="co-g"><div class="co-gi"><b>🎯 Mục tiêu hôm nay</b><div class="bar"><i style="width:${gp}%"></i></div><small>${dn}/${GOAL} câu${dn>=GOAL?" · Hoàn thành! 🎉":""}</small></div>
+   <div class="co-gi"><b>🔥 Chuỗi ngày học</b><div class="co-n">${sk}<small> ngày</small></div><small>${sk?"Giữ vững nhé!":"Làm 1 câu để bắt đầu chuỗi"}</small></div></div>
+   <div class="row" style="margin-top:12px"><button class="btn" id="smartGo">✨ Luyện thông minh (8 câu)</button>
+   <button class="btn sec" id="coachTh" data-k="${w}">📖 Xem kiến thức ${TOPICS[w]}</button>
+   ${due?`<button class="btn sec" id="dueGo">🧠 Ôn đúng hạn (${due} câu)</button>`:""}</div>
+   <p class="mut" style="margin:8px 0 0;font-size:13px">Luyện thông minh chọn câu theo điểm yếu của em, trộn câu mới, câu từng sai và câu đến hạn ôn lại.</p></div>`}
+
+/* ---------- Trang chủ ---------- */
+function home(){
+  stopTimer();R=null;setWho();setTheme();setNav("home");
+  const done=Object.keys(DB.res).length, wrong=Object.values(DB.res).filter(r=>r.last===false).length;
+  const okc=Object.values(DB.res).reduce((s,r)=>s+r.ok,0),tot=Object.values(DB.res).reduce((s,r)=>s+r.n,0),acc=tot?Math.round(okc*100/tot):0,fmn=Object.keys(DB.fm||{}).length;
+  $("#app").innerHTML=`
+  ${DB.me?"":`<div class="card"><h2>Bắt đầu</h2><p class="mut">Nhập <b>mã</b> của em (ví dụ HS01). <b>Không nhập họ tên thật</b>, số điện thoại hay ngày sinh.</p>
+   <div class="row"><input type="text" id="me" maxlength="8" placeholder="HS01" autocomplete="off"><button class="btn" id="saveMe">Lưu mã</button></div><div id="meErr" class="err"></div></div>`}
+  ${true?`<div class="mc">${mascot("happy",92)}<div class="bubble">${done?`Chào em! Em đã làm <b>${done}</b> câu rồi, giỏi quá! Hôm nay mình làm tiếp nhé?`:`Chào em! Mình là ${MN[curG()][0]} ${MN[curG()][1]}. Cùng luyện đề TIMO khối ${curG()} và nhận thật nhiều ⭐ nào!`}</div></div>`:""}
+  ${coachHTML(done,wrong)}
+  <div class="stats">
+   <div class="stat"><div class="ic">✏️</div><div><div class="v">${done}</div><div class="k">Câu đã làm</div></div></div>
+   <div class="stat"><div class="ring" style="--p:${acc}"><i>${acc}%</i></div><div><div class="k" style="margin:0">Tỉ lệ đúng</div></div></div>
+   <div class="stat"><div class="ic">🔁</div><div><div class="v">${wrong}</div><div class="k">Câu cần ôn lại</div></div></div>
+   <div class="stat"><div class="ic">📘</div><div><div class="v">${fmn}<small style="font-size:14px;color:var(--mut)">/14</small></div><div class="k">Đề Fermat đã nộp</div></div></div>
+  </div>
+  <div class="grid">
+   <button class="tile" data-go="theory"><b>📖 Ôn kiến thức trước khi làm</b><span>Tóm tắt cần nhớ + ví dụ có lời giải cho 5 chuyên đề khối ${curG()}.</span></button>
+   <button class="tile" data-go="fm"><b>📘 Đề TIMO Fermat · Khối ${curG()}</b><span>14 đề (7 vòng loại + 7 vòng quốc gia), có đáp án và lời giải chi tiết.</span></button>
+   ${true?`<button class="tile" data-go="prac"><b>📚 Luyện theo chủ đề (ngân hàng riêng)</b><span>Khối ${curG()}: chọn chủ đề, mức độ; có gợi ý và lời giải ngay sau mỗi câu.</span></button>
+   <button class="tile" data-go="exam"><b>⏱️ Thi thử bấm giờ (câu riêng)</b><span>25 câu, 5 chủ đề, 4 điểm/câu theo cấu trúc TIMO.</span></button>
+   <button class="tile" data-go="wrong"><b>🔁 Ôn lại câu sai</b><span>${wrong} câu đang cần luyện lại.</span></button>`:""}
+   <button class="tile" data-go="stats"><b>📊 Tiến độ của em</b><span>Kết quả các đề Fermat, chủ đề cần luyện thêm, gửi kết quả cho thầy cô.</span></button>
+   <button class="tile" data-go="teacher"><b>👩‍🏫 Dành cho giáo viên</b><span>Tổng hợp kết quả cả lớp từ mã học sinh gửi; phiếu luyện để in.</span></button>
+  </div>
+  <div class="card" style="margin-top:12px"><h3>Ngân hàng câu riêng · khối ${curG()}</h3>
+   <p class="mut">${bank().length} câu · ${Object.keys(TOPICS).length} chuyên đề. ${Object.entries(LEVELS).map(([k,v])=>v+": "+bank().filter(q=>q.l==k).length).join(" · ")}.</p></div>`;
+  document.querySelectorAll("#app .tile b").forEach(b=>{const m=b.textContent.match(/^(\p{Extended_Pictographic}\uFE0F?(?:\u200D\p{Extended_Pictographic}\uFE0F?)*)\s*(.*)$/u);if(m){const i=document.createElement("i");i.className="ti";i.textContent=m[1];b.textContent=m[2];b.parentNode.insertBefore(i,b)}});
+  const sg=$("#smartGo");if(sg)sg.onclick=smartStart;const dg=$("#dueGo");if(dg)dg.onclick=dueStart;const ct=$("#coachTh");if(ct)ct.onclick=()=>{setNav("theory");theoryView(ct.dataset.k)};
+  document.querySelectorAll("#app [data-go]").forEach(b=>b.onclick=()=>go(b.dataset.go));
+  document.querySelectorAll("[data-g]").forEach(b=>b.onclick=()=>{DB.grade=+b.dataset.g;save();home()});
+  const sm=$("#saveMe");if(sm)sm.onclick=()=>{const v=$("#me").value.trim().toUpperCase();
+    if(!/^[A-Z]{1,3}\d{1,4}$/.test(v)){$("#meErr").textContent="Mã chỉ gồm chữ cái và số, ví dụ HS01.";return}
+    DB.me=v;save();home()};
+}
+
+/* ---------- Chọn bộ lọc ---------- */
+function filterUI(withCount){
+  return `<h3>Chuyên đề</h3><div class="chips" id="tc">${Object.entries(TOPICS).map(([k,v])=>`<button class="chip on" data-k="${k}">${v}</button>`).join("")}</div>
+  <h3>Mức độ</h3><div class="chips" id="lc">${Object.entries(LEVELS).map(([k,v])=>`<button class="chip on" data-k="${k}">${v}</button>`).join("")}</div>`;
+}
+function bindChips(){document.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{c.classList.toggle("on");updCount()})}
+function picked(){const ts=[...document.querySelectorAll("#tc .on")].map(c=>c.dataset.k),ls=[...document.querySelectorAll("#lc .on")].map(c=>+c.dataset.k);
+  return bank().filter(q=>ts.includes(q.t)&&ls.includes(q.l))}
+function updCount(){const n=picked().length;const e=$("#cnt");if(e)e.textContent=n;const b=$("#go");if(b)b.disabled=!n}
+
+/* ---------- Ôn kiến thức ---------- */
+function thCard(g,k,open){const o=(THEORY[g]||{})[k];if(!o)return"";
+  return `<div class="th"><h3><span class="tag t-${k}">${TOPICS[k]}</span> Cần nhớ</h3><ul>${o.pts.map(s=>`<li>${s}</li>`).join("")}</ul>
+  ${o.ex.map((e,i)=>`<div class="exb"><b>Ví dụ ${i+1}.</b> ${e.q}<details><summary>Xem lời giải</summary><div style="margin-top:6px">${e.s}</div></details></div>`).join("")}</div>`}
+let THK="LG";
+function theoryView(k){
+  if(k)THK=k;const g=curG();
+  $("#app").innerHTML=`<div class="card"><h2>📖 Ôn kiến thức · Khối ${g}</h2>
+  <p class="mut">Đọc phần <b>Cần nhớ</b>, tự làm các ví dụ rồi mới xem lời giải. Sau đó bấm luyện đúng chủ đề này.</p>
+  ${true?`<div class="mc">${mascot("think",70)}<div class="bubble">Đọc kỹ rồi mình cùng làm bài nhé!</div></div>`:""}
+  <div class="chips" id="thc">${Object.entries(TOPICS).map(([k2,v])=>`<button class="chip ${k2===THK?"on":""}" data-k="${k2}">${v}</button>`).join("")}</div>
+  ${thCard(g,THK)}
+  <div class="row"><button class="btn" id="thGo">✏️ Luyện chủ đề này (${bank().filter(q=>q.t===THK).length} câu)</button><button class="btn ghost" onclick="home()">🏠 Trang chủ</button></div>
+  <p class="mut">Phần tóm tắt kiến thức được biên soạn theo chương trình, không sao chép từ sách.</p></div>`;
+  document.querySelectorAll("#thc .chip").forEach(c=>c.onclick=()=>theoryView(c.dataset.k));
+  $("#thGo").onclick=()=>start(shuffle(bank().filter(q=>q.t===THK)).slice(0,10),"prac");
+}
+function pracPrelude(ps,ts){
+  $("#app").innerHTML=`<div class="card"><h2>📖 Ôn nhanh trước khi làm</h2><p class="mut">Đọc lướt phần cần nhớ của chủ đề em chọn. Xong bấm vào làm bài.</p>
+  ${ts.map(k=>`<details ${ts.length<=2?"open":""}><summary style="cursor:pointer;font-weight:800;margin:8px 0">${TOPICS[k]}</summary>${thCard(curG(),k)}</details>`).join("")}
+  <div class="row"><button class="btn" id="pgo">▶️ Em đã sẵn sàng, bắt đầu</button><button class="btn ghost" id="pback">← Quay lại</button></div></div>`;
+  $("#pgo").onclick=()=>start(ps,"prac");$("#pback").onclick=pracSetup;
+}
+function pracSetup(){
+  $("#app").innerHTML=`<div class="card"><h2>📚 Luyện theo chuyên đề</h2>${filterUI()}
+  <div class="row" style="margin-top:12px"><label>Số câu: <select id="num"><option>5</option><option selected>10</option><option>20</option><option value="999">Tất cả</option></select></label>
+  <label><input type="checkbox" id="newf"> Ưu tiên câu chưa làm</label><label><input type="checkbox" id="rv" checked> Xem kiến thức trước khi làm</label></div>
+  <p class="mut">Có <b id="cnt"></b> câu phù hợp.</p><button class="btn" id="go">Bắt đầu</button></div>`;
+  bindChips();updCount();
+  $("#go").onclick=()=>{let p=shuffle(picked());if($("#newf").checked)p.sort((a,b)=>(DB.res[a.id]?1:0)-(DB.res[b.id]?1:0));
+    const ps=p.slice(0,+$("#num").value);
+    if($("#rv").checked){const ts=[...document.querySelectorAll("#tc .on")].map(c=>c.dataset.k).filter(k=>ps.some(q=>q.t===k));pracPrelude(ps,ts)}
+    else start(ps,"prac")};
+}
+function wrongStart(){
+  const p=bank().filter(q=>DB.res[q.id]&&DB.res[q.id].last===false);
+  if(!p.length){$("#app").innerHTML=`<div class="card"><h2>🔁 Ôn lại câu sai</h2><p>Em chưa có câu sai nào cần ôn. Làm thêm ở mục luyện tập nhé!</p><button class="btn" onclick="home()">Về trang chủ</button></div>`;return}
+  start(shuffle(p),"prac");
+}
+
+/* ---------- Thi thử ---------- */
+function examSetup(){
+  $("#app").innerHTML=`<div class="card"><h2>⏱️ Thi thử bấm giờ</h2><div class="row" style="margin-bottom:8px"><button class="btn ghost" onclick="theoryView()">📖 Ôn kiến thức khối ${curG()} trước khi thi</button></div>
+  <p class="mut">Cấu trúc bám tài liệu TIMO trong hộp nạp (khối ${curG()}): 25 câu, mỗi câu 4 điểm, gồm 5 chủ đề (Tư duy logic · Số học/Đại số · Lý thuyết số · Hình học · Tổ hợp), mỗi chủ đề 5 câu xếp từ dễ đến khó. Câu hỏi do trợ lý soạn, không phải đề thật.</p>
+  <div class="grid">
+   <button class="tile" data-m="60"><b>Vòng loại</b><span>25 câu · 60 phút</span></button>
+   <button class="tile" data-m="90"><b>Vòng quốc gia</b><span>25 câu · 90 phút</span></button>
+   <button class="tile" data-m="24"><b>Mini</b><span>10 câu (2 câu/chủ đề) · 24 phút</span></button></div>
+  <p class="mut" style="margin-top:10px">Ở bản này mọi câu đều nhập đáp án (hoặc chọn A–D nếu câu có phương án). Mốc giải tham khảo theo tài liệu: Vàng ≥ 80, Bạc ≥ 60, Đồng ≥ 40, Khuyến khích ≥ 20 điểm; các mốc có thể thay đổi theo kết quả thực tế.</p></div>`;
+  document.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{const mins=+b.dataset.m,per=mins===24?2:5;let out=[];
+    for(const t of Object.keys(TOPICS)){const pool=bank().filter(q=>q.t===t);
+      const pick=[];const lv={1:per===5?2:1,2:per===5?2:1,3:per===5?1:0};
+      for(const l of [1,2,3])pick.push(...shuffle(pool.filter(q=>q.l===l)).slice(0,lv[l]));
+      if(pick.length<per){const h=new Set(pick.map(q=>q.id));pick.push(...shuffle(pool.filter(q=>!h.has(q.id))).slice(0,per-pick.length))}
+      out.push(...pick.sort((x,y)=>x.l-y.l))}
+    start(out,"exam",mins*60)});
+}
+
+/* ---------- Runner ---------- */
+function start(list,mode,secs){
+  if(!list.length)return;
+  R={list,mode,i:0,ans:list.map(()=>null),done:list.map(()=>false),left:secs||0,t0:Date.now()};
+  if(mode==="exam"){stopTimer();timer=setInterval(()=>{R.left--;tick();if(R.left<=0)finish()},1000)}
+  showQ();
+}
+function stopTimer(){if(timer){clearInterval(timer);timer=null}}
+function tick(){const e=$("#tm");if(!e)return;const m=Math.floor(R.left/60),s=R.left%60;e.textContent=String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");e.classList.toggle("low",R.left<60)}
+function navHTML(){return `<div class="nav">${R.list.map((q,k)=>{let c="nb";if(k===R.i)c+=" cur";
+  if(R.mode==="prac"&&R.done[k])c+=check(q,R.ans[k])?" ok":" no";else if(R.mode==="exam"&&R.ans[k]!=null&&R.ans[k]!=="")c+=" dn";
+  return `<button class="${c}" data-k="${k}">${k+1}</button>`}).join("")}</div>`}
+function showQ(){
+  const q=R.list[R.i],k=R.i,prac=R.mode==="prac",locked=prac&&R.done[k];
+  let body;
+  if(q.o){body=q.o.map((o,j)=>{let c="opt";if(locked){if(j===q.a)c+=" ok";else if(R.ans[k]===j)c+=" no"}else if(R.ans[k]===j)c+=" sel";
+    return `<button class="${c}" data-j="${j}" ${locked?"disabled":""}>${"ABCD"[j]}. ${fmt(o)}</button>`}).join("")}
+  else body=`<div class="row"><input type="text" id="ansIn" value="${esc(R.ans[k]??"")}" placeholder="Nhập đáp án (số hoặc phân số a/b)" ${locked?"disabled":""} style="width:min(320px,100%)" autocomplete="off"></div>`;
+  let fb="";
+  if(locked){const ok=check(q,R.ans[k]);const right=q.o?`${"ABCD"[q.a]}. ${q.o[q.a]}`:q.a;
+    fb=(true?`<div class="mc" style="margin:12px 0 0">${mascot(ok?"cheer":"sad",70)}<div class="bubble">${ok?pick(PRAISE):pick(TRYAGAIN)}</div></div>`:"")+`<div class="fb ${ok?"ok":"no"}">${ok?"✅ Chính xác!":"❌ Chưa đúng. Đáp án: <b>"+fmt(right)+"</b>"}</div><div class="exp"><b>Lời giải:</b> ${fmt(q.e)}</div><div class="err">⚠️ Lỗi hay gặp: ${fmt(q.x)}</div>${ok?"":`<details class="exb" style="margin-top:10px"><summary>📖 Ôn lại kiến thức: ${TOPICS[q.t]}</summary>${thCard(curG(),q.t)}</details>`}`}
+  const hint=prac&&!locked?`<details style="margin-top:10px"><summary class="mut" style="cursor:pointer">💡 Xem gợi ý</summary><div class="exp">${fmt(q.h)}</div></details>`:"";
+  $("#app").innerHTML=`<div class="card">
+   <div class="row" style="justify-content:space-between"><div><span class="tag t-${q.t}">${TOPICS[q.t]}</span><span class="tag">${LEVELS[q.l]}</span></div>
+   ${R.mode==="exam"?`<span class="timer" id="tm"></span>`:`<span class="mut">Câu ${k+1}/${R.list.length}</span>`}</div>
+   ${navHTML()}
+   <div class="q"><b>Câu ${k+1}.</b> ${fmt(q.q)}</div>${body}${hint}${fb}
+   <div class="row" style="margin-top:14px;justify-content:space-between">
+     <button class="btn ghost" id="prev" ${k===0?"disabled":""}>← Trước</button>
+     <div class="row">${prac&&!locked?`<button class="btn" id="chk">Kiểm tra</button>`:""}
+     ${k<R.list.length-1?`<button class="btn ${prac&&!locked?"sec":""}" id="next">Câu sau →</button>`:(prac?(locked?`<button class="btn" id="fin">Xem kết quả</button>`:""):`<button class="btn" id="fin">Nộp bài</button>`)}</div></div>
+   ${R.mode==="exam"?`<p class="mut" style="margin-top:12px"><button class="btn ghost" id="fin2">Nộp bài sớm</button></p>`:""}</div>`;
+  if(R.mode==="exam")tick();
+  document.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{if(locked)return;R.ans[k]=+b.dataset.j;showQ()});
+  const inp=$("#ansIn");if(inp){inp.oninput=()=>{R.ans[k]=inp.value};inp.onkeydown=e=>{if(e.key==="Enter"){const c=$("#chk")||$("#next");if(c)c.click()}};if(!locked)inp.focus()}
+  document.querySelectorAll(".nb").forEach(b=>b.onclick=()=>{R.i=+b.dataset.k;showQ()});
+  const on=(id,f)=>{const e=$(id);if(e)e.onclick=f};
+  on("#prev",()=>{R.i--;showQ()});on("#next",()=>{R.i++;showQ()});
+  on("#chk",()=>{if(R.ans[k]==null||R.ans[k]===""){return}R.done[k]=true;record(q,check(q,R.ans[k]));showQ()});
+  on("#fin",finish);on("#fin2",()=>{if(confirm("Nộp bài ngay bây giờ?"))finish()});
+}
+function finish(){
+  stopTimer();R.over=true;const L=R.list;
+  if(R.mode==="exam"){L.forEach((q,k)=>record(q,check(q,R.ans[k])))}
+  const okc=L.filter((q,k)=>check(q,R.ans[k])).length;
+  let extra="";
+  if(R.mode==="exam"){const tot=L.length*4,got=okc*4;
+    const full=L.length===25;const medal=!full?"":(got>=80?"🥇 Vàng":got>=60?"🥈 Bạc":got>=40?"🥉 Đồng":got>=20?"🎖️ Khuyến khích":"Chưa đạt mốc giải");
+    DB.exams.push({d:new Date().toISOString().slice(0,10),n:L.length,ok:okc,got,tot});save();
+    const byT=Object.entries(TOPICS).map(([k,v])=>{const qs=L.filter(q=>q.t===k);const o=qs.filter(q=>check(q,R.ans[L.indexOf(q)])).length;return `<tr><td>${v}</td><td>${o}/${qs.length}</td></tr>`}).join("");
+    extra=`<p>Điểm: <b>${got}/${tot}</b> (4 điểm/câu) ${medal?"· Mốc tham khảo: <b>"+medal+"</b>":""} · Thời gian dùng: ${Math.round((Date.now()-R.t0)/60000)} phút</p><table><tr><th>Chủ đề</th><th>Đúng</th></tr>${byT}</table>`}
+  const rows=L.map((q,k)=>{const ok=check(q,R.ans[k]);const right=q.o?`${"ABCD"[q.a]}. ${q.o[q.a]}`:q.a;
+    const mine=R.ans[k]==null||R.ans[k]===""?"(bỏ trống)":(q.o?`${"ABCD"[R.ans[k]]}. ${q.o[R.ans[k]]}`:R.ans[k]);
+    return `<div class="card" style="border-left:5px solid ${ok?"var(--ok)":"var(--bad)"}"><b>Câu ${k+1}.</b> ${fmt(q.q)}
+    <div class="mut">Em trả lời: ${fmt(mine)} · Đáp án: <b>${fmt(right)}</b></div>
+    ${ok?"":`<div class="exp"><b>Lời giải:</b> ${fmt(q.e)}</div><div class="err">⚠️ Lỗi hay gặp: ${fmt(q.x)}</div>`}</div>`}).join("");
+  $("#app").innerHTML=`<div class="card"><h2>Kết quả</h2>${true?cheerBlock(okc*100/L.length):""}<div class="big">${okc}/${L.length}</div><p>Đúng ${okc} câu (${Math.round(okc*100/L.length)}%).</p>${extra}
+   ${smartNextHTML(L)}
+   <div class="row"><button class="btn" onclick="home()">Về trang chủ</button><button class="btn sec" onclick="wrongStart()">Ôn lại câu sai</button></div></div>${rows}`;
+  const s1=$("#snTh");if(s1)s1.onclick=()=>{setNav("theory");theoryView(s1.dataset.k)};const s2=$("#snGo");if(s2)s2.onclick=smartStart;
+}
+
+/* ---------- Tiến độ ---------- */
+function stats(){
+  const rows=Object.entries(TOPICS).map(([k,v])=>{const qs=bank().filter(q=>q.t===k);let n=0,ok=0,d=0;
+    qs.forEach(q=>{const r=DB.res[q.id];if(r){d++;n+=r.n;ok+=r.ok}});const pc=n?Math.round(ok*100/n):0;
+    return `<tr><td>${v}</td><td>${d}/${qs.length}</td><td style="width:38%"><div class="bar"><i style="width:${pc}%"></i></div></td><td>${n?pc+"%":"–"}</td></tr>`}).join("");
+  const ex=DB.exams.slice(-8).reverse().map(e=>`<tr><td>${e.d}</td><td>${e.ok}/${e.n}</td><td>${e.got}/${e.tot}</td></tr>`).join("");
+  const lv=levelInfo(),bd=badges(),got=bd.filter(b=>b[3]).length,w=weakest(),due=dueList().length;
+  $("#app").innerHTML=`<div class="card"><h2>🏆 Thành tích ${esc(DB.me||"")}</h2>
+  <div class="co-h"><div><div class="co-t">${lv.name}</div><small class="mut">${lv.x} XP · chuỗi ${streakN()} ngày · ${due} câu đến hạn ôn lại</small></div><div class="co-lv"><div class="bar"><i style="width:${lv.pc}%"></i></div><small>${lv.hi?"Còn "+(lv.hi-lv.x)+" XP lên cấp":"Cấp cao nhất"}</small></div></div>
+  <h3>Huy hiệu (${got}/${bd.length})</h3><div class="badges">${bd.map(b=>`<div class="bdg ${b[3]?"on":""}" title="${b[2]}"><span>${b[0]}</span><b>${b[1]}</b><small>${b[2]}</small></div>`).join("")}</div>
+  <div class="row" style="margin-top:12px"><button class="btn" id="stSmart">✨ Luyện thông minh</button><button class="btn sec" id="stTh" data-k="${w}">📖 Ôn kiến thức ${TOPICS[w]}</button></div></div>
+  <div class="card"><h2>📊 Tiến độ ${esc(DB.me||"")}</h2><table><tr><th>Chuyên đề</th><th>Đã làm</th><th>Tỉ lệ đúng</th><th></th></tr>${rows}</table>
+  <p class="mut">Tỉ lệ đúng tính trên mọi lần làm. Chủ đề nào dưới 60% nên luyện thêm.</p></div>
+  <div class="card"><h3>Đề Fermat đã làm</h3>${fmStats()}<div class="row" style="margin-top:10px"><button class="btn sec" id="exp">📤 Gửi kết quả cho thầy cô</button></div></div>
+  <div class="card"><h3>Các lần thi thử gần đây (câu riêng)</h3>${ex?`<table><tr><th>Ngày</th><th>Số câu đúng</th><th>Điểm</th></tr>${ex}</table>`:`<p class="mut">Chưa có lần thi thử nào.</p>`}</div>
+  <div class="card"><button class="btn ghost" id="rst">Xóa toàn bộ kết quả trên máy này</button></div>`;
+  $("#stSmart").onclick=smartStart;$("#stTh").onclick=()=>{setNav("theory");theoryView($("#stTh").dataset.k)};
+  $("#exp").onclick=exportView;const wg=$("#weakGo");if(wg)wg.onclick=()=>start(shuffle(bank().filter(q=>q.t===wg.dataset.k)).slice(0,10),"prac");
+  $("#rst").onclick=()=>{if(confirm("Xóa toàn bộ kết quả luyện tập đã lưu trên máy này?")){DB.res={};DB.exams=[];DB.fm={};DB.draft={};DB.days={};DB.xp=0;save();stats()}};
+}
+
+function teacherHome(){
+  $("#app").innerHTML=`<div class="grid"><button class="tile" id="t1"><b>📋 Tổng hợp kết quả lớp</b><span>Dán mã học sinh gửi → bảng điểm theo chủ đề.</span></button>
+  <button class="tile" id="t2"><b>🖨️ Phiếu luyện để in</b><span>Chọn câu từ ngân hàng riêng, in phiếu kèm lời giải.</span></button></div>`;
+  $("#t1").onclick=teacherView;$("#t2").onclick=printSetup;
+}
+/* ---------- Phiếu in cho giáo viên ---------- */
+function printSetup(){
+  $("#app").innerHTML=`<div class="card"><h2>🖨️ Phiếu luyện để in</h2>${filterUI()}
+  <div class="row" style="margin-top:12px"><label>Số câu: <select id="num"><option>5</option><option selected>8</option><option>10</option><option>15</option></select></label>
+  <label><input type="checkbox" id="sol"> In kèm lời giải ở trang sau</label></div>
+  <p class="mut">Có <b id="cnt"></b> câu phù hợp.</p><button class="btn" id="go">Tạo phiếu</button></div>`;
+  bindChips();updCount();
+  $("#go").onclick=()=>{const p=shuffle(picked()).slice(0,+$("#num").value);printView(p,$("#sol").checked)};
+}
+function printView(p,sol){
+  const t=new Date().toLocaleDateString("vi-VN");
+  const qs=p.map((q,k)=>`<div class="sheetq"><b>Câu ${k+1}.</b> <small>(${LEVELS[q.l]})</small> ${fmt(q.q)}${q.o?`<div>${q.o.map((o,j)=>`${"ABCD"[j]}. ${fmt(o)}`).join(" &nbsp;&nbsp; ")}</div>`:`<div>Đáp số: ………………………</div>`}</div>`).join("");
+  const an=p.map((q,k)=>`<div class="sheetq"><b>Câu ${k+1}.</b> Đáp án: <b>${fmt(q.o?"ABCD"[q.a]+". "+q.o[q.a]:q.a)}</b><br>${fmt(q.e)}<br><small>⚠️ Lỗi hay gặp: ${fmt(q.x)}</small><br><small>(${q.id} — câu mới, trợ lý soạn)</small></div>`).join("");
+  $("#app").innerHTML=`<div class="row noprint" style="margin-bottom:10px"><button class="btn" onclick="window.print()">In phiếu</button><button class="btn ghost" onclick="printSetup()">← Chọn lại</button></div>
+  <div class="card"><h2>PHIẾU ÔN LUYỆN TIMO – KHỐI ${curG()}</h2><p class="mut">Ngày ${t} · Họ tên/mã: ………………………… · Lớp: …………</p>${qs}
+  ${sol?`<div style="page-break-before:always"></div><h2>HƯỚNG DẪN GIẢI (dành cho giáo viên)</h2><p class="mut">✅ Bản nháp — thầy cô duyệt trước khi dùng.</p>${an}`:""}</div>`;
+}
+const FM={"7":[{"r":"V","n":1,"ep":[6,9],"sp":[56,61],"kp":127,"qs":[56,56,56,56,56,56,57,57,57,57,57,58,58,58,58,59,59,59,59,59,60,60,60,60,60],"qe":[6,6,6,6,6,7,7,7,7,7,7,7,7,7,8,8,8,8,8,8,9,9,9,9,9],"a":"BACBBCDBCBADCBDCAADBCCDAC"},{"r":"V","n":2,"ep":[10,13],"sp":[62,66],"kp":128,"qs":[62,62,62,62,62,62,63,63,63,63,63,63,64,64,64,64,64,64,65,65,65,65,66,66,66],"qe":[10,10,10,10,10,10,11,11,11,11,11,11,11,11,11,12,12,12,12,12,13,13,13,13,13],"a":"CACDBDBADDABBCDCADAACBCDD"},{"r":"V","n":3,"ep":[14,17],"sp":[67,72],"kp":129,"qs":[67,67,67,67,67,68,68,68,68,68,68,69,69,69,69,70,70,70,70,71,71,71,72,72,72],"qe":[14,14,14,14,14,14,15,15,15,15,15,15,15,15,15,16,16,16,16,16,17,17,17,17,17],"a":"CADBCBACABCDCADBCDACADBDB"},{"r":"V","n":4,"ep":[18,21],"sp":[73,76],"kp":130,"qs":[73,73,73,73,73,73,73,74,74,74,74,74,74,74,75,75,75,75,75,75,76,76,76,76,76],"qe":[18,18,18,18,18,18,18,19,19,19,19,19,19,19,19,19,20,20,20,20,20,21,21,21,21],"a":"DBCBCAAABDCCABACDBADAADDC"},{"r":"V","n":5,"ep":[22,25],"sp":[77,80],"kp":131,"qs":[77,77,77,77,77,77,78,78,78,78,78,78,79,79,79,79,79,79,79,79,79,80,80,80,80],"qe":[22,22,22,22,22,22,23,23,23,23,23,23,23,23,24,24,24,24,24,25,25,25,25,25,25],"a":"ABCDBCDDCACCABCDBDAABCDCB"},{"r":"V","n":6,"ep":[26,30],"sp":[81,85],"kp":132,"qs":[81,81,81,81,81,81,81,82,82,82,82,82,82,83,83,83,83,84,84,84,84,84,85,85,85],"qe":[26,26,26,26,27,27,27,27,27,27,27,28,28,28,28,28,28,28,29,29,29,30,30,30,30],"a":"DCBCABCBDBBACCDCBCBBCDBDA"},{"r":"V","n":7,"ep":[31,34],"sp":[86,89],"kp":133,"qs":[86,86,86,86,86,86,86,87,87,87,87,87,87,87,88,88,88,88,88,88,89,89,89,89,89],"qe":[31,31,31,31,31,31,32,32,32,32,32,32,32,32,32,33,33,33,33,33,34,34,34,34,34],"a":"ACBCACBCBCABADCBADCDBCADC"},{"r":"Q","n":1,"ep":[35,37],"sp":[90,95],"kp":134,"qs":[90,90,90,90,91,91,91,91,92,92,92,92,92,92,92,93,93,93,94,94,94,94,94,95,95],"qe":[35,35,35,35,35,35,35,35,36,36,36,36,36,36,36,36,36,36,37,37,37,37,37,37,37],"h":["40","12","2500.5","180","35","8","8","3.5",null,"3","2808","999","4","47","843","29","72",null,"225","510","15",null,"1260",null,"1"]},{"r":"Q","n":2,"ep":[38,40],"sp":[96,101],"kp":135,"qs":[96,96,96,96,97,97,97,97,97,97,98,98,98,98,98,99,99,99,99,100,100,100,100,101,101],"qe":[38,38,38,38,38,38,38,38,38,38,39,39,39,39,39,39,39,39,40,40,40,40,40,40,40],"h":["75","9380","39","14","25","-19",null,null,null,null,"6","1049","7","938","289","652","10","8","300","12","40320","36","69","2735",null]},{"r":"Q","n":3,"ep":[41,43],"sp":[102,107],"kp":136,"qs":[102,102,102,102,102,102,103,103,103,103,103,103,104,104,104,104,104,105,105,105,106,106,106,106,106],"qe":[41,41,41,41,41,41,41,41,41,42,42,42,42,42,42,42,42,42,42,43,43,43,43,43,43],"h":["105","784","5504","338","29","77",null,"5465",null,"27","8","5","1049","9","194","2002","376",null,"224","84","48",null,null,null,"51"]},{"r":"Q","n":4,"ep":[44,46],"sp":[108,112],"kp":137,"qs":[108,108,108,108,108,108,108,109,109,109,109,109,109,110,110,110,110,110,110,110,111,111,111,111,112],"qe":[44,44,44,44,44,44,44,44,44,44,45,45,45,45,45,45,45,45,45,45,46,46,46,46,46],"h":["60","8","2014","252","39","5","11","5115","13","15","6","3","1007","40","62","330","81",null,"182","1344","18","22","80","5","44"]},{"r":"Q","n":5,"ep":[47,49],"sp":[113,117],"kp":138,"qs":[113,113,113,113,113,114,114,114,114,114,114,114,114,115,115,115,115,115,115,116,116,116,116,117,117],"qe":[47,47,47,47,47,47,47,47,48,48,48,48,48,48,48,48,48,48,49,49,49,49,49,49,49],"h":["36","30","5","187",null,"6","14","-7",null,"-7","975","1","1","196","648","7","18","232","121",null,null,"40","1096","5544","84"]},{"r":"Q","n":6,"ep":[50,52],"sp":[118,122],"kp":139,"qs":[118,118,118,119,119,119,119,119,119,119,119,120,120,120,120,120,120,120,121,121,121,121,121,122,122],"qe":[50,50,50,50,50,50,50,50,50,50,51,51,51,51,51,51,51,51,51,52,52,52,52,52,52],"h":["44","124","29","12","469",null,"9","-6","-12","10","5","1584","482","3","16129","-98","36","64",null,null,"252",null,null,"28","19448"]},{"r":"Q","n":7,"ep":[53,55],"sp":[123,126],"kp":140,"qs":[123,123,123,123,123,123,123,123,124,124,124,124,124,124,124,124,125,125,125,125,125,126,126,126,126],"qe":[53,53,53,53,53,53,53,53,53,53,54,54,54,54,54,54,54,54,55,55,55,55,55,55,55],"h":["16",null,"140","2018","13","2","2018","7","8",null,"2196","23","5","1011","3","90","-18","1482","100","22","35","328","18","1041",null]}]};
+/* ---------- Đề Fermat (ảnh trang đề, chấm theo đáp án) ---------- */
+const THEMES=["Tư duy logic","Số học / Đại số","Lý thuyết số","Hình học","Tổ hợp"];
+const THKEY=["LG","DAI","LTS","HH","TH"];
+const FM_CREDIT="Nguồn đề: FERMAT Education – Bộ đề ôn thi TIMO (dùng cho học sinh ôn luyện theo sự đồng ý của đơn vị). Không phát tán ngoài nhóm học sinh.";
+const img=(g,p)=>`img/k${g}/${String(p).padStart(3,"0")}.webp`;
+const fmKey=(g,e)=>`${g}${e.r}${e.n}`;
+function curG(){return 7}
+function bank(){return QS.filter(q=>(q.g||7)===curG())}
+function numOf(s){s=String(s??"").trim().replace(/\s+/g,"").replace(/[−–]/g,"-").replace(/,/g,".").replace(/\.$/,"");
+  if(/^-?\d+(\.\d+)?$/.test(s))return Number(s);const m=s.match(/^(-?\d+)\/(\d+)$/);if(m&&+m[2])return +m[1]/+m[2];return null}
+function okCount(ok,k){return ok.slice(k*5,k*5+5).split("").filter(c=>c==="1").length}
+function fmList(){
+  stopTimer();R=null;const g=curG();
+  const cell=e=>{const b=(DB.fm||{})[fmKey(g,e)];const dr=(DB.draft||{})[fmKey(g,e)];
+    const sc=b?`<span class="tag" style="background:var(--okbg);color:var(--ok)">Điểm gần nhất ${b.score}/100</span>`:"";
+    const dd=dr?`<span class="tag" style="background:var(--warnbg);color:var(--warn)">Đang làm dở</span>`:"";
+    return `<button class="tile" data-i="${FM[g].indexOf(e)}"><b>${e.r==="V"?"Vòng loại":"Vòng quốc gia"} · Đề ${e.n}</b><span>${e.r==="V"?"25 câu trắc nghiệm · 60 phút":"25 câu điền đáp án · 90 phút"}</span><div style="margin-top:6px">${sc}${dd}</div></button>`};
+  $("#app").innerHTML=`<div class="card"><h2>📘 Đề TIMO Fermat · Khối ${g}</h2><div class="row" style="margin-bottom:8px"><button class="btn ghost" onclick="theoryView()">📖 Ôn kiến thức trước khi làm đề</button></div>${true?`<div class="mc">${mascot("think",76)}<div class="bubble">Chọn một đề để thử sức nhé! Làm xong mình cùng xem lời giải.</div></div>`:""}
+   <p class="mut">Mỗi đề 25 câu, 4 điểm/câu, năm chủ đề: Tư duy logic · Số học/Đại số · Lý thuyết số · Hình học · Tổ hợp. Có lời giải chi tiết từng câu sau khi nộp bài. Bài đang làm được tự lưu.</p>
+   <h3>Vòng loại (7 đề)</h3><div class="grid">${FM[g].filter(e=>e.r==="V").map(cell).join("")}</div>
+   <h3>Vòng quốc gia (7 đề)</h3><div class="grid">${FM[g].filter(e=>e.r==="Q").map(cell).join("")}</div>
+   <p class="mut" style="margin-top:12px;font-size:13px">${FM_CREDIT}</p></div>`;
+  document.querySelectorAll("[data-i]").forEach(b=>b.onclick=()=>fmOpen(+b.dataset.i));
+}
+function saveDraft(){if(!R||!R.fm||R.done)return;DB.draft=DB.draft||{};DB.draft[fmKey(R.g,R.e)]={ans:R.ans,at:Date.now()};save()}
+function fmOpen(i){
+  stopTimer();const g=curG(),e=FM[g][i],V=e.r==="V";
+  const dr=(DB.draft||{})[fmKey(g,e)];
+  R={fm:true,i,e,g,ans:dr&&dr.ans?dr.ans.slice():Array(25).fill(""),self:Array(25).fill(null),done:false,left:null,t0:Date.now()};
+  const pages=[];for(let p=e.ep[0];p<=e.ep[1];p++)pages.push(p);
+  const sheet=()=>{let h="";for(let q=1;q<=25;q++){
+      if((q-1)%5===0)h+=`<div class="mut" style="margin:8px 0 2px;font-size:13px"><b>${THEMES[(q-1)/5]}</b></div>`;
+      const lab=`<button class="qn" data-jump="${e.qe[q-1]}" title="Đi tới câu ${q} trên đề"><b>${q}</b></button>`;
+      h+=V?`<div class="row" style="gap:6px;margin:3px 0">${lab}${"ABCD".split("").map(L=>`<button class="nb ${R.ans[q-1]===L?"dn":""}" style="width:38px" data-q="${q}" data-l="${L}">${L}</button>`).join("")}</div>`
+        :`<div class="row" style="gap:6px;margin:3px 0">${lab}<input type="text" data-q="${q}" value="${esc(R.ans[q-1])}" style="width:130px;padding:6px 8px" autocomplete="off"></div>`}
+    return h};
+  $("#app").innerHTML=`<div class="row noprint" style="justify-content:space-between;margin-bottom:8px"><button class="btn ghost" id="back">← Danh sách đề</button>
+   <div class="row"><span class="timer" id="tm"></span><button class="btn sec" id="timer">⏱️ Tính giờ ${V?60:90} phút</button></div></div>
+   ${dr?`<div class="draft">Đã khôi phục bài đang làm dở của đề này. <button class="btn ghost" id="clr" style="padding:2px 10px">Làm lại từ đầu</button></div>`:""}
+   <div class="fmgrid"><div id="pages">${pages.map(p=>`<img class="pg" id="pg-${p}" loading="lazy" src="${img(g,p)}" alt="Trang đề">`).join("")}</div>
+   <aside class="card fmside"><h3 style="margin-top:0">Phiếu trả lời · ${V?"Vòng loại":"Vòng quốc gia"} đề ${e.n}</h3><div id="sheet">${sheet()}</div>
+   <div class="row" style="margin-top:10px"><button class="btn" id="sub">Nộp bài</button></div>
+   <p class="mut" style="font-size:12.5px">${V?"Chọn A–D cho từng câu. Bấm số câu để nhảy tới câu đó trên đề.":"Ghi đáp án vào ô. Câu có đáp án số được chấm tự động; các câu còn lại em đối chiếu với trang đáp án và tự chấm."}</p></aside></div>
+   <div id="result"></div>`;
+  $("#back").onclick=fmList;
+  const clr=$("#clr");if(clr)clr.onclick=()=>{delete DB.draft[fmKey(g,e)];save();fmOpen(i)};
+  $("#timer").onclick=()=>{if(R.left!=null)return;R.left=(V?60:90)*60;tick();timer=setInterval(()=>{R.left--;tick();if(R.left<=0){stopTimer();fmSubmit()}},1000);$("#timer").disabled=true};
+  const bindSheet=()=>{
+    document.querySelectorAll("#sheet [data-jump]").forEach(b=>b.onclick=()=>{const el=document.getElementById("pg-"+b.dataset.jump);if(el)el.scrollIntoView({behavior:"smooth",block:"start"})});
+    document.querySelectorAll("#sheet button[data-q]").forEach(b=>b.onclick=()=>{if(R.done)return;const q=+b.dataset.q;R.ans[q-1]=R.ans[q-1]===b.dataset.l?"":b.dataset.l;saveDraft();$("#sheet").innerHTML=sheet();bindSheet()});
+    document.querySelectorAll("#sheet input[data-q]").forEach(inp=>inp.oninput=()=>{R.ans[+inp.dataset.q-1]=inp.value;saveDraft()});};
+  bindSheet();$("#sub").onclick=()=>{const blank=R.ans.filter(x=>!String(x).trim()).length;if(blank&&!confirm(`Còn ${blank} câu chưa trả lời. Nộp bài?`))return;fmSubmit()};
+}
+function medalOf(s){return s>=80?"🥇 Vàng":s>=60?"🥈 Bạc":s>=40?"🥉 Đồng":s>=20?"🎖️ Khuyến khích":"Chưa đạt mốc giải"}
+function fmSubmit(){
+  stopTimer();const {e,g}=R,V=e.r==="V";R.done=true;
+  if(DB.draft){delete DB.draft[fmKey(g,e)];save()}
+  const sol=[];for(let p=e.sp[0];p<=e.sp[1];p++)sol.push(p);
+  const solBtn=q=>e.qs[q-1]?`<button class="btn ghost" data-sp="${e.qs[q-1]}" style="padding:4px 10px;font-size:13px">Lời giải câu ${q}</button>`:"";
+  let head,body="";
+  if(V){
+    const ok=R.ans.map((a,i)=>a===e.a[i]);const n=ok.filter(Boolean).length,score=n*4;
+    saveFm(score,ok.map(o=>o?"1":"0").join(""));
+    const th=THEMES.map((t,k)=>`<tr><td>${t}</td><td>${ok.slice(k*5,k*5+5).filter(Boolean).length}/5</td></tr>`).join("");
+    head=`<h2>Kết quả</h2>${true?cheerBlock(score):""}<div class="big">${score}/100</div><p>Đúng ${n}/25 câu · Mốc tham khảo: <b>${medalOf(score)}</b> <small>(Vàng ≥ 80, Bạc ≥ 60, Đồng ≥ 40, Khuyến khích ≥ 20; có thể thay đổi theo kết quả thực tế)</small></p><table><tr><th>Chủ đề</th><th>Đúng</th></tr>${th}</table>`;
+    body=`<h3>Đối chiếu từng câu</h3><div class="nav">${ok.map((o,i)=>`<button class="nb ${o?"ok":"no"}" data-sp="${e.qs[i]||""}" title="Bấm để xem lời giải">${i+1}</button>`).join("")}</div>
+      <p class="mut">Bấm số câu để xem lời giải. Các câu sai:</p>${ok.map((o,i)=>o?"":`<div class="row" style="margin:4px 0"><b>Câu ${i+1}</b> <span class="mut">em chọn ${R.ans[i]||"(trống)"} · đáp án <b>${e.a[i]}</b></span> ${solBtn(i+1)}</div>`).join("")||"<p>🎉 Em làm đúng hết!</p>"}`;
+  }else{
+    R.auto=e.h.map((a,i)=>{if(a==null)return null;const x=numOf(R.ans[i]);return x!==null&&Math.abs(x-Number(a))<1e-9});
+    R.self=R.auto.slice();
+    head=`<h2>Đối chiếu đáp án</h2><p class="mut">Câu có đáp án số đã được chấm tự động (em vẫn bấm ✔/✘ để sửa nếu máy hiểu nhầm cách viết). Các câu còn lại (đáp án là biểu thức, phân số, chữ…) em mở trang đáp án bên dưới để tự chấm.</p>`;
+    body=`<div id="selfres"></div><div id="self"></div><h3>Trang đáp án chính thức</h3><img class="pg" src="${img(g,e.kp)}" alt="Đáp án">`;
+  }
+  $("#result").innerHTML=`<div class="card">${head}${body}<div id="solview"></div>
+    <details style="margin-top:12px"><summary style="cursor:pointer"><b>📖 Xem toàn bộ lời giải đề này (${sol.length} trang)</b></summary>${sol.map(p=>`<img class="pg" loading="lazy" src="${img(g,p)}" alt="Lời giải">`).join("")}</details>
+    <div class="row" style="margin-top:12px"><button class="btn sec" id="again">Làm lại đề này</button><button class="btn ghost" id="lst">Danh sách đề</button></div></div>`;
+  const showSol=p=>{if(!p)return;$("#solview").innerHTML=`<h3>Lời giải</h3><img class="pg" src="${img(g,p)}" alt="Lời giải"><p class="mut" style="font-size:13px">Lời giải câu có thể nằm tiếp ở trang sau; dùng mục "Xem toàn bộ lời giải" nếu cần.</p>`;$("#solview").scrollIntoView({behavior:"smooth"})};
+  const bindSp=()=>document.querySelectorAll("#result [data-sp]").forEach(b=>b.onclick=()=>showSol(b.dataset.sp));
+  $("#again").onclick=()=>fmOpen(R.i);$("#lst").onclick=fmList;
+  if(!V){const draw=()=>{
+      $("#self").innerHTML=Array.from({length:25},(_,i)=>`<span style="display:inline-block;margin:3px 12px 3px 0"><b>${i+1}</b> <small class="mut">(${esc(R.ans[i]||"–")}${e.h[i]!=null?" → "+esc(e.h[i]):""})</small> <button class="nb ${R.self[i]===true?"ok":""}" data-s="${i}" data-v="1">✔</button><button class="nb ${R.self[i]===false?"no":""}" data-s="${i}" data-v="0">✘</button>${e.qs[i]?` <button class="btn ghost" data-sp="${e.qs[i]}" style="padding:2px 8px;font-size:12px">giải</button>`:""}</span>`).join("");
+      const n=R.self.filter(v=>v===true).length,pend=R.self.filter(v=>v===null).length;
+      $("#selfres").innerHTML=`<p>Điểm: <b>${n*4}/100</b> (${n}/25 câu đúng)${pend?` · còn <b>${pend}</b> câu em chưa tự chấm (đối chiếu trang đáp án)`:""} · Mốc tham khảo: <b>${medalOf(n*4)}</b></p>`;
+      saveFm(n*4,R.self.map(v=>v===true?"1":"0").join(""));
+      document.querySelectorAll("#self [data-v]").forEach(b=>b.onclick=()=>{R.self[+b.dataset.s]=b.dataset.v==="1";draw()});bindSp()};
+    draw()}
+  bindSp();
+  $("#result").scrollIntoView({behavior:"smooth"});
+}
+function saveFm(score,ok){DB.fm=DB.fm||{};DB.fm[fmKey(R.g,R.e)]={score,d:new Date().toISOString().slice(0,10),ok};save()}
+
+/* ---------- Tiến độ Fermat, chủ đề yếu, xuất/nhập ---------- */
+function themeStats(entries){const t=THEMES.map(()=>[0,0]);entries.forEach(v=>{if(!v.ok)return;for(let k=0;k<5;k++){t[k][0]+=okCount(v.ok,k);t[k][1]+=5}});return t}
+function fmStats(){
+  const all=Object.entries(DB.fm||{}).sort();
+  if(!all.length)return `<p class="mut">Chưa làm đề Fermat nào.</p>`;
+  const rows=all.map(([k,v])=>`<tr><td>Khối ${k[0]}</td><td>${k[1]==="V"?"Vòng loại":"Vòng quốc gia"} đề ${k.slice(2)}</td><td>${v.score}/100</td><td>${v.d}</td></tr>`).join("");
+  const g=String(curG()),mine=all.filter(([k])=>k[0]===g).map(x=>x[1]);
+  const ts=themeStats(mine);let weak="";
+  if(mine.length){const pc=ts.map(([a,b])=>b?a/b:1);const wi=pc.indexOf(Math.min(...pc));
+    weak=`<h3>Phân tích theo chủ đề · Khối ${g}</h3><table><tr><th>Chủ đề</th><th>Tỉ lệ đúng</th><th style="width:40%"></th></tr>${ts.map(([a,b],k)=>`<tr><td>${THEMES[k]}</td><td>${b?Math.round(a*100/b)+"%":"–"}</td><td><div class="bar"><i style="width:${b?Math.round(a*100/b):0}%"></i></div></td></tr>`).join("")}</table>
+    <p>👉 Chủ đề nên luyện thêm: <b>${THEMES[wi]}</b>. ${true?`<button class="btn sec" id="weakGo" data-k="${THKEY[wi]}">Luyện 10 câu chủ đề này</button>`:""}</p>`}
+  return `<table><tr><th>Khối</th><th>Đề</th><th>Điểm gần nhất</th><th>Ngày</th></tr>${rows}</table>${weak}`;
+}
+function exportCode(){const o={v:1,me:DB.me||"?",fm:DB.fm||{}};return btoa(unescape(encodeURIComponent(JSON.stringify(o))))}
+function exportView(){
+  const code=exportCode();
+  $("#app").innerHTML=`<div class="card"><h2>📤 Gửi kết quả cho thầy cô</h2><p class="mut">Sao chép dòng mã dưới đây gửi cho thầy cô (chỉ có mã HS và điểm, không có họ tên).</p>
+  <textarea id="code" readonly style="width:100%;height:120px;font:12px monospace">${code}</textarea><div class="row" style="margin-top:8px"><button class="btn" id="cp">Sao chép</button><button class="btn ghost" onclick="stats()">← Quay lại</button></div><div id="cpm" class="mut"></div></div>`;
+  $("#cp").onclick=()=>{const t=$("#code");t.select();try{navigator.clipboard.writeText(t.value);$("#cpm").textContent="Đã sao chép."}catch(e){document.execCommand("copy");$("#cpm").textContent="Đã sao chép."}};
+}
+function teacherView(){
+  $("#app").innerHTML=`<div class="card"><h2>👩‍🏫 Tổng hợp lớp (dành cho giáo viên)</h2><p class="mut">Dán mã kết quả của học sinh, mỗi dòng một mã (học sinh lấy ở mục Tiến độ → Gửi kết quả cho thầy cô). Lớp được tổng hợp ngay trên máy này, không gửi đi đâu.</p>
+  <textarea id="codes" style="width:100%;height:130px;font:12px monospace" placeholder="Dán mã, mỗi dòng một học sinh"></textarea>
+  <div class="row" style="margin-top:8px"><button class="btn" id="agg">Tổng hợp</button><select id="gsel"><option value="">Mọi khối</option>${[6,7,8,9].map(k=>`<option ${k===curG()?"selected":""}>${k}</option>`).join("")}</select></div><div id="agg-out"></div></div>`;
+  $("#agg").onclick=()=>{
+    const gs=$("#gsel").value;const by={};let bad=0;
+    $("#codes").value.split(/\s+/).filter(Boolean).forEach(c=>{try{const o=JSON.parse(decodeURIComponent(escape(atob(c))));if(o&&o.fm)by[String(o.me).slice(0,8)]=o.fm;else bad++}catch(e){bad++}});
+    const names=Object.keys(by).sort();if(!names.length){$("#agg-out").innerHTML=`<p class="err">Chưa đọc được mã nào${bad?` (${bad} mã không hợp lệ)`:""}.</p>`;return}
+    const tot=THEMES.map(()=>[0,0]);
+    const rows=names.map(n=>{const es=Object.entries(by[n]).filter(([k])=>!gs||k[0]===gs).map(x=>x[1]);
+      const ts=themeStats(es);ts.forEach((x,k)=>{tot[k][0]+=x[0];tot[k][1]+=x[1]});
+      const avg=es.length?Math.round(es.reduce((s,v)=>s+v.score,0)/es.length):"–";const best=es.length?Math.max(...es.map(v=>v.score)):"–";
+      const pc=ts.map(([a,b])=>b?a/b:null);const valid=pc.filter(x=>x!==null);const w=valid.length?THEMES[pc.indexOf(Math.min(...valid))]:"–";
+      return `<tr><td><b>${esc(n)}</b></td><td>${es.length}</td><td>${avg}</td><td>${best}</td>${ts.map(([a,b])=>`<td>${b?Math.round(a*100/b)+"%":"–"}</td>`).join("")}<td>${w}</td></tr>`}).join("");
+    $("#agg-out").innerHTML=`<h3>Bảng tổng hợp (${names.length} học sinh)</h3><div style="overflow:auto"><table><tr><th>Mã</th><th>Số đề</th><th>Điểm TB</th><th>Cao nhất</th>${THEMES.map(t=>`<th>${t}</th>`).join("")}<th>Cần luyện</th></tr>${rows}
+      <tr><td><b>Cả lớp</b></td><td></td><td></td><td></td>${tot.map(([a,b])=>`<td><b>${b?Math.round(a*100/b)+"%":"–"}</b></td>`).join("")}<td></td></tr></table></div>${bad?`<p class="err">${bad} mã không hợp lệ.</p>`:""}
+      <p class="mut">Điểm tính theo 4 điểm/câu. Học sinh không có đề nào ở khối đã chọn hiển thị 0 đề.</p><button class="btn ghost noprint" onclick="window.print()">In bảng</button>`;
+  };
+}
+
+try{if("serviceWorker"in navigator&&location.protocol.startsWith("http"))navigator.serviceWorker.register("sw.js")}catch(e){}
+setTheme();
+home();
+</script>
+</body>
+</html>
